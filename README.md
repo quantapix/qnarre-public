@@ -57,6 +57,108 @@ Spec roster at launch: RICO 28 specs (14 common + 4 c + 3 a + 3 b +
 disparate-impact + 3 retaliation); CivilRights 14 specs (4 § 1981 +
 5 § 1983 + 5 § 1985(3)).
 
+## Axiomatizing the full U.S. Code
+
+The three hand-built frameworks above are the **golden reference** for a
+larger program: a kernel-checked Lean4 encoding of the operative content
+of the **entire** United States Code — all 54 titles — produced not by a
+single model pass but redundantly, by independent agent teams working
+along several orthogonal strategies, then reconciled.
+
+The motivation is an honest admission. A single model that reads a statute
+and emits Lean has no oracle: there is no ground-truth "correct encoding"
+to check it against. So we manufacture one out of redundancy. If **N
+independent strategies**, each blind to the others, encode the same section
+and the kernel can prove their encodings mutually consistent, then agreement
+is mechanical evidence of a faithful mapping — and disagreement localizes
+exactly where a human should look. Redundancy replaces the missing oracle.
+
+### The orthogonal strategies
+
+Each strategy is a genuinely different lens on the same text. An agent
+working one strategy never sees the others, so the views are statistically
+independent — the precondition for treating agreement as evidence.
+
+| Strategy | The lens |
+|---|---|
+| **Elements** | the pleading elements a litigant must prove — the cause-of-action view (this is the method the three hand-built frameworks already use) |
+| **Deontic** | the normative operator — obligation, prohibition, permission, power, definition |
+| **Ontology** | the interlocking definitions — what each defined term denotes, as a dependency graph |
+| **Procedure** | the process as a state machine — filing, notice, deadline, limitations, appeal |
+| **Structure** | the cross-references — incorporation, exception, override, savings clauses across sections |
+| **Remedy** | who may enforce and what they recover — private right of action vs. agency-only, the standing chain |
+
+### Agreement is a kernel-checked Bridge
+
+When two strategies encode the same section, a **Bridge lemma** states that
+one strategy's composite implies the other's, under a declared
+correspondence between their predicates. A Bridge that type-checks *without
+a `sorry`* is mechanical proof the two independent encodings agree; one that
+cannot be discharged localizes a real disagreement and routes it to human
+review. Sections are then graded into confidence tiers — **corroborated**
+(three or more strategies agree in the kernel), **partial**, and
+**single / conflicting** (not promoted; reviewed).
+
+A practical lesson from the first calibration wave: agreement is measured by
+these Bridges, **not** by comparing predicate *names*. Blind agents
+re-derived a statute's element decomposition exactly while sharing almost no
+vocabulary with the hand-built reference — naming is a free variable, so a
+name-match score is unwinnable, but a Bridge that maps the two vocabularies
+discharges cleanly. The correctness signal is the kernel proof, never the
+spelling.
+
+### Where it stands
+
+The ground-truth corpus — the full Code, pinned to a specific published
+release point so an encoding is reproducibly bound to exact statutory text —
+is in place, alongside a durable off-site archive of that release point so a
+proof remains reproducible even after the source is rotated. The conventions,
+the strategy briefings, and a shared cross-strategy predicate library are
+frozen. A hand-built calibration cell on the canonical racketeering
+operating-or-managing provision is encoded under all six strategies and is
+kernel-green, with its cross-strategy Bridges discharged. A first wave of
+**blind** agent cells — RICO investment / acquisition / conspiracy, the three
+Title VI theories, and the §§ 1981 / 1983 / 1985(3) civil-rights provisions —
+has been scored against the golden reference via committed Bridge modules.
+
+A second wave widened the pattern along two new axes. It took a title with **no
+hand-built reference** — the Federal Arbitration Act — and encoded it under all
+five applicable strategies; the cross-strategy Bridges discharged in the kernel,
+the first agreement measured on sections the golden reference does not cover. It
+also took the racketeering prohibited-activities provisions and ran two
+independent strategies — the pleading-elements view and the deontic-operator
+view — blind of the hand-built reference; their cross-strategy Bridge and a
+Bridge back to the golden reference both discharged without a `sorry`, so the
+blind encodings now sit in the authoritative tree under a separate namespace,
+alongside the reference they were scored against rather than replacing it.
+Predicates that recur **across** titles — an interstate-commerce nexus, a
+limitations window, a conspiracy agreement — were collapsed onto a single shared
+definition, each collapse licensed by its own kernel-checked Bridge rather than
+by a name match.
+
+A subsequent **golden-adjacent** wave proved the pattern on sections that sit
+*next to* a hand-built reference without being it. The marquee result: a blind
+encoding of the equal-property-rights provision was bridged to the hand-built
+equal-contracting framework, **full-tier and sorry-free**, mapping the
+property right onto the contract right through a declared correspondence — the
+kernel certifying that two independently-derived encodings of adjacent
+civil-rights statutes agree. The civil-RICO private-right-of-action standing
+chain was bridged at a lower confidence tier, with the gap surfaced as a named
+hypothesis a human reviewer can localize rather than a silent omission. A
+parallel **employment-discrimination** wave (no golden twin — the employment
+title is not the funding-discrimination reference) encoded the core-liability
+sections under all five strategies and scored them on cross-axis agreement
+alone.
+
+The remaining work is scale: the same pattern, title by title, in waves. The
+fan-out runs on two lanes — a programmatic batch lane (gated on a 2026-06-15
+credit activation) and a manual-interactive bridge lane available now — driven
+by a single repeatable procedure with one hard rule: the agent fan-out must
+draw zero manual approvals, so a wave runs unattended end to end. Every cell
+writes to a sandbox, never to the authoritative tree, until a reconciliation
+gate and a human review promote it. See [`STATUS.md`](./STATUS.md) for the
+current wave tally.
+
 ## Statutory text is vendored, not pasted
 
 The operative statutory text lives under a vendored, pinned mirror
