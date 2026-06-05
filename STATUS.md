@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-06-01. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-06-05. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what
@@ -17,7 +17,7 @@ proof-graph UI are the launch deliverable.
 
 ## Hand-built golden frameworks
 
-Three frameworks elaborate under `lake build` and serve as the golden
+Four frameworks elaborate under `lake build` and serve as the golden
 reference the automated program is scored against:
 
 | Framework | Statutory basis | Specs |
@@ -25,6 +25,7 @@ reference the automated program is scored against:
 | **Civil RICO** | 18 U.S.C. §§ 1961–1968 (§ 1962(a)(b)(c)(d) + § 1964(c) standing) | 28 |
 | **Title VI** | 42 U.S.C. §§ 2000d et seq. (intentional / disparate-impact / retaliation) | 17 |
 | **CivilRights** | 42 U.S.C. §§ 1981, 1983, 1985(3) | 14 |
+| **Title IX** | 20 U.S.C. §§ 1681–1688 (sex discrimination in federally funded education) | kernel-only |
 
 Each top-level validity theorem is an inductive over its substantive
 subsections; predicate facts enter as kernel axioms and the validity
@@ -36,15 +37,29 @@ fictional *Doe v. Acme* complaint) runs end-to-end through the pipeline.
 - **Ground truth in place.** A pinned, full-Code markdown mirror — all
   54 titles, on the order of tens of thousands of sections — bound to a
   specific published release point, with a durable off-site archive so a
-  proof stays reproducible after the source rotates. Conventions,
-  per-axis strategy briefings, and a shared cross-strategy predicate
-  library are frozen.
+  proof stays reproducible after the source rotates. Each promoted wave
+  is itself frozen into an immutable off-site snapshot at promotion time,
+  so a wave's blind cells stay reproducible after the working sandbox is
+  pruned. Conventions, per-axis strategy briefings, and a shared
+  cross-strategy predicate library are frozen.
 - **Calibration anchor kernel-green.** The canonical racketeering
-  operating-or-managing provision is hand-encoded under all six
-  strategies with its cross-strategy Bridges discharged at full tier
+  operating-or-managing provision is hand-encoded under all ten
+  strategies (five core fanned out on every section + five specialized
+  opt-in) with its cross-strategy Bridges discharged at full tier
   (no `sorry`). This anchor is the template every blind cell mirrors and
   the reference the fan-out is scored against.
 - **Wave tally (most recent first):**
+  - **Title IX golden-expansion** — a blind encoding of the
+    funded-education nondiscrimination title that *failed* to fully
+    bridge to the funding-discrimination golden, localizing the gap to a
+    single protected-ground hypothesis; promoted to a fourth hand-built
+    golden, against which the same blind cell re-bridges full-tier and
+    sorry-free.
+  - **Golden-trio re-slice (evidence-only)** — the three blind golden
+    re-derivations (racketeering, equal-contracting, funding-
+    discrimination) re-run on the model-locked lane and held as
+    evidence-only archives without disturbing the hand-built anchors;
+    all three still bridge.
   - **Employment-discrimination wave** — core-liability sections of the
     employment-discrimination title encoded under all five applicable
     strategies, scored on cross-axis agreement (no golden twin exists

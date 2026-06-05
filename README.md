@@ -21,12 +21,23 @@ that coordinates without legal reasoning of its own.
 |---|---|---|---|
 | **Formal kernel** (`Proving/<Framework>/*.lean`) | only Lean | only Lean | Lean elaborator. No I/O, no LLM calls. |
 | **Predicate functions** (`predicates/<framework>/*.md`) | one complaint text + entity refs | a single `Bool` (plus evidence + uncertainty) | LLM sub-agent with `context: fork`. May consult a semantic memory store. |
-| **Driver** (`scripts/extract_facts.py`) | manifest + complaint | `Proving/<Framework>/Facts.lean` (axioms) + audit JSON | LLM `--print --model haiku` invocations. |
+| **Driver** (`scripts/extract_facts.py`) | manifest + complaint | `Proving/<Framework>/Facts.lean` (axioms) + audit JSON | LLM `--print` invocations, **model-locked to the strongest available model**. |
 
 The Lean kernel never reads natural language. The predicate
 sub-agents never write Lean. The driver is a thin coordinator. The
 verifiable proof IS the Lean elaboration trace produced by
 `lake build`.
+
+Model choice is a capability constraint, not a cost knob: production predicate
+runs hard-fail on a weaker model unless an explicit smoke-test flag is passed.
+A measured bake-off found a weaker model fabricated a "cannot read the document"
+hedge on a document it was handed and mis-placed its one uncertainty flag on that
+fabrication; the stronger model produced zero such hedges and flagged high
+uncertainty only on genuine knife-edge calls. The driver therefore carries two
+guards — one rejects-and-retries a result that claims it couldn't read the input
+or carries no evidence (a substantive negative finding is a legitimate `False`,
+not an error); the other treats a high-uncertainty band as a human-review flag,
+never an auto-reject.
 
 ## Why this works
 
@@ -51,11 +62,29 @@ Each framework lives under `Proving/<Framework>/` (kernel) +
 | **Civil RICO** | `Proving/Rico/` | `predicates/rico/` | 18 U.S.C. §§ 1961–1968; § 1962(a)(b)(c)(d) + § 1964(c) standing |
 | **Title VI** | `Proving/TitleVI/` | `predicates/titlevi/` | 42 U.S.C. §§ 2000d et seq.; intentional, disparate impact, retaliation |
 | **CivilRights** | `Proving/CivilRights/` | `predicates/civilrights/` | 42 U.S.C. §§ 1981, 1983, 1985(3); equal contracting, color-of-law, civil-rights conspiracy |
+| **Title IX** | `Proving/TitleIX/` | _kernel-only_ | 20 U.S.C. §§ 1681–1688; sex discrimination in federally funded education |
 
 Spec roster at launch: RICO 28 specs (14 common + 4 c + 3 a + 3 b +
 4 d); Title VI 17 specs (7 coverage + 2 intentional + 5
 disparate-impact + 3 retaliation); CivilRights 14 specs (4 § 1981 +
 5 § 1983 + 5 § 1985(3)).
+
+Title IX is the **fourth** golden framework and the newest. It is the structural
+twin of Title VI — Congress patterned the funded-education nondiscrimination rule
+after the funding-discrimination rule — but it is encoded as a *sibling*, not an
+instance: its protected ground is `sex`, which sits categorically outside Title
+VI's closed `{race, color, national origin}` enumeration, and it carries a
+nine-part statutory exception schedule and an education-specific coverage clause
+that Title VI lacks. That irreducible domain mismatch surfaced mechanically: a
+blind encoding of the Title IX core could only bridge to the Title VI golden at a
+*partial* tier, with the gap localized to exactly the ground-correspondence
+hypothesis — so Title IX earned its own golden, against which the same blind cell
+re-bridges at full tier without a `sorry`. It is kernel-only today (predicate
+specs, a worked sample, and a status roster are open work); its role is to serve
+as a calibration target for the automated program.
+
+Kernels pin to a current stable Lean toolchain (`v4.30.0`); the build needs no
+Mathlib dependency, which keeps `lake build` fast.
 
 ## Axiomatizing the full U.S. Code
 
@@ -75,18 +104,29 @@ exactly where a human should look. Redundancy replaces the missing oracle.
 
 ### The orthogonal strategies
 
-Each strategy is a genuinely different lens on the same text. An agent
-working one strategy never sees the others, so the views are statistically
-independent — the precondition for treating agreement as evidence.
+Each strategy is a genuinely different lens on the same text. An agent working
+one strategy never sees the others, so the views are statistically independent —
+the precondition for treating agreement as evidence. **Five core strategies** are
+fanned out on every section; **five specialized strategies** are opt-in for the
+sections that need them.
 
-| Strategy | The lens |
-|---|---|
-| **Elements** | the pleading elements a litigant must prove — the cause-of-action view (this is the method the three hand-built frameworks already use) |
-| **Deontic** | the normative operator — obligation, prohibition, permission, power, definition |
-| **Ontology** | the interlocking definitions — what each defined term denotes, as a dependency graph |
-| **Procedure** | the process as a state machine — filing, notice, deadline, limitations, appeal |
-| **Structure** | the cross-references — incorporation, exception, override, savings clauses across sections |
-| **Remedy** | who may enforce and what they recover — private right of action vs. agency-only, the standing chain |
+| Strategy | Lane | The lens |
+|---|---|---|
+| **Elements** | core | the pleading elements a litigant must prove — the cause-of-action view (the method the hand-built frameworks already use) |
+| **Deontic** | core | the normative operator — obligation, prohibition, permission, power, definition |
+| **Ontology** | core | the interlocking definitions — what each defined term denotes, as a dependency graph |
+| **Procedure** | core | the process as a state machine — filing, notice, deadline, limitations, appeal |
+| **Structure** | core | the cross-references — incorporation, exception, override, savings clauses across sections |
+| **Remedy** | specialized | who may enforce and what they recover — private right of action vs. agency-only, the standing chain |
+| **Scienter** | specialized | the required mental state — knowledge, intent, recklessness, strict liability |
+| **Sanction** | specialized | the penalty schedule — fine, forfeiture, term, debarment |
+| **Intertemporal** | specialized | effective-date and savings dynamics — which version governs which conduct |
+| **Evidentiary** | specialized | the proof burdens and presumptions a section imposes |
+
+Specialized strategies that recur **across** titles — a scienter standard, a
+penalty schedule, an evidentiary presumption — are collapsed onto a single shared
+algebra, each collapse licensed by its own kernel-checked Bridge rather than by a
+name match.
 
 ### Agreement is a kernel-checked Bridge
 
@@ -150,14 +190,45 @@ title is not the funding-discrimination reference) encoded the core-liability
 sections under all five strategies and scored them on cross-axis agreement
 alone.
 
-The remaining work is scale: the same pattern, title by title, in waves. The
-fan-out runs on two lanes — a programmatic batch lane (gated on a 2026-06-15
-credit activation) and a manual-interactive bridge lane available now — driven
-by a single repeatable procedure with one hard rule: the agent fan-out must
-draw zero manual approvals, so a wave runs unattended end to end. Every cell
-writes to a sandbox, never to the authoritative tree, until a reconciliation
-gate and a human review promote it. See [`STATUS.md`](./STATUS.md) for the
-current wave tally.
+A subsequent pass re-ran the three blind golden re-derivations — the
+racketeering, equal-contracting, and funding-discrimination frameworks — on the
+model-locked lane, holding them as evidence-only archives without disturbing the
+hand-built anchors they reproduce; all three still bridge to their goldens. Each
+promoted wave is now frozen into an immutable, off-site-archived snapshot at
+promotion time, so a wave's blind cells stay reproducible after the working
+sandbox is pruned. The most recent golden expansion added a **fourth** hand-built
+reference — the funded-education nondiscrimination title — discovered exactly
+when a blind cell *failed* to fully bridge to an existing golden and localized
+the gap to a single protected-ground hypothesis.
+
+The remaining work is scale: the same pattern, title by title, in waves, now
+across ten strategies rather than six. The fan-out runs on two lanes — a
+programmatic batch lane (gated on a 2026-06-15 credit activation) and a
+manual-interactive bridge lane available now — driven by a single repeatable
+procedure with one hard rule: the agent fan-out must draw zero manual approvals,
+so a wave runs unattended end to end. Every cell writes to a sandbox, never to
+the authoritative tree, until a reconciliation gate and a human review promote
+it. See [`STATUS.md`](./STATUS.md) for the current wave tally.
+
+### Open to outside contributors
+
+This program — **axiomatize the U.S. Code, in the age of AI** — is open to
+outside contributors. It is the natural place to build the project in the
+open: it works over **public federal statutes only**, so collaboration
+carries no privacy-floor surface, and the redundancy design means an
+independent encoding is *useful precisely because* it was written blind to
+the others. Pick up a section, a predicate, or a title; encode it under one
+of the ten strategies; a cross-strategy Bridge measures agreement in the
+kernel.
+
+The project today is **a single developer working with AI assistance, now
+opening this effort to contributors** — not a community project, an
+engineering practice opening one well-isolated lane. Start with the
+`CONTRIBUTING` notes and the good-first-issues here, and the project
+[Discussions](https://github.com/quantapix/qagents-public). The
+strategy briefings, the shared cross-strategy predicate library, and the
+golden-reference cells are frozen, so a new cell has a fixed target to
+score against.
 
 ## Statutory text is vendored, not pasted
 
