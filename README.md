@@ -62,26 +62,32 @@ Each framework lives under `Proving/<Framework>/` (kernel) +
 | **Civil RICO** | `Proving/Rico/` | `predicates/rico/` | 18 U.S.C. §§ 1961–1968; § 1962(a)(b)(c)(d) + § 1964(c) standing |
 | **Title VI** | `Proving/TitleVI/` | `predicates/titlevi/` | 42 U.S.C. §§ 2000d et seq.; intentional, disparate impact, retaliation |
 | **CivilRights** | `Proving/CivilRights/` | `predicates/civilrights/` | 42 U.S.C. §§ 1981, 1983, 1985(3); equal contracting, color-of-law, civil-rights conspiracy |
-| **Title IX** | `Proving/TitleIX/` | _kernel-only_ | 20 U.S.C. §§ 1681–1688; sex discrimination in federally funded education |
+| **Title IX** | `Proving/TitleIX/` | `predicates/titleix/` | 20 U.S.C. §§ 1681–1688; sex discrimination in federally funded education |
+| **Title VII** | `Proving/TitleVII/` (three goldens) | `predicates/titlevii/` | 42 U.S.C. § 2000e family; § 2000e-5(f)(1) enforcement, § 2000e-6(a) pattern-or-practice, § 2000e-16(c) federal-sector |
+| **Rehab § 504** | `Proving/Rehab504/` | `predicates/rehab504/` | 29 U.S.C. § 794; disability discrimination in federally assisted or conducted programs |
+| **Age Act** | `Proving/AgeAct/` | `predicates/ageact/` | 42 U.S.C. §§ 6101–6107; age discrimination in federally assisted programs |
 
-Spec roster at launch: RICO 28 specs (14 common + 4 c + 3 a + 3 b +
-4 d); Title VI 17 specs (7 coverage + 2 intentional + 5
-disparate-impact + 3 retaliation); CivilRights 14 specs (4 § 1981 +
-5 § 1983 + 5 § 1985(3)).
+Spec roster: RICO 28; Title VI 17; CivilRights 14; Title IX 21; Title VII
+19; Rehab § 504 19; Age Act 17 — seven frameworks, nine hand-built golden
+reference cells (Title VII carries three).
 
-Title IX is the **fourth** golden framework and the newest. It is the structural
-twin of Title VI — Congress patterned the funded-education nondiscrimination rule
-after the funding-discrimination rule — but it is encoded as a *sibling*, not an
-instance: its protected ground is `sex`, which sits categorically outside Title
-VI's closed `{race, color, national origin}` enumeration, and it carries a
-nine-part statutory exception schedule and an education-specific coverage clause
-that Title VI lacks. That irreducible domain mismatch surfaced mechanically: a
-blind encoding of the Title IX core could only bridge to the Title VI golden at a
-*partial* tier, with the gap localized to exactly the ground-correspondence
-hypothesis — so Title IX earned its own golden, against which the same blind cell
-re-bridges at full tier without a `sorry`. It is kernel-only today (predicate
-specs, a worked sample, and a status roster are open work); its role is to serve
-as a calibration target for the automated program.
+Title IX was the first golden added by the **golden-expansion path**, and the
+pattern has since produced four more frameworks. The path is mechanical: a
+blind agent cell encoding a new statute can only bridge to an existing golden
+at a *partial* tier, with the gap localized to a real statutory element
+outside the golden's closed shape — Title IX's `sex` ground sits categorically
+outside Title VI's `{race, color, national origin}` enumeration, § 504's
+`disability` ground adds a federally-conducted prong and an
+"otherwise qualified" gate, the Age Act's `age` ground carries a statutory
+carve-out schedule as a first-class coverage element. Each irreducible gap
+earned the statute its own hand-built golden, encoded as a *sibling* rather
+than an instance; the same blind cell then re-bridges to the new golden at
+full tier without a `sorry`. The employment-discrimination title contributed
+three goldens at once — its mixed public/private enforcement provision, the
+pattern-or-practice action, and the federal-sector channel are three distinct
+enforcement shapes, each with its own validity theorem. All seven frameworks
+are driver-operational: predicate specs, a worked end-to-end sample, and a
+status roster per framework.
 
 Kernels pin to a current stable Lean toolchain (`v4.30.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
@@ -201,6 +207,22 @@ reference — the funded-education nondiscrimination title — discovered exactl
 when a blind cell *failed* to fully bridge to an existing golden and localized
 the gap to a single protected-ground hypothesis.
 
+The most recent waves closed out an entire statutory chapter family. The
+employment-discrimination title's enforcement provisions were encoded blind
+under eight strategies, held un-promoted while their definitions block was
+encoded in a follow-up wave, then reconciled and promoted together — the
+definitions wave grounded four of the enforcement wave's five dangling
+ontology terms, and one deliberately-asserted polarity decision re-tiered a
+conflicting section to corroborated. Golden bridges now discharge against all
+three hand-built employment-enforcement goldens. A final tail wave swept the
+chapter's miscellaneous sections plus the definitional fragment its
+funding-discrimination sibling depends on — that fragment bridges to the
+hand-built golden at full tier, sorry-free. The chapter family is now fully
+sliced: every section is encoded, scored, and graded. The running corpus
+rollup stands at 48 sections — 29 corroborated, 12 partial, 7 single or
+conflicting — and every promoted wave (17 to date) is frozen into the
+immutable off-site archive at promotion time.
+
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
 programmatic batch lane (gated on a 2026-06-15 credit activation) and a
@@ -246,7 +268,7 @@ Every predicate is a markdown file with a fixed frontmatter shape:
 ```yaml
 ---
 predicate: <name>
-framework: rico | titlevi | civilrights
+framework: rico | titlevi | civilrights | titleix | titlevii | rehab504 | ageact
 returns: Bool
 inputs:
   complaint: <slug>
