@@ -66,10 +66,11 @@ Each framework lives under `Proving/<Framework>/` (kernel) +
 | **Title VII** | `Proving/TitleVII/` (three goldens) | `predicates/titlevii/` | 42 U.S.C. § 2000e family; § 2000e-5(f)(1) enforcement, § 2000e-6(a) pattern-or-practice, § 2000e-16(c) federal-sector |
 | **Rehab § 504** | `Proving/Rehab504/` | `predicates/rehab504/` | 29 U.S.C. § 794; disability discrimination in federally assisted or conducted programs |
 | **Age Act** | `Proving/AgeAct/` | `predicates/ageact/` | 42 U.S.C. §§ 6101–6107; age discrimination in federally assisted programs |
+| **Title II Enf** | `Proving/TitleIIEnf/` | `predicates/titleiienf/` | 42 U.S.C. § 2000a-5(b); the enforcement-mechanism golden — three-judge-court track + single-judge fallback for an Attorney-General pattern-or-practice action (a procedural shape, not a discrimination claim: chief-judge addressee, panel composition, an "in every way expedited" duty, and a direct Supreme-Court appeal as first-class elements) |
 
 Spec roster: RICO 28; Title VI 17; CivilRights 14; Title IX 21; Title VII
-19; Rehab § 504 19; Age Act 17 — seven frameworks, nine hand-built golden
-reference cells (Title VII carries three).
+19; Rehab § 504 19; Age Act 17; Title II Enf 10 — eight frameworks, ten
+hand-built golden reference cells (Title VII carries three).
 
 Title IX was the first golden added by the **golden-expansion path**, and the
 pattern has since produced four more frameworks. The path is mechanical: a
@@ -85,9 +86,12 @@ than an instance; the same blind cell then re-bridges to the new golden at
 full tier without a `sorry`. The employment-discrimination title contributed
 three goldens at once — its mixed public/private enforcement provision, the
 pattern-or-practice action, and the federal-sector channel are three distinct
-enforcement shapes, each with its own validity theorem. All seven frameworks
-are driver-operational: predicate specs, a worked end-to-end sample, and a
-status roster per framework.
+enforcement shapes, each with its own validity theorem. The first seven
+frameworks are driver-operational: predicate specs, a worked end-to-end
+sample, and a status roster per framework. The eighth — the Title II
+enforcement golden — is the first **procedural** reference (an enforcement
+mechanism rather than a discrimination cause of action); it is golden-bridged
+and driver-operational, with its worked end-to-end sample still in progress.
 
 Kernels pin to a current stable Lean toolchain (`v4.30.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
@@ -182,6 +186,16 @@ limitations window, a conspiracy agreement — were collapsed onto a single shar
 definition, each collapse licensed by its own kernel-checked Bridge rather than
 by a name match.
 
+A subsequent wave family took an entire **labor-relations title** — the
+National Labor Relations Act — with no hand-built reference, and encoded its
+enforcement core, its self-organization and representation sections, and its
+miscellaneous provisions blind across the applicable strategies. Cross-strategy
+Bridges discharged in the kernel; recurring predicates — a jurisdictional
+threshold, a limitations window, a savings clause — collapsed onto the shared
+cross-title algebra under their own kernel-checked Bridges. It is the second
+body of statute (after arbitration) where agreement is measured purely on
+cross-strategy consistency, the golden reference being silent on it.
+
 A subsequent **golden-adjacent** wave proved the pattern on sections that sit
 *next to* a hand-built reference without being it. The marquee result: a blind
 encoding of the equal-property-rights provision was bridged to the hand-built
@@ -219,16 +233,16 @@ chapter's miscellaneous sections plus the definitional fragment its
 funding-discrimination sibling depends on — that fragment bridges to the
 hand-built golden at full tier, sorry-free. The chapter family is now fully
 sliced: every section is encoded, scored, and graded. The running corpus
-rollup stands at 48 sections — 29 corroborated, 12 partial, 7 single or
-conflicting — and every promoted wave (17 to date) is frozen into the
+rollup stands at **69 encoded sections — 40 corroborated, 16 partial, 13
+single or conflicting** — and every promoted wave is frozen into the
 immutable off-site archive at promotion time.
 
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
-programmatic batch lane (gated on a 2026-06-15 credit activation) and a
-manual-interactive bridge lane available now — driven by a single repeatable
-procedure with one hard rule: the agent fan-out must draw zero manual approvals,
-so a wave runs unattended end to end. Every cell writes to a sandbox, never to
+manual-interactive lane, the current lane, and a programmatic batch lane that
+stays specified but paused pending a provider-plan change — driven by a single
+repeatable procedure with one hard rule: the agent fan-out must draw zero
+manual approvals, so a wave runs unattended end to end. Every cell writes to a sandbox, never to
 the authoritative tree, until a reconciliation gate and a human review promote
 it. See [`STATUS.md`](./STATUS.md) for the current wave tally.
 
@@ -268,7 +282,7 @@ Every predicate is a markdown file with a fixed frontmatter shape:
 ```yaml
 ---
 predicate: <name>
-framework: rico | titlevi | civilrights | titleix | titlevii | rehab504 | ageact
+framework: rico | titlevi | civilrights | titleix | titlevii | rehab504 | ageact | titleiienf
 returns: Bool
 inputs:
   complaint: <slug>
