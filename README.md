@@ -52,6 +52,20 @@ never an auto-reject.
 4. The audit trail is the JSON in `examples/<id>/facts.json` — every
    predicate output, with evidence quotes and an uncertainty score.
 
+### Predicates can be decomposed
+
+A predicate need not be a single opaque `Bool`. A high-level element can be
+**derived** in the kernel from finer **leaf predicates**: the LLM sub-agent
+decides only the leaves — the narrow, case-law-anchored questions it can
+answer from the document — and the kernel composes them into the high-level
+element through procedural theorems discharged by a small, core-only tactic
+(no external proof library). This stratifies the work by cost and trust: some
+elements are decided entirely in the kernel with no model call at all; leaf
+extraction runs on the strongest available model; and the proof search that
+assembles them is itself model-driven but kernel-checked. The decomposition
+never weakens the guarantee — every derived element still bottoms out in
+recorded axioms and a type-checked composition.
+
 ## Frameworks
 
 Each framework lives under `Proving/<Framework>/` (kernel) +
@@ -67,10 +81,11 @@ Each framework lives under `Proving/<Framework>/` (kernel) +
 | **Rehab § 504** | `Proving/Rehab504/` | `predicates/rehab504/` | 29 U.S.C. § 794; disability discrimination in federally assisted or conducted programs |
 | **Age Act** | `Proving/AgeAct/` | `predicates/ageact/` | 42 U.S.C. §§ 6101–6107; age discrimination in federally assisted programs |
 | **Title II Enf** | `Proving/TitleIIEnf/` | `predicates/titleiienf/` | 42 U.S.C. § 2000a-5(b); the enforcement-mechanism golden — three-judge-court track + single-judge fallback for an Attorney-General pattern-or-practice action (a procedural shape, not a discrimination claim: chief-judge addressee, panel composition, an "in every way expedited" duty, and a direct Supreme-Court appeal as first-class elements) |
+| **ADA** | `Proving/ADA/` | `predicates/ada/` | 42 U.S.C. ch126 §§ 12111/12112 (Title I employment), §§ 12131/12132 (Title II public services), §§ 12181/12182 (Title III public accommodations), § 12203 (retaliation) — a disability framework with three title-specific coverage regimes (employer / public entity / public-accommodation operator) and "on the basis of" / "by reason of" causation; impact is judicially enforceable, so there is no administrative-only split; a six-route validity theorem |
 
 Spec roster: RICO 28; Title VI 17; CivilRights 14; Title IX 21; Title VII
-19; Rehab § 504 19; Age Act 17; Title II Enf 10 — eight frameworks, ten
-hand-built golden reference cells (Title VII carries three).
+19; Rehab § 504 19; Age Act 17; Title II Enf 10; ADA 24 — **nine frameworks,
+eleven hand-built golden reference cells** (Title VII carries three).
 
 Title IX was the first golden added by the **golden-expansion path**, and the
 pattern has since produced four more frameworks. The path is mechanical: a
@@ -92,6 +107,19 @@ sample, and a status roster per framework. The eighth — the Title II
 enforcement golden — is the first **procedural** reference (an enforcement
 mechanism rather than a discrimination cause of action); it is golden-bridged
 and driver-operational, with its worked end-to-end sample still in progress.
+
+The ninth framework — the Americans with Disabilities Act — is the first built
+**golden-first**: the hand-written kernel and predicate specs landed ahead of
+any blind encoding wave, where the earlier expansion goldens were each
+discovered when a blind cell failed to fully bridge an existing reference. It
+is encoded as a *sibling* of the Rehabilitation Act § 504 disability
+framework, but splits into three title-specific coverage regimes — employer,
+public entity, and public-accommodation operator — and drops § 504's "solely
+by reason of" causation for the ADA's "on the basis of" / "by reason of"
+standard. Because the statute makes disparate-impact judicially enforceable,
+it has no administrative-only branch, and validity resolves through any of six
+routes. Its bridging encodings against the public-statute corpus are forward
+work, not a re-derivation of a prior anchor.
 
 Kernels pin to a current stable Lean toolchain (`v4.30.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
@@ -148,6 +176,12 @@ cannot be discharged localizes a real disagreement and routes it to human
 review. Sections are then graded into confidence tiers — **corroborated**
 (three or more strategies agree in the kernel), **partial**, and
 **single / conflicting** (not promoted; reviewed).
+
+Agreement lemmas are held to a stricter standard than the rest of the kernel:
+a Bridge must be discharged by an explicit term-level proof, never by the
+automated proof search the rest of the build may use — a syntactic gate
+rejects an automated discharge of an agreement lemma outright, so "the two
+encodings agree" can never be an artifact of search heuristics.
 
 A practical lesson from the first calibration wave: agreement is measured by
 these Bridges, **not** by comparing predicate *names*. Blind agents
@@ -232,10 +266,23 @@ three hand-built employment-enforcement goldens. A final tail wave swept the
 chapter's miscellaneous sections plus the definitional fragment its
 funding-discrimination sibling depends on — that fragment bridges to the
 hand-built golden at full tier, sorry-free. The chapter family is now fully
-sliced: every section is encoded, scored, and graded. The running corpus
-rollup stands at **69 encoded sections — 40 corroborated, 16 partial, 13
-single or conflicting** — and every promoted wave is frozen into the
-immutable off-site archive at promotion time.
+sliced: every section is encoded, scored, and graded. Subsequent waves
+carried the same pattern into further titles — the administrative-procedure
+title among them. The most recent waves filled in the racketeering statute's
+**predicate-offense catalog** — the enumerated offenses a pattern is built
+from (human trafficking, obstruction, money laundering, and interstate
+transport of stolen property and fraudulent identification) — encoded blind
+and bridged into the kernel, with recurring notions such as "financial
+institution" collapsed onto the shared cross-title algebra under their own
+Bridges; alongside two further civil-rights chapters (a religious-freedom
+protection and a school-desegregation assistance title) and an
+administrative-procedure scope-of-review pass. The running corpus rollup now
+stands at **153 encoded sections — 90 corroborated, 38 partial, 25 single or
+conflicting** — counted as distinct statutory sections at their best achieved
+tier (a section encoded under two lenses counts once), with the tally derived
+mechanically from the per-section records rather than hand-maintained, and
+every promoted wave frozen into the immutable off-site archive at promotion
+time.
 
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
@@ -282,7 +329,7 @@ Every predicate is a markdown file with a fixed frontmatter shape:
 ```yaml
 ---
 predicate: <name>
-framework: rico | titlevi | civilrights | titleix | titlevii | rehab504 | ageact | titleiienf
+framework: rico | titlevi | civilrights | titleix | titlevii | rehab504 | ageact | titleiienf | ada
 returns: Bool
 inputs:
   complaint: <slug>

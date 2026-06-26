@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-06-12. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-06-24. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what
@@ -58,10 +58,12 @@ end-to-end through the pipeline.
   fan-out with its cross-strategy Bridges discharged at full tier
   (no `sorry`). This anchor is the template every blind cell mirrors and
   the reference the fan-out is scored against.
-- **Corpus rollup: 48 sections encoded — 29 corroborated / 12 partial /
-  7 single-or-conflicting.** Up from 34 sections at the start of the
-  window; the civil-rights chapter's employment family is now **fully
-  sliced** — every section encoded, scored, and graded.
+- **Corpus rollup: 136 sections encoded — 73 corroborated / 37 partial /
+  26 single-or-conflicting.** Up from 34 sections at the start of the
+  window; the civil-rights chapter's employment family is **fully
+  sliced**, and subsequent waves carried the pattern into further titles
+  (the labor-relations and administrative-procedure titles among them) —
+  every section encoded, scored, and graded.
 - **Wave tally (most recent first):**
   - **Chapter-tail wave** — the employment family's miscellaneous
     sections plus the definitional fragment its funding-discrimination
