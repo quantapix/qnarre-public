@@ -121,7 +121,7 @@ it has no administrative-only branch, and validity resolves through any of six
 routes. Its bridging encodings against the public-statute corpus are forward
 work, not a re-derivation of a prior anchor.
 
-Kernels pin to a current stable Lean toolchain (`v4.30.0`); the build needs no
+Kernels pin to a current stable Lean toolchain (`v4.31.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
 
 ## Axiomatizing the full U.S. Code
@@ -268,21 +268,24 @@ funding-discrimination sibling depends on — that fragment bridges to the
 hand-built golden at full tier, sorry-free. The chapter family is now fully
 sliced: every section is encoded, scored, and graded. Subsequent waves
 carried the same pattern into further titles — the administrative-procedure
-title among them. The most recent waves filled in the racketeering statute's
+title among them. The most recent waves widened the racketeering
 **predicate-offense catalog** — the enumerated offenses a pattern is built
-from (human trafficking, obstruction, money laundering, and interstate
-transport of stolen property and fraudulent identification) — encoded blind
-and bridged into the kernel, with recurring notions such as "financial
-institution" collapsed onto the shared cross-title algebra under their own
-Bridges; alongside two further civil-rights chapters (a religious-freedom
-protection and a school-desegregation assistance title) and an
-administrative-procedure scope-of-review pass. The running corpus rollup now
-stands at **153 encoded sections — 90 corroborated, 38 partial, 25 single or
-conflicting** — counted as distinct statutory sections at their best achieved
-tier (a section encoded under two lenses counts once), with the tally derived
-mechanically from the per-section records rather than hand-maintained, and
-every promoted wave frozen into the immutable off-site archive at promotion
-time.
+from — well past the initial set: document fraud, loansharking (extortionate
+credit transactions), counterfeiting of both obligations and trafficked goods,
+and interstate transport of stolen property were each encoded blind and bridged
+into the kernel, with the counterfeiting-of-obligations chapter earning its own
+kernel-checked golden bridge. Two further titles were opened with no hand-built
+reference — the immigration-and-nationality title and the
+trafficking-victims-protection provisions of the foreign-relations title, the
+latter's definitions block lifting one previously-partial section to
+corroborated once its defined terms were grounded. Recurring notions — a
+"financial institution" definition, an interstate-commerce nexus — continue to
+collapse onto the shared cross-title algebra under their own Bridges. The
+running corpus rollup now stands at **196 encoded sections — 126 corroborated,
+41 partial, 29 single or conflicting** — counted as distinct statutory sections
+at their best achieved tier (a section encoded under two lenses counts once),
+the tally derived mechanically from the per-section records, every promoted
+wave frozen into the immutable off-site archive at promotion time.
 
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a

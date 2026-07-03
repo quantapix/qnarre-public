@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-06-24. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-07-03. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what
@@ -11,16 +11,18 @@ next. It is a companion to the [README](./README.md), not a substitute.
 
 **Early-beta window.** The hosted verifier endpoint at
 `qnarre.quantapix.com` and its streaming proof-graph UI remain the
-launch deliverable for the drive window. The seven hand-built
+launch deliverable for the drive window. The nine hand-built
 frameworks, the predicate specs, and the full-Code axiomatization
 program are live in the private working tree.
 
 ## Hand-built golden frameworks
 
-Seven frameworks — nine golden reference cells — elaborate under
-`lake build` and serve as the reference the automated program is
-scored against. All are driver-operational: predicate specs, a worked
-end-to-end sample, and a status roster each.
+Nine frameworks — eleven golden reference cells (the employment title
+carries three) — elaborate under `lake build` and serve as the
+reference the automated program is scored against. All are
+driver-operational: predicate specs, a worked end-to-end sample, and a
+status roster each (the two most recent goldens' worked samples are
+still landing).
 
 | Framework | Statutory basis | Specs |
 |---|---|---:|
@@ -31,18 +33,20 @@ end-to-end sample, and a status roster each.
 | **Title VII** | 42 U.S.C. § 2000e family — three goldens: § 2000e-5(f)(1) enforcement, § 2000e-6(a) pattern-or-practice, § 2000e-16(c) federal-sector | 19 |
 | **Rehab § 504** | 29 U.S.C. § 794 (disability; federally assisted or conducted programs) | 19 |
 | **Age Act** | 42 U.S.C. §§ 6101–6107 (age; federally assisted programs) | 17 |
+| **Title II Enf** | 42 U.S.C. § 2000a-5(b) — the enforcement-mechanism golden (three-judge-court track + single-judge fallback for a pattern-or-practice action; a procedural shape, not a discrimination claim) | 10 |
+| **ADA** | 42 U.S.C. ch126 §§ 12111/12112, 12131/12132, 12181/12182, 12203 — a disability framework with three title-specific coverage regimes and a six-route validity theorem | 24 |
 
-Five of the nine golden cells landed this week, all via the
-golden-expansion path: a blind cell bridges to an existing golden only
-partially, the gap localizes to a real statutory element outside the
-golden's closed shape, and the statute earns its own sibling golden —
-against which the same blind cell re-bridges at full tier, sorry-free.
-Title IX, previously kernel-only, is now fully driver-operational
-(21 specs + a worked sample). Each top-level validity theorem is an
-inductive over its substantive subsections; predicate facts enter as
-kernel axioms and the validity proof is a pure structure-introduction.
-A bundled worked demo (a fictional *Doe v. Acme* complaint) runs
-end-to-end through the pipeline.
+The two most recent goldens extend the pattern past discrimination
+causes of action: the Title II enforcement golden is the first
+**procedural** reference (an enforcement mechanism, not a cause of
+action), and the ADA golden is the first built **golden-first** — the
+hand-written kernel and predicate specs landed ahead of any blind
+encoding wave, encoded as a sibling of the § 504 disability framework
+but splitting into three title-specific coverage regimes. Each
+top-level validity theorem is an inductive over its substantive
+subsections; predicate facts enter as kernel axioms and the validity
+proof is a pure structure-introduction. A bundled worked demo (a
+fictional *Doe v. Acme* complaint) runs end-to-end through the pipeline.
 
 ## Full-U.S.-Code program
 
@@ -50,55 +54,45 @@ end-to-end through the pipeline.
   54 titles, on the order of tens of thousands of sections — bound to a
   specific published release point, with a durable off-site archive so a
   proof stays reproducible after the source rotates. Each promoted wave
-  is itself frozen into an immutable off-site snapshot at promotion time
-  (17 waves archived to date). Conventions, per-axis strategy briefings,
-  and a shared cross-strategy predicate library are frozen.
+  is itself frozen into an immutable off-site snapshot at promotion time.
+  Conventions, per-axis strategy briefings, and a shared cross-strategy
+  predicate library are frozen.
 - **Calibration anchor kernel-green.** The canonical racketeering
   operating-or-managing provision is hand-encoded under the strategy
   fan-out with its cross-strategy Bridges discharged at full tier
   (no `sorry`). This anchor is the template every blind cell mirrors and
   the reference the fan-out is scored against.
-- **Corpus rollup: 136 sections encoded — 73 corroborated / 37 partial /
-  26 single-or-conflicting.** Up from 34 sections at the start of the
+- **Corpus rollup: 196 sections encoded — 126 corroborated / 41 partial /
+  29 single-or-conflicting.** Up from 34 sections at the start of the
   window; the civil-rights chapter's employment family is **fully
-  sliced**, and subsequent waves carried the pattern into further titles
-  (the labor-relations and administrative-procedure titles among them) —
-  every section encoded, scored, and graded.
+  sliced**, and subsequent waves carried the pattern into further titles —
+  the labor-relations and administrative-procedure titles, the
+  racketeering predicate-offense catalog, and two further whole titles
+  (immigration-and-nationality and trafficking-victims-protection) — every
+  section encoded, scored, and graded. Counted as distinct statutory
+  sections at their best achieved tier; the tally is derived mechanically
+  from the per-section records, never hand-maintained.
 - **Wave tally (most recent first):**
-  - **Chapter-tail wave** — the employment family's miscellaneous
-    sections plus the definitional fragment its funding-discrimination
-    sibling depends on, five strategies blind; 5 sections corroborated,
-    4 partial, none conflicting; 33 bridge theorems sorry-free. The
-    definitional fragment bridges to the hand-built
-    funding-discrimination golden at **full tier, sorry-free**. One
-    corpus-conversion defect was found and queued by the same wave's
-    review — the gate catching a ground-truth bug is the design working.
-  - **Enforcement-wave promotion** — the employment title's enforcement
-    provisions (eight strategies blind, held un-promoted pending a
-    definitions slice) re-reconciled and promoted: one deliberate
-    polarity decision re-tiered a conflicting section to corroborated,
-    and golden bridges were authored against all three hand-built
-    employment-enforcement goldens, completing golden-bridge coverage.
-  - **Definitions wave** — the employment title's definitions +
-    substantive block, seven strategies blind; **3/3 sections
-    corroborated**, 11 cross-axis bridges sorry-free. Grounded four of
-    the held enforcement wave's five dangling ontology terms; shared
-    predicates collapsed onto the existing cross-title library with
-    zero new signatures.
-  - **Golden-expansion, employment enforcement** — three hand-built
-    goldens added at once (mixed public/private enforcement,
-    pattern-or-practice, federal-sector): three distinct enforcement
-    shapes, each with its own validity theorem; the blind enforcement
-    cell bridges to its golden.
-  - **Golden-expansion, funding siblings** — disability (§ 504) and age
-    discrimination encoded as siblings of the funding-discrimination
-    golden: same coverage spine, irreducibly different protected ground
-    plus their own statutory gates (federally-conducted prong,
-    "otherwise qualified", a carve-out schedule as a first-class
-    coverage element).
-  - _(Earlier waves — Title IX golden-expansion, golden-trio
-    re-slice, employment-discrimination cross-axis wave,
-    golden-adjacent wave, golden-core + FAA wave — as previously
+  - **Predicate-offense-catalog expansion** — document fraud,
+    loansharking (extortionate credit), and counterfeiting of both
+    obligations and trafficked goods, plus interstate transport of stolen
+    property, each encoded blind and bridged into the kernel; the
+    counterfeiting-of-obligations chapter earned its own kernel-checked
+    golden bridge. Recurring notions (a "financial institution"
+    definition, an interstate-commerce nexus) collapsed onto the shared
+    cross-title algebra under their own Bridges.
+  - **Immigration-and-nationality title opened** — no hand-built
+    reference; the core provisions plus an inadmissibility follow-up wave,
+    scored on cross-strategy agreement alone.
+  - **Trafficking-victims-protection provisions opened** (foreign-relations
+    title) — a definitions wave grounded the defined terms and lifted one
+    previously-partial section to corroborated; an enforcement-apparatus
+    wave followed.
+  - **Human-trafficking chapter tail completed** — the remaining
+    peonage / slavery / trafficking sections, encoded and graded.
+  - _(Earlier waves — the employment chapter-tail and enforcement/definitions
+    reconciliation, the funding-sibling and Title II / ADA golden expansions,
+    the labor-relations and administrative-procedure passes — as previously
     reported.)_
 - **Confidence tiers.** Sections grade into **corroborated** (three or
   more strategies agree in the kernel), **partial**, and
@@ -111,19 +105,19 @@ end-to-end through the pipeline.
 - **Manual-interactive bridge lane** — available now; every promoted
   wave to date ran on it, from inside an interactive session via a
   subagent fan-out with a hard zero-manual-approval rule.
-- **Programmatic batch lane** — gated on the 2026-06-15 credit
-  activation; same mechanics, unattended.
+- **Programmatic batch lane** — same mechanics, unattended; stays
+  specified but **paused** pending a provider-plan change.
 
 ## Next
 
-- Regenerate the one corpus-conversion defect found by the chapter-tail
-  wave's review and re-tier the affected section.
 - Fan out the remaining non-golden sections of the racketeering and
-  civil-rights titles.
+  civil-rights titles, and continue the whole-title passes.
+- Land the worked end-to-end samples for the two newest goldens (Title II
+  enforcement and the ADA).
 - The hosted verifier's streaming proof-graph UI (the early-beta
   deliverable).
 - Later phases (broader title coverage, the live freeform-submission
-  path) are gated on the 2026-06-15 credit activation.
+  path) ride the programmatic lane, gated on a provider-plan change.
 
 ## How to verify
 
