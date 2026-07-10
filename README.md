@@ -281,8 +281,8 @@ latter's definitions block lifting one previously-partial section to
 corroborated once its defined terms were grounded. Recurring notions — a
 "financial institution" definition, an interstate-commerce nexus — continue to
 collapse onto the shared cross-title algebra under their own Bridges. The
-running corpus rollup now stands at **196 encoded sections — 126 corroborated,
-41 partial, 29 single or conflicting** — counted as distinct statutory sections
+running corpus rollup now stands at **268 encoded sections — 153 corroborated,
+77 partial, 38 single or conflicting** — counted as distinct statutory sections
 at their best achieved tier (a section encoded under two lenses counts once),
 the tally derived mechanically from the per-section records, every promoted
 wave frozen into the immutable off-site archive at promotion time.

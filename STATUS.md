@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-07-03. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-07-10. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what
@@ -62,8 +62,8 @@ fictional *Doe v. Acme* complaint) runs end-to-end through the pipeline.
   fan-out with its cross-strategy Bridges discharged at full tier
   (no `sorry`). This anchor is the template every blind cell mirrors and
   the reference the fan-out is scored against.
-- **Corpus rollup: 196 sections encoded — 126 corroborated / 41 partial /
-  29 single-or-conflicting.** Up from 34 sections at the start of the
+- **Corpus rollup: 268 sections encoded — 153 corroborated / 77 partial /
+  38 single-or-conflicting.** Up from 34 sections at the start of the
   window; the civil-rights chapter's employment family is **fully
   sliced**, and subsequent waves carried the pattern into further titles —
   the labor-relations and administrative-procedure titles, the
