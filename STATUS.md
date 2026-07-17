@@ -1,11 +1,36 @@
 # qnarre-public — status
 
-_Snapshot: 2026-07-10. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-07-17. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what
 has landed, the wave tally on the full-U.S.-Code program, and what is
 next. It is a companion to the [README](./README.md), not a substitute.
+
+## Correction — 2026-07-17
+
+On 2026-07-14 our own adversarial review lane found leak channels in the
+cross-axis **agreement oracle** — the mechanism that scored the
+per-section confidence grades below (the "corroborated / partial /
+single-or-conflicting" tally, and any "scored on cross-strategy
+agreement" wording). Independent verification cells could, in principle,
+observe one another's outputs, so blind-agreement figures minted before
+that date are not established as blind. Accordingly:
+
+- The agreement-based grades are **withdrawn** pending a fresh blind
+  re-slice under the corrected fan-out contracts. Treat every
+  "corroborated" count on this page as provisional and dated pre-07-14.
+- What is unaffected: **kernel soundness.** Every `lake build` is green
+  and every promoted proof is `sorry`-free. The count of sections
+  *encoded* is a mechanical census, not an agreement figure — it stands.
+- The re-slice for the legal-domain corpus is a multi-week program; this
+  page keeps the encoded and soundness figures and drops the agreement
+  grades until it lands. Earlier weekly digests (W24–W28) are dated
+  records, left intact; this correction supersedes their agreement-grade
+  language.
+
+We surfaced this because the cells check one another and one lane caught
+it — not because the earlier numbers were right all along.
 
 ## Overall
 
