@@ -13,7 +13,8 @@ that coordinates without legal reasoning of its own.
 
 - Parent organisation: <https://github.com/quantapix>
 - Engineering output: <https://quantapix.com>
-- Live product: <https://qnarre.quantapix.com>
+- Product site (early beta; the hosted verifier is the drive-window
+  deliverable, not yet serving): <https://qnarre.quantapix.com>
 
 ## The three-layer split
 
@@ -83,9 +84,12 @@ Each framework lives under `Proving/<Framework>/` (kernel) +
 | **Title II Enf** | `Proving/TitleIIEnf/` | `predicates/titleiienf/` | 42 U.S.C. § 2000a-5(b); the enforcement-mechanism golden — three-judge-court track + single-judge fallback for an Attorney-General pattern-or-practice action (a procedural shape, not a discrimination claim: chief-judge addressee, panel composition, an "in every way expedited" duty, and a direct Supreme-Court appeal as first-class elements) |
 | **ADA** | `Proving/ADA/` | `predicates/ada/` | 42 U.S.C. ch126 §§ 12111/12112 (Title I employment), §§ 12131/12132 (Title II public services), §§ 12181/12182 (Title III public accommodations), § 12203 (retaliation) — a disability framework with three title-specific coverage regimes (employer / public entity / public-accommodation operator) and "on the basis of" / "by reason of" causation; impact is judicially enforceable, so there is no administrative-only split; a six-route validity theorem |
 
-Spec roster: RICO 28; Title VI 17; CivilRights 14; Title IX 21; Title VII
-19; Rehab § 504 19; Age Act 17; Title II Enf 10; ADA 24 — **nine frameworks,
-eleven hand-built golden reference cells** (Title VII carries three).
+Spec roster: RICO 25 (plus 9 leaf specs under `predicates/rico/hier/`, the
+hierarchical decomposition); Title VI 17; CivilRights 14; Title IX 21;
+Title VII 19; Rehab § 504 19; Age Act 17; Title II Enf 10; ADA 24 — **nine
+frameworks, eleven hand-built golden reference cells** (Title VII carries
+three). Three orphaned RICO axioms — predicates no theorem reached — were
+retired rather than left standing as unused surface.
 
 Title IX was the first golden added by the **golden-expansion path**, and the
 pattern has since produced four more frameworks. The path is mechanical: a
@@ -121,12 +125,12 @@ it has no administrative-only branch, and validity resolves through any of six
 routes. Its bridging encodings against the public-statute corpus are forward
 work, not a re-derivation of a prior anchor.
 
-Kernels pin to a current stable Lean toolchain (`v4.31.0`); the build needs no
+Kernels pin to a current stable Lean toolchain (`v4.32.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
 
 ## Axiomatizing the full U.S. Code
 
-The three hand-built frameworks above are the **golden reference** for a
+The nine hand-built frameworks above are the **golden reference** for a
 larger program: a kernel-checked Lean4 encoding of the operative content
 of the **entire** United States Code — all 54 titles — produced not by a
 single model pass but redundantly, by independent agent teams working
@@ -190,6 +194,29 @@ vocabulary with the hand-built reference — naming is a free variable, so a
 name-match score is unwinnable, but a Bridge that maps the two vocabularies
 discharges cleanly. The correctness signal is the kernel proof, never the
 spelling.
+
+#### What an enumeration bridge does and does not certify
+
+Not every full-tier bridge certifies the same thing, and the difference is
+worth stating before anyone reads a tier as a fidelity score.
+
+Some golden predicates are **flat opaque axioms** — the golden side has no
+element structure to compare against. When a blind encoding bridges to one of
+those, it discharges through a single declared correspondence, and what the
+kernel certifies is narrow: the blind composite is **type-compatible with being
+named** a predicate offence by the statute's own enumeration clause. That is a
+real statutory fact and a real proof, and it is *naming-independent* — the
+bridge never relies on the blind cell's choice of predicate names, which are a
+free variable. But it is **not** element-level agreement, and it is not evidence
+that the two encodings decompose the statute the same way.
+
+Where the golden side does carry element structure, the bridge tests exactly
+that, and the result is a fidelity read.
+
+Every full-tier section now records which of the two it earned. Of the 36
+sections holding a full-tier golden bridge, **8 rest on element-level agreement
+and 28 on statutory enumeration.** The distinction was not visible in the
+tier alone, so the tier stopped being reported alone.
 
 ### Where it stands
 
@@ -281,11 +308,13 @@ latter's definitions block lifting one previously-partial section to
 corroborated once its defined terms were grounded. Recurring notions — a
 "financial institution" definition, an interstate-commerce nexus — continue to
 collapse onto the shared cross-title algebra under their own Bridges. The
-running corpus rollup now stands at **268 encoded sections — 153 corroborated,
-77 partial, 38 single or conflicting** — counted as distinct statutory sections
-at their best achieved tier (a section encoded under two lenses counts once),
-the tally derived mechanically from the per-section records, every promoted
-wave frozen into the immutable off-site archive at promotion time.
+running corpus rollup now stands at **388 encoded sections across 11
+titles**, counted as distinct statutory sections (a section encoded under two
+lenses counts once), derived mechanically from the per-section records and never
+hand-maintained, with every promoted wave frozen into an immutable off-site
+archive at promotion time. Confidence grades are reported separately and under
+narrower scope than they once were — see [`STATUS.md`](./STATUS.md), which
+carries the 2026-07-17 correction and the re-slice program that answers it.
 
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
@@ -309,9 +338,12 @@ kernel.
 
 The project today is **a single developer working with AI assistance, now
 opening this effort to contributors** — not a community project, an
-engineering practice opening one well-isolated lane. Start with the
-`CONTRIBUTING` notes and the good-first-issues here, and the project
-[Discussions](https://github.com/quantapix/qagents-public). The
+engineering practice opening one well-isolated lane. Start with
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) and the curated
+[`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — nine verified tasks, each
+with acceptance criteria and reproducible counts. They are not yet filed as
+individual issues and Discussions are not enabled, so an issue on this repo
+is the channel. The
 strategy briefings, the shared cross-strategy predicate library, and the
 golden-reference cells are frozen, so a new cell has a fixed target to
 score against.
@@ -389,7 +421,8 @@ committed as ordinary diffs — the commit log is the change record.
 
 ## Contact
 
-[`quantapix@gmail.com`](mailto:quantapix@gmail.com)
+[github.com/quantapix](https://github.com/quantapix) — open an issue on any repo
+in the org. Answered in public; there is no contact email.
 
 ## License
 
