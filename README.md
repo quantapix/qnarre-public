@@ -110,7 +110,9 @@ frameworks are driver-operational: predicate specs, a worked end-to-end
 sample, and a status roster per framework. The eighth — the Title II
 enforcement golden — is the first **procedural** reference (an enforcement
 mechanism rather than a discrimination cause of action); it is golden-bridged
-and driver-operational, with its worked end-to-end sample still in progress.
+and driver-operational, and its worked end-to-end samples have landed — three
+of them, covering the three-judge track, the single-judge fallback, and a
+second three-judge fact pattern.
 
 The ninth framework — the Americans with Disabilities Act — is the first built
 **golden-first**: the hand-written kernel and predicate specs landed ahead of
@@ -124,6 +126,18 @@ standard. Because the statute makes disparate-impact judicially enforceable,
 it has no administrative-only branch, and validity resolves through any of six
 routes. Its bridging encodings against the public-statute corpus are forward
 work, not a re-derivation of a prior anchor.
+
+One thing worth being precise about, because "worked end-to-end sample" can be
+read two ways. Every framework's sample runs the full pipeline — driver,
+generated axiom block, `lake build` — but seven of the bundled samples are
+**stub-built**: the driver was run with predicate evaluation canned to `True`
+rather than dispatched to a model, so the sample exercises the plumbing and the
+kernel composition, not the predicate rubrics. An `ACCEPTED` verdict from a
+stub-built sample says nothing about the complaint. The racketeering sample,
+the funding-discrimination sample, and the three enforcement-mechanism samples
+are real predicate runs; the other seven are scaffolds awaiting one. They are
+marked as such rather than quietly counted, and un-stubbing them is tracked
+work.
 
 Kernels pin to a current stable Lean toolchain (`v4.32.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
@@ -213,10 +227,20 @@ that the two encodings decompose the statute the same way.
 Where the golden side does carry element structure, the bridge tests exactly
 that, and the result is a fidelity read.
 
-Every full-tier section now records which of the two it earned. Of the 36
+Every full-tier section now records which of the two it earned. Of the 43
 sections holding a full-tier golden bridge, **8 rest on element-level agreement
-and 28 on statutory enumeration.** The distinction was not visible in the
+and 35 on statutory enumeration.** The distinction was not visible in the
 tier alone, so the tier stopped being reported alone.
+
+The gap does not close by trying harder. A recent wave over a previously
+unencoded chapter of the criminal title discharged every one of its golden
+bridges sorry-free — and all of them through the enumeration clause, because
+the golden-side predicate for that clause is a flat opaque axiom and no
+hand-built reference encodes those offences element-wise. Element-level
+agreement was unavailable **by construction**, not unearned. The only cure is
+to hand-build a golden for that subject matter, and that has to be authored
+outside the blind fan-out: the fan-out is scored *against* a golden, so it can
+never be the thing that mints one.
 
 ### Where it stands
 
@@ -308,13 +332,28 @@ latter's definitions block lifting one previously-partial section to
 corroborated once its defined terms were grounded. Recurring notions — a
 "financial institution" definition, an interstate-commerce nexus — continue to
 collapse onto the shared cross-title algebra under their own Bridges. The
-running corpus rollup now stands at **388 encoded sections across 11
-titles**, counted as distinct statutory sections (a section encoded under two
-lenses counts once), derived mechanically from the per-section records and never
-hand-maintained, with every promoted wave frozen into an immutable off-site
-archive at promotion time. Confidence grades are reported separately and under
-narrower scope than they once were — see [`STATUS.md`](./STATUS.md), which
-carries the 2026-07-17 correction and the re-slice program that answers it.
+running corpus rollup now stands at **402 encoded sections across 11
+titles** — 11 of the Code's 58 titles, and roughly two-thirds of one percent of
+its ~62,800 operative sections — counted as distinct statutory sections (a
+section encoded under two lenses counts once), derived mechanically from the
+per-section records and never hand-maintained, with every promoted wave frozen
+into an immutable off-site archive at promotion time. Confidence grades are
+reported separately and under narrower scope than they once were — see
+[`STATUS.md`](./STATUS.md), which carries the 2026-07-17 correction and the
+re-slice program that answers it.
+
+The most recent cycle did two things the earlier waves had not. It ran a
+**second independent blind encoding of a cluster already encoded eight days
+earlier** — the Reconstruction-era civil-rights sections — with different cells
+and a different reconciler, which is a re-witness measurement the program has
+no other way to buy. Five of seven sections graded identically across the two
+encodings; two diverged, in opposite directions, which is what makes them
+informative rather than noise. The equal-property-rights section discharged its
+golden bridge sorry-free **twice, independently**. Where the two encodings
+disagreed, the grade was resolved by **conjunction — full tier only where both
+waves agree** — so the second look could lower a grade and not only raise one,
+and it did. And it took a previously-unencoded chapter of the criminal title
+and sliced it complete across six lenses, as a clean append with no overlap.
 
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
@@ -418,6 +457,8 @@ pipeline. Refreshed alongside the predicate specs.
 Refreshed weekly from the private working tree. Spec rewrites, new
 predicates, framework extensions, and kernel-shape changes are
 committed as ordinary diffs — the commit log is the change record.
+
+Authored by a sole developer working with an AI assistant (Claude Code) under written CLAUDE.md contracts — methodology in [qagents-public](https://github.com/quantapix/qagents-public).
 
 ## Contact
 

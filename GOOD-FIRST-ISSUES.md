@@ -1,7 +1,7 @@
 # Good first issues — U.S. Code axiomatization (`proving/`)
 
 Starter contributor tasks for the open U.S. Code axiomatization. Every task
-below is a **verified defect in the tree** (counts re-derived 2026-07-22, see
+below is a **verified defect in the tree** (counts re-derived 2026-07-31, see
 § "Re-deriving the counts"), not an invented exercise.
 
 The project is currently **a single developer working with AI assistance — now
@@ -87,8 +87,8 @@ python3 scripts/test_uscode.py          # hermetic tests for the resolver + lint
 python3 scripts/validate_common_mints.py
 ```
 
-`uscode.py lint` currently reports **1485 file(s) scanned; 125 distinct cite(s);
-125 resolvable, 0 dead** — your PR must keep `0 dead`.
+`uscode.py lint` currently reports **3445 file(s) scanned; 157 distinct cite(s);
+157 resolvable, 0 dead** — your PR must keep `0 dead`.
 
 Only if your change touches `Proving/**` (issues 8 and 9 may):
 
@@ -313,9 +313,17 @@ cross-title form of the interstate-commerce nexus"). If the sentence exists only
 to record build provenance, move it out of the sub-agent-facing body.
 
 **Acceptance criteria.**
-- `grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/` returns hits only in
-  `predicates/README.md` (the human-facing roster, which is not a sub-agent
-  prompt), and nothing under `predicates/usc/`.
+- `grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/usc/common/` returns
+  nothing.
+- The rubric's meaning is unchanged — a reviewer should be able to read the
+  before/after and agree the sub-agent decides the same thing.
+- `python3 scripts/uscode.py lint` → `0 dead`.
+
+**Scope note.** A tree-wide grep currently returns a few hundred hits, almost
+all of them a single provenance line in specs promoted by recent encoding
+waves. That is a real instance of the same defect and it is being tracked
+separately; it is **not** part of this issue, and a PR that sweeps it is a
+different review. Fix the two named files.
 - The rubric's meaning is unchanged — a reviewer should be able to read the
   before/after and agree the sub-agent decides the same thing.
 - `python3 scripts/uscode.py lint` → `0 dead`.
@@ -374,15 +382,18 @@ neutral fact patterns, as the existing specs do.
 
 | new file | axiom signature (copy this — do not go read the kernel) | statutory anchor | model to follow |
 |---|---|---|---|
-| `predicates/usc/common/is-person-in-us.md` | `IsPersonInUS (p : Person) (c : ComplaintText) : Prop` | `42 USC § 2000d` | `predicates/titlevi/is-person-in-us.md` |
 | `predicates/usc/common/acts-under-color-of-state-law.md` | `ActsUnderColorOfStateLaw (p : Person) (c : ComplaintText) : Prop` | `42 USC § 1983` | `predicates/civilrights/acts-under-color-of-state-law.md` |
-| `predicates/usc/common/proximate-cause.md` | `ProximateCause (p : Person) (c : ComplaintText) : Prop` | `18 USC § 1964` | `predicates/rico/proximate-cause.md` |
+| `predicates/usc/common/is-attorney-general.md` | `IsAttorneyGeneral (p : Person) (c : ComplaintText) : Prop` | `28 USC § 503` | the enforcement-actor specs under `predicates/usc/t42/` |
+| `predicates/usc/common/is-employer.md` | `IsEmployer (p : Person) (c : ComplaintText) : Prop` | `42 USC § 2000e(b)` | `predicates/usc/t42/titleviidef/` |
 
 **Background.** `Proving/USC/Common/` holds cross-title predicates that several
 titles share. Each such axiom is supposed to have exactly one authoring spec at
-`predicates/usc/common/<kebab-name>.md`. Eleven `Proving.USC.Common` axioms
+`predicates/usc/common/<kebab-name>.md`. Six `Proving.USC.Common` axioms
 currently have no spec file; the three above are the ones with the clearest
-statutory anchor and an existing hand-built golden spec to model on.
+statutory anchor and an existing hand-built spec to model on. Two of the three
+that this issue originally listed — the person-in-the-US predicate and the
+proximate-cause predicate — were written internally on 2026-07-30 and are no
+longer available to take.
 
 Note the file-naming contract: **predicate spec file = kebab-case of the axiom
 name** (`IsPersonInUS` → `is-person-in-us.md`).
@@ -424,9 +435,11 @@ usc_cite: "<the anchor from the table>"
 
 **Do NOT.** Do not edit `Proving/USC/Common/Predicates.lean` — this issue adds
 specs only, and the axioms already exist. Do not add a *fourth* spec for one of
-the other eight orphans without opening a separate issue (each needs its own
-anchor decision). Do not set `shared: true` on any spec outside
-`predicates/usc/common/`.
+the other orphans without opening a separate issue (each needs its own anchor
+decision). Do not write a spec for the trafficking-victim predicate: it is
+declared and has zero consumers, and whether the axiom should retire instead of
+gaining a spec is an open decision. Do not set `shared: true` on any spec
+outside `predicates/usc/common/`.
 
 ---
 
@@ -516,14 +529,19 @@ grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/
 python3 scripts/uscode.py lint
 ```
 
-Snapshot at the time of writing (2026-07-22): 1,484 tracked markdown files under
-`predicates/` (including the per-framework READMEs and the ten axis briefings);
-198 predicate specs with no
-`## Test cases`; 315 missing `context: fork`; 23 missing `usc_cite` (all in
-`predicates/usc/common/`); 359 on non-positive-law titles missing the *prima
-facie* caveat (310 carry it); 3 files cite a kernel `.lean` path (one is
-`predicates/README.md`); `uscode.py lint` reports 125/125 cites resolvable, 0
-dead.
+Snapshot at the time of writing (2026-07-31): **3,444** tracked markdown files
+under `predicates/` (including the per-framework READMEs and the ten axis
+briefings); **327** predicate specs with no `## Test cases`; **314** missing
+`context: fork`; **24** missing `usc_cite` (all in `predicates/usc/common/`);
+**925** specs on non-positive-law titles missing the *prima facie* caveat (665
+carry it); **253** files cite a kernel `.lean` path; `uscode.py lint` reports
+**157 / 157** cites resolvable, 0 dead.
+
+These totals moved a great deal in one week — the spec tree roughly doubled as
+encoding waves promoted — while every **per-directory** count in the issues
+above reproduced exactly. That is the reason each issue tells you to re-derive
+its own scope rather than trust a corpus-wide figure: the corpus-wide figures
+are a moving target and the per-issue ones are not.
 
 ## Submitting
 

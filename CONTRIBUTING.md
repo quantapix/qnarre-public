@@ -8,7 +8,7 @@
 
 ## Read this first: what state the lane is actually in
 
-The honest picture as of **2026-07-24**, so you can judge whether it is
+The honest picture as of **2026-07-31**, so you can judge whether it is
 worth your time before you clone anything:
 
 - **A first tranche of starter tasks is now written**, in
@@ -28,6 +28,15 @@ worth your time before you clone anything:
 - **The project is one developer working with AI assistance**, opening one
   well-isolated lane. It is not a community project, and response latency
   will look like a single person's, because it is.
+- **The sources are not here yet.** This repo currently carries the
+  narrative documents only. The Lean kernel, the predicate specs, and the
+  helper scripts that every acceptance criterion in
+  [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) refers to are in the
+  private working tree and are being prepared for a source drop. Until that
+  lands, the issues are readable as a specification of the work and as an
+  honest inventory of the tree's defects, but you cannot run their commands
+  against a clone. Open an issue if you want to be told when the sources
+  land.
 
 If that is disqualifying for you, better to know now than after a weekend
 of encoding work.
