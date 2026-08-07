@@ -379,10 +379,13 @@ The project today is **a single developer working with AI assistance, now
 opening this effort to contributors** — not a community project, an
 engineering practice opening one well-isolated lane. Start with
 [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the curated
-[`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — nine verified tasks, each
-with acceptance criteria and reproducible counts. They are not yet filed as
-individual issues and Discussions are not enabled, so an issue on this repo
-is the channel. The
+[`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — **five open tasks of an
+original nine**, each with acceptance criteria and counts re-derived against
+the working tree on 2026-08-07. The other four were swept internally in the
+week after the roster was first published and are marked closed in place; the
+roster says which, and why that makes the linter task the most valuable one on
+the list. They are not filed as individual issues and Discussions are not
+enabled, so an issue on this repo is the channel. The
 strategy briefings, the shared cross-strategy predicate library, and the
 golden-reference cells are frozen, so a new cell has a fixed target to
 score against.

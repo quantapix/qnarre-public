@@ -1,8 +1,8 @@
-# Good first issues — U.S. Code axiomatization (`proving/`)
+# Good first issues — U.S. Code axiomatization
 
-Starter contributor tasks for the open U.S. Code axiomatization. Every task
-below is a **verified defect in the tree** (counts re-derived 2026-07-31, see
-§ "Re-deriving the counts"), not an invented exercise.
+Starter contributor tasks for the open U.S. Code axiomatization. Every open task
+below is a defect **re-derived against the working tree on 2026-08-07**, not an
+invented exercise.
 
 The project is currently **a single developer working with AI assistance — now
 opening contribution and actively seeking collaborators.** These issues are the
@@ -10,6 +10,23 @@ front door.
 
 Everything here works over **public federal statutes only**. No PII, no
 litigation record, no redaction surface.
+
+> **The commands below do not run against this clone yet.** This repo carries
+> the narrative documents only — the Lean kernel, the predicate specs, and the
+> helper scripts every acceptance criterion names are in the private working
+> tree, being prepared for a source drop (`CONTRIBUTING.md` § "what state the
+> lane is actually in"). Until it lands, read these as a specification of the
+> work and an inventory of the tree's defects. The counts are the maintainer's,
+> re-derived on the date stated; you will be able to re-derive them yourself
+> when the sources land.
+
+> **Four of the original nine closed between refreshes.** This roster was first
+> published on 2026-07-31 with nine open tasks. Issues 1, 2, 6 and 8 were swept
+> internally in the week that followed and are marked closed in place, keeping
+> their numbers. That is the expected failure mode of a public roster over a
+> tree under active work — and the reason issue 9, the *committed checker*, is
+> the highest-value task here: it is the only one that stops the classes from
+> coming back.
 
 ---
 
@@ -62,10 +79,11 @@ python3 scripts/uscode.py list                  # -> every cite in the corpus
 ### The hard rules that apply to *every* issue here
 
 1. **A predicate spec MUST NOT cite or read `Proving/**/*.lean`** (Hard rule 2).
-   Its world is the complaint text + the statutory rubric. Where an issue needs
-   you to know an axiom's signature, the signature is **quoted in the issue
-   text** — copy it from there, do not go read the kernel and cite a `.lean`
-   path in your spec.
+   Its world is the complaint text + the statutory rubric. Name the declaring
+   **namespace** instead — e.g. a line reading *Declared in namespace*
+   `Proving.USC.T29.Procedure` — never a file path.
+   Where an issue needs you to know an axiom's signature, the signature is
+   **quoted in the issue text** — copy it from there.
 2. **`Facts.lean` is generated. Never hand-edit it** (Hard rule 4). Every
    `Proving/<Framework>/Facts.lean` and `Proving/USC/**/Facts.lean` is
    gitignored build output.
@@ -79,7 +97,7 @@ python3 scripts/uscode.py list                  # -> every cite in the corpus
 
 ### Acceptance gates
 
-Run from `proving/`:
+Run from the repo root:
 
 ```bash
 python3 scripts/uscode.py lint          # every usc_cite in every spec resolves
@@ -87,10 +105,10 @@ python3 scripts/test_uscode.py          # hermetic tests for the resolver + lint
 python3 scripts/validate_common_mints.py
 ```
 
-`uscode.py lint` currently reports **3445 file(s) scanned; 157 distinct cite(s);
-157 resolvable, 0 dead** — your PR must keep `0 dead`.
+`uscode.py lint` currently reports **scanned 4417 file(s); 162 distinct cite(s);
+162 resolvable, 0 dead** — your PR must keep `0 dead`.
 
-Only if your change touches `Proving/**` (issues 8 and 9 may):
+Only if your change touches `Proving/**` (issue 9 may):
 
 ```bash
 lake build Proving ProvingUSC           # BOTH libs — a bare `lake build` is red by design
@@ -99,97 +117,38 @@ python3 scripts/check_olean_closure.py  # exit 5 if a tracked .lean is never ela
 
 ---
 
-## Issue 1 — Add the non-positive-law *prima facie* caveat to the Title 29 Deontic specs
+## Issue 1 — CLOSED 2026-08-01
 
-**Difficulty:** easy · **~45 min** · *no Lean, no LLM*
+*Add the non-positive-law prima facie caveat to the Title 29 Deontic specs.*
 
-**Files:** all 17 specs in `predicates/usc/t29/deontic/`
-
-**Background.** Only some U.S. Code titles have been enacted into *positive
-law*. For the rest, the printed Code is only *prima facie* evidence of the law
-and the Statutes at Large controls on conflict (1 U.S.C. § 204). Title 29
-(Labor) is **not** positive law — the ground truth is
-the vendored corpus categorization index (a `positive_law: true|false` flag), where each title carries a
-`positive_law: true|false` flag.
-
-The authoring contract (`predicates/README.md` § "Non-positive-law caveat")
-makes the caveat **mandatory** on any spec citing a non-positive-law title, and
-calls a missing caveat "a correctness defect, not cosmetic". All 17 specs in
-`predicates/usc/t29/deontic/` cite Title 29 and none carries it.
-
-**What to do.** In each of the 17 files, add the caveat immediately after the
-`# <Name> — <cite>` heading, matching the wording already used for Title 29
-elsewhere in the tree:
-
-```
-- Title 29 is **non-positive law** — the *prima facie* caveat applies
-  (1 U.S.C. § 204: the Code text is prima facie evidence of the law; the
-  Statutes at Large controls on any conflict).
-```
-
-Working examples to copy the placement from:
-`predicates/usc/t29/lmra/procedure/order-reviewable.md` (Title 29 phrasing) and
-`predicates/usc/t42/titleviidef/deontic/protected-ground-motivating-factor.md`
-(the fuller one-line blockquote form). Match the phrasing already used for the
-same title.
-
-**Acceptance criteria.**
-- All 17 files under `predicates/usc/t29/deontic/` match `grep -l "prima facie"`.
-- `python3 scripts/uscode.py lint` → `0 dead`.
-- No other file changed. No file renamed.
-
-**Do NOT.** Do not add the caveat to a *positive-law* title (check
-`positive_law` in the vendored corpus categorization index (a `positive_law: true|false` flag) first — Titles 5, 9, 18
-are positive law and must not get it). Do not paste statute text into the spec.
-Do not touch `Proving/**`.
+Closed by an internal sweep that ruled the *prima facie* caveat across the spec
+tree in one titled pass. All 17 specs in `predicates/usc/t29/deontic/` now carry
+it; 0 missing as of 2026-08-07. The rule itself is unchanged and still
+mandatory — see issue 9, which makes it mechanically checkable.
 
 ---
 
-## Issue 2 — Add the *prima facie* caveat to the Title 42 Title-VII-enforcement specs
+## Issue 2 — CLOSED 2026-08-01
 
-**Difficulty:** easy · **~2 h** · *no Lean, no LLM* · **independent of issue 1 —
-the two can be worked in parallel**
+*Add the prima facie caveat to the Title 42 Title-VII-enforcement specs.*
 
-**Files:** 56 specs, all missing the caveat, all citing Title 42 (not positive
-law):
+Closed by the same sweep as issue 1. All four directories under
+`predicates/usc/t42/titleviienf/` (elements 17, procedure 17, deontic 12,
+ontology 10) now carry the caveat; 0 missing as of 2026-08-07.
 
-| directory | files missing caveat |
-|---|---|
-| `predicates/usc/t42/titleviienf/elements/` | 17 / 17 |
-| `predicates/usc/t42/titleviienf/procedure/` | 17 / 17 |
-| `predicates/usc/t42/titleviienf/deontic/` | 12 / 12 |
-| `predicates/usc/t42/titleviienf/ontology/` | 10 / 10 |
-
-**Background.** Same rule as issue 1. Title 42 is non-positive law. 310 specs
-in the tree already carry the caveat; these 56 do not.
-
-**What to do.** Add, after the file's `# …` heading:
-
-```
-> Title 42 is NOT positive law (1 U.S.C. § 204): the text is *prima facie*
-> evidence of the law; the Statutes at Large controls on any conflict.
-```
-
-Model: `predicates/usc/t42/titleviidef/deontic/protected-ground-motivating-factor.md`
-(line 10).
-
-**Acceptance criteria.**
-- All 56 files match `grep -l "prima facie"`.
-- `python3 scripts/uscode.py lint` → `0 dead`.
-- Diff is caveat lines only.
-
-**Do NOT.** Same "do not" list as issue 1. Do not reword the surrounding rubric
-while you are in the file — keep the diff mechanical and reviewable.
+Tree-wide, **4,104 specs now carry the caveat and 300 still do not** — a real
+remaining population, but no longer one that partitions into a clean
+per-directory starter task. Issue 9 is the durable fix.
 
 ---
 
 ## Issue 3 — Add the missing `context: fork` / `allowed-tools` frontmatter (Title 29 LMRA)
 
-**Difficulty:** easy · **~1 h** · *no Lean, no LLM*
+**Difficulty:** easy · **~1 h** · *no Lean, no LLM* · **OPEN**
 
 **Files:** 36 specs —
-`predicates/usc/t29/lmra/procedure/` (20) and
-`predicates/usc/t29/lmra/ontology/` (16).
+`predicates/usc/t29/lmra/procedure/` (20 of 20) and
+`predicates/usc/t29/lmra/ontology/` (16 of 16).
 
 **Background.** Each predicate spec is executed as a **forked** Claude Code
 sub-agent: it gets its own context, sees only the complaint, and returns one
@@ -205,9 +164,12 @@ usc_cite: "29 USC § 160"
 ---
 ```
 
-315 specs across the tree are missing `context: fork`; these 36 are a
+314 specs across the tree are missing `context: fork`; these 36 are a
 self-contained batch. Without the declaration the spec is ambiguous about how it
 is meant to run.
+
+This count has not moved in a week while the spec tree grew ~28% — nothing
+sweeps it, which is exactly why it is still here.
 
 **What to do.** For each file, ensure the YAML frontmatter block exists and
 carries `context: fork` and `allowed-tools: [Read, Bash]`, preserving any
@@ -221,16 +183,17 @@ carries `context: fork` and `allowed-tools: [Read, Bash]`, preserving any
   YAML block will show up as a scanned-file count change).
 
 **Do NOT.** Do not invent an `axis:` value — it must be one of the ten axis
-names in `predicates/usc/_axes/README.md`, and for these files it is determined
-by the directory (`procedure`, `ontology`). Do not set `shared: true` — that
-status is only granted by the Reconcile-phase collapse, never by hand
-(`predicates/README.md` § "Shared predicate collapse").
+names in `predicates/usc/_axes/` (`deontic`, `elements`, `evidentiary`,
+`intertemporal`, `ontology`, `procedure`, `remedy`, `sanction`, `scienter`,
+`structure`), and for these files it is determined by the directory. Do not set
+`shared: true` — that status is only granted by the Reconcile-phase collapse,
+never by hand (`predicates/README.md` § "Shared predicate collapse").
 
 ---
 
 ## Issue 4 — Add the missing `context: fork` / `allowed-tools` frontmatter (Title 42 Deontic)
 
-**Difficulty:** easy (bulk) · **~2–3 h** · *no Lean, no LLM*
+**Difficulty:** easy (bulk) · **~2–3 h** · *no Lean, no LLM* · **OPEN**
 
 **Files:** the 77 specs in `predicates/usc/t42/deontic/` that lack
 `context: fork` (the directory holds 100).
@@ -244,25 +207,21 @@ the extra output field `modality`, which you should leave exactly as-is.
 - `grep -L "^context: fork" predicates/usc/t42/deontic/*.md` prints nothing.
 - `python3 scripts/uscode.py lint` → `0 dead`.
 
-**Bonus (optional, say so in the PR):** these files are also in scope for issue
-2's caveat rule (Title 42). Doing both in one pass is welcome, but keep them as
-two commits so the reviewer can read each mechanically.
-
 ---
 
 ## Issue 5 — Write the missing `## Test cases` sections for the Title VII specs
 
-**Difficulty:** medium · **~3 h** · *reading statute required; no Lean, no LLM*
+**Difficulty:** medium · **~3 h** · *reading statute required; no Lean, no LLM* · **OPEN**
 
 **Files:** 35 specs —
-`predicates/usc/t42/titlevii/elements/` (16) and
-`predicates/usc/t42/titlevii/deontic/` (19).
+`predicates/usc/t42/titlevii/elements/` (16 of 16) and
+`predicates/usc/t42/titlevii/deontic/` (19 of 19).
 
 **Background.** The spec contract (`predicates/README.md` § "Spec contract",
 item 6) requires **at minimum one positive and one negative example** in every
 spec. Test cases are how a human reviewer checks that the rubric actually
 decides the thing it claims to decide — a rubric with no worked examples is
-untested prose. 198 specs in the tree have no `## Test cases` section at all;
+untested prose. 333 specs in the tree have no `## Test cases` section at all;
 these 35 are the Title VII batch.
 
 **What to do.** For each spec, read its `usc_cite` statute
@@ -288,54 +247,31 @@ cases.
 
 ---
 
-## Issue 6 — Fix the two predicate specs that cite kernel `.lean` paths (Hard rule 2)
+## Issue 6 — CLOSED 2026-08-01
 
-**Difficulty:** easy · **~30 min** · *judgment required, tiny diff*
+*Fix the predicate specs that cite kernel `.lean` paths (Hard rule 2).*
 
-**Files:**
-- `predicates/usc/common/engaged-in-interstate-commerce.md` (line 18)
-- `predicates/usc/common/is-venture-refines-enterprise.md` (line 55)
+Closed by a tree-wide sweep: **253 kernel-path cites → 0** across
+`predicates/`, by a shape-aware transform plus two hand edits. Every
+"Discharged in `Proving/….lean`" provenance line is now "Declared in namespace
+`…`" — 1,190 files carry the namespace form today, and
+`grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/` returns nothing in the spec
+population.
 
-**Background.** Hard rule 2: *"Predicate specs MUST NOT cite or read
-`Proving/<Framework>/*.lean`. Their world is the complaint text + spec rubric."*
-This is a jurisdictional boundary, not a style preference — a sub-agent that
-reads the kernel can reverse-engineer the answer the kernel wants instead of
-reading the complaint, which silently destroys the independence the whole
-correctness argument rests on.
+The **authoring path** was fixed in the same pass, which is what actually
+retires the issue rather than just clearing its instances: both the spec-format
+contract (`predicates/README.md` § "Spec contract", item 1) and the encoding
+sub-agent's own contract now require the namespace form and name the file-path
+form as the Hard-rule-2 breach. A new wave can no longer mint the defect.
 
-These two specs each name a kernel file path in prose.
-
-**What to do.** Rewrite each sentence so it conveys the same information without
-a `Proving/**.lean` path. Prefer naming the **Lean namespace** (e.g.
-`Proving.USC.Common`) or the collapse-record fact, not a file path; better
-still, state the fact in spec-layer terms ("this predicate is the canonical
-cross-title form of the interstate-commerce nexus"). If the sentence exists only
-to record build provenance, move it out of the sub-agent-facing body.
-
-**Acceptance criteria.**
-- `grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/usc/common/` returns
-  nothing.
-- The rubric's meaning is unchanged — a reviewer should be able to read the
-  before/after and agree the sub-agent decides the same thing.
-- `python3 scripts/uscode.py lint` → `0 dead`.
-
-**Scope note.** A tree-wide grep currently returns a few hundred hits, almost
-all of them a single provenance line in specs promoted by recent encoding
-waves. That is a real instance of the same defect and it is being tracked
-separately; it is **not** part of this issue, and a PR that sweeps it is a
-different review. Fix the two named files.
-- The rubric's meaning is unchanged — a reviewer should be able to read the
-  before/after and agree the sub-agent decides the same thing.
-- `python3 scripts/uscode.py lint` → `0 dead`.
-
-**Do NOT.** Do not "fix" it by deleting the whole sentence if it carries real
-rubric content — reword it. Do not touch `predicates/README.md` in this PR.
+Hard rule 2 itself is unchanged and is one of the five rules listed above.
+Issue 9 includes a check for it so the class stays at zero.
 
 ---
 
 ## Issue 7 — Add a `## Test cases` section to five `usc/common` specs
 
-**Difficulty:** easy · **~90 min** · *writing, no code*
+**Difficulty:** easy · **~90 min** · *writing, no code* · **OPEN**
 
 **Background.** Every predicate spec MUST carry six sections (see § "Spec
 contract" in `predicates/README.md`); item 6 of that contract is **Test
@@ -347,10 +283,12 @@ The `predicates/usc/common/` specs are the highest-leverage place to fix this:
 a `Common` predicate is the collapsed cross-title form, so it is reused by every
 title that witnesses it — one vague rubric there propagates everywhere.
 
-**What to do.** Pick five specs under `predicates/usc/common/` that have no
-`## Test cases` heading and write one for each. Re-derive the list yourself
-(the counts in § "Re-deriving the counts" tell you how) rather than trusting a
-list pasted here — it moves.
+As of 2026-08-07 the directory holds **51 specs and all 51 lack a
+`## Test cases` section**, so there is no shortage of candidates. Take any five.
+
+**What to do.** Pick five specs under `predicates/usc/common/` and write one
+section for each. Re-derive your five from the tree (the commands in
+§ "Re-deriving the counts" show how) rather than trusting a list pasted here.
 
 Model your section on `predicates/usc/t18/hier/is-natural-person.md`, which is
 the current reference shape: labelled **Positive** / **Negative** cases, each a
@@ -368,97 +306,63 @@ positive, one negative, and one genuinely borderline case with
 - `python3 scripts/uscode.py lint` → `0 dead`.
 - No Lean file, no `coverage.json`, no `data/status/` slot touched.
 
-**Do NOT.** Do not paste real case names, real dockets, or anything from
-`a real matter's archive` into an example — these specs render on a public surface. Invent
-neutral fact patterns, as the existing specs do.
+**Scope note — an overlap, deliberately left out of this issue.** 24 of those
+51 specs also lack `context: fork` and `usc_cite` (they are the whole of the
+tree's remaining `usc_cite` gap). That is issues 3 and 4's defect class in this
+directory. Fixing it here would be welcome but is **a different review** — keep
+this PR to test cases, and open a separate one if you want to take the
+frontmatter too.
+
+**Do NOT.** Do not paste real case names, real docket numbers, or material from
+any actual litigation record into an example — these specs render on a public
+surface. Invent neutral synthetic fact patterns, as the existing specs do.
 
 ---
 
-## Issue 8 — Write three missing `Proving.USC.Common` predicate specs
+## Issue 8 — CLOSED 2026-07-30 / 2026-08-01
 
-**Difficulty:** medium · **~3–4 h** · *the most substantive starter task*
+*Write the missing `Proving.USC.Common` predicate specs.*
 
-**Files to create** (all three currently do not exist):
+Closed: all six residual `Proving.USC.Common` axioms were given authoring specs
+internally, including the three this issue named
+(`acts-under-color-of-state-law.md`, `is-attorney-general.md`,
+`is-employer.md`), each with the non-positive-law caveat ruled at authoring
+time. All three files exist as of 2026-08-07.
 
-| new file | axiom signature (copy this — do not go read the kernel) | statutory anchor | model to follow |
-|---|---|---|---|
-| `predicates/usc/common/acts-under-color-of-state-law.md` | `ActsUnderColorOfStateLaw (p : Person) (c : ComplaintText) : Prop` | `42 USC § 1983` | `predicates/civilrights/acts-under-color-of-state-law.md` |
-| `predicates/usc/common/is-attorney-general.md` | `IsAttorneyGeneral (p : Person) (c : ComplaintText) : Prop` | `28 USC § 503` | the enforcement-actor specs under `predicates/usc/t42/` |
-| `predicates/usc/common/is-employer.md` | `IsEmployer (p : Person) (c : ComplaintText) : Prop` | `42 USC § 2000e(b)` | `predicates/usc/t42/titleviidef/` |
+The file-naming contract this issue documented still holds and is worth knowing:
+**predicate spec file = kebab-case of the axiom name** (`IsPersonInUS` →
+`is-person-in-us.md`), and `shared: true` is set only on specs under
+`predicates/usc/common/`.
 
-**Background.** `Proving/USC/Common/` holds cross-title predicates that several
-titles share. Each such axiom is supposed to have exactly one authoring spec at
-`predicates/usc/common/<kebab-name>.md`. Six `Proving.USC.Common` axioms
-currently have no spec file; the three above are the ones with the clearest
-statutory anchor and an existing hand-built spec to model on. Two of the three
-that this issue originally listed — the person-in-the-US predicate and the
-proximate-cause predicate — were written internally on 2026-07-30 and are no
-longer available to take.
-
-Note the file-naming contract: **predicate spec file = kebab-case of the axiom
-name** (`IsPersonInUS` → `is-person-in-us.md`).
-
-**What to do.** For each of the three, author a spec with the six locked
-sections from `predicates/README.md` § "Spec contract":
-
-1. `## Lean signature` — the signature quoted in the table above, in a fenced
-   block. Nothing else about the kernel.
-2. `## Inputs` — the JSON piped on stdin (`{"complaint_path": ..., "subject": ...}`).
-3. `## Authority` — the statutory basis, resolved via
-   `python3 scripts/uscode.py text "<cite>"`, plus the controlling case law
-   already named in the model spec.
-4. `## Decision rubric` — numbered conditions; `true` iff a documented threshold
-   is met. This is the cross-title form, so state the rubric **generally**, not
-   in one title's vocabulary.
-5. `## Output schema` — the base `{value, evidence:[{quote,location,rationale}],
-   uncertainty}`.
-6. `## Test cases` — ≥1 positive, ≥1 negative, synthetic facts only.
-
-Plus the YAML frontmatter:
-
-```yaml
----
-context: fork
-allowed-tools: [Read, Bash]
-axis: <the axis whose lens the rubric takes>
-shared: true
-usc_cite: "<the anchor from the table>"
----
-```
-
-**Acceptance criteria.**
-- The three files exist at exactly the paths above.
-- `python3 scripts/uscode.py lint` → `0 dead` (your `usc_cite` values resolve).
-- `python3 scripts/validate_common_mints.py` → exit 0.
-- Each file contains all six `## ` sections named above.
-- No `Proving/**.lean` path appears anywhere in the three files.
-
-**Do NOT.** Do not edit `Proving/USC/Common/Predicates.lean` — this issue adds
-specs only, and the axioms already exist. Do not add a *fourth* spec for one of
-the other orphans without opening a separate issue (each needs its own anchor
-decision). Do not write a spec for the trafficking-victim predicate: it is
-declared and has zero consumers, and whether the axiom should retire instead of
-gaining a spec is an open decision. Do not set `shared: true` on any spec
-outside `predicates/usc/common/`.
+One decision from this issue remains genuinely open, and is *not* a starter
+task: the trafficking-victim predicate is declared with zero consumers, and
+whether it should retire rather than gain a spec is unresolved.
 
 ---
 
 ## Issue 9 — Write `scripts/check_predicate_specs.py`, a mechanical spec linter
 
-**Difficulty:** medium (Python) · **~4–6 h** · *the tooling task*
+**Difficulty:** medium (Python) · **~4–6 h** · *the tooling task* · **OPEN — and now the most valuable task on this list**
 
 **Files to create:**
 - `scripts/check_predicate_specs.py`
 - `scripts/test_check_predicate_specs.py`
 
-**Background.** Every defect class in issues 1–6 above was found by an ad-hoc
-`grep`. There is no committed checker, so the same defects keep reappearing in
-new waves. `proving/` already has the pattern to follow:
-`scripts/check_olean_closure.py`, `scripts/validate_common_mints.py`, and the
-`lint` subcommand of `scripts/uscode.py` are all stdlib-only, read-only,
-system-`python3` scripts with a documented exit code; `scripts/test_uscode.py`
-shows the hermetic-fixture test style (build a temp tree, run the checker
-against it, assert the exit code — never depend on the live corpus).
+**Background.** Every defect class in issues 1–8 above was found by an ad-hoc
+`grep`, and four of those classes were then cleared by ad-hoc internal sweeps in
+the week after this roster was first published — while **no committed checker
+was written**. That is the whole argument for this issue, and the week made it
+concrete: sweeping a class is cheap and repeatable; the class comes back with
+the next encoding wave, because nothing mechanical rejects it. The two classes
+that *no* sweep touched (`context: fork`, `usc_cite`) held exactly flat at 314
+and 24 while the spec tree grew ~28%.
+
+The tree already has the pattern to follow: `scripts/check_olean_closure.py`,
+`scripts/validate_common_mints.py`, and the `lint` subcommand of
+`scripts/uscode.py` are all stdlib-only, read-only, system-`python3` scripts
+with a documented exit code; `scripts/test_uscode.py` shows the
+hermetic-fixture test style (build a temp tree, run the checker against it,
+assert the exit code — never depend on the live corpus).
 
 **What to do.** Write a read-only checker over every tracked
 `predicates/**/*.md` (excluding `README.md` files and `predicates/usc/_axes/*`)
@@ -469,16 +373,19 @@ that reports, per file:
   value outside the ten names in `predicates/usc/_axes/`;
 - missing any of the six locked sections (`## Lean signature`, `## Inputs`,
   `## Authority`, `## Decision rubric`, `## Output schema`, `## Test cases`);
-- a `Proving/**.lean` path anywhere in the body (Hard rule 2);
-- a `usc_cite` on a non-positive-law title (from
-  the vendored corpus categorization index (a `positive_law: true|false` flag)) with no *prima facie* caveat in the body.
+- a `Proving/**.lean` path anywhere in the body (Hard rule 2 — currently at zero
+  in the spec population, and this check is what keeps it there);
+- a `usc_cite` on a non-positive-law title, read from the vendored corpus
+  categorization index's per-title `positive_law: true|false` flag, with no
+  *prima facie* caveat in the body.
 
 Design constraints:
 
-- **Report-only by default, exit 0.** The tree currently has hundreds of
-  findings in every category; a default-failing checker would just be turned
-  off. Add `--strict` (non-zero exit on any finding) and `--path <glob>` so a
-  cleaned-up directory can be gated incrementally.
+- **Report-only by default, exit 0.** The tree still has hundreds of findings in
+  several categories; a default-failing checker would just be turned off. Add
+  `--strict` (non-zero exit on any finding) and `--path <glob>` so a cleaned-up
+  directory can be gated incrementally — that is how the classes issues 1, 2, 6
+  and 8 cleared stay cleared.
 - Stdlib only. System `python3` (≥ 3.10). No pip install, no venv.
 - Deterministic, sorted output; one line per finding; a summary count last.
 - Never writes. Never shells out to `lake` or `claude`.
@@ -490,33 +397,37 @@ Design constraints:
 - `python3 scripts/check_predicate_specs.py` runs clean over the live tree, exits
   0, and prints a summary count per defect class.
 - `python3 scripts/check_predicate_specs.py --strict --path 'predicates/usc/t18/hier/*'`
-  exits 0 (that directory is clean) — and exits non-zero on a directory with
-  known findings.
+  exits 0 — that directory is clean, verified 2026-08-07: 6 specs, zero findings
+  in all five classes above — **and** exits non-zero on a directory with known
+  findings (`predicates/usc/t29/lmra/procedure/*` will do).
 - `python3 scripts/test_check_predicate_specs.py` passes against hermetic
   fixtures in a temp directory; it must not read the real `predicates/` tree.
 - `python3 scripts/uscode.py lint` and `python3 scripts/test_uscode.py` still
   pass.
 
 **Do NOT.** Do not make the checker rewrite specs (no `--fix` in this PR — a
-bulk auto-rewriter over the whole spec tree needs its own review). Do not read or parse
-`Proving/**/*.lean` for spec-side rules. Do not add a dependency (no PyYAML —
-the frontmatter here is simple enough for a hand parser, as `uscode.py` already
-demonstrates).
+bulk auto-rewriter over the whole spec tree needs its own review). Do not read or
+parse `Proving/**/*.lean` for spec-side rules. Do not add a dependency (no
+PyYAML — the frontmatter here is simple enough for a hand parser, as
+`uscode.py` already demonstrates).
 
 ---
 
 ## Re-deriving the counts
 
-Every number above is reproducible from the tree. Run from `proving/`:
+Every number above is reproducible from the tree — once the sources land in this
+repo (see the banner at the top). These are the commands the maintainer runs:
 
 ```bash
-# specs with no "## Test cases" section (excludes the axis briefings)
-for f in $(git ls-files 'predicates/**/*.md' | grep -v '_axes/' | grep -v 'README.md'); do
-  grep -q '^## Test cases' "$f" || echo "$f"; done | wc -l
+# the spec population (excludes axis briefings, READMEs, and the golden rosters)
+specs() { git ls-files 'predicates/**/*.md' \
+  | grep -v '_axes/' | grep -v 'README.md' | grep -v 'GOLDEN-ROSTERS.md'; }
+
+# specs with no "## Test cases" section
+for f in $(specs); do grep -q '^## Test cases' "$f" || echo "$f"; done | wc -l
 
 # specs missing the forked-execution declaration
-for f in $(git ls-files 'predicates/**/*.md' | grep -v '_axes/' | grep -v 'README.md'); do
-  grep -q '^context: fork' "$f" || echo "$f"; done | wc -l
+for f in $(specs); do grep -q '^context: fork' "$f" || echo "$f"; done | wc -l
 
 # specs missing the USC-program join key
 for f in $(git ls-files 'predicates/usc/**/*.md' | grep -v '_axes/' | grep -v 'README.md'); do
@@ -529,25 +440,35 @@ grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/
 python3 scripts/uscode.py lint
 ```
 
-Snapshot at the time of writing (2026-07-31): **3,444** tracked markdown files
-under `predicates/` (including the per-framework READMEs and the ten axis
-briefings); **327** predicate specs with no `## Test cases`; **314** missing
-`context: fork`; **24** missing `usc_cite` (all in `predicates/usc/common/`);
-**925** specs on non-positive-law titles missing the *prima facie* caveat (665
-carry it); **253** files cite a kernel `.lean` path; `uscode.py lint` reports
-**157 / 157** cites resolvable, 0 dead.
+Snapshot 2026-08-07 (previous snapshot 2026-07-31 in brackets): **4,415** tracked
+markdown files under `predicates/` [3,444], of which **4,404** are the spec
+population; **333** specs with no `## Test cases` [327]; **314** missing
+`context: fork` [314]; **24** missing `usc_cite`, all in `predicates/usc/common/`
+[24]; **300** specs on non-positive-law titles missing the *prima facie* caveat,
+**4,104** carrying it [925 / 665]; **0** kernel-path cites in the spec
+population [253]; `uscode.py lint` reports **162 / 162** cites resolvable, 0 dead
+[157 / 157].
 
-These totals moved a great deal in one week — the spec tree roughly doubled as
-encoding waves promoted — while every **per-directory** count in the issues
-above reproduced exactly. That is the reason each issue tells you to re-derive
-its own scope rather than trust a corpus-wide figure: the corpus-wide figures
-are a moving target and the per-issue ones are not.
+Two things are worth reading off that table before you pick a task.
+
+The spec tree grew roughly **28% in one week** as encoding waves promoted, and
+three corpus-wide figures collapsed — but the two classes that *no* sweep
+touched, `context: fork` and `usc_cite`, held at **exactly** 314 and 24. A
+corpus-wide count moves when someone sweeps it and otherwise does not move at
+all; that is why each issue tells you to re-derive its own scope.
+
+And every **per-directory** count in the surviving issues (3, 4, 5, 9)
+reproduced exactly, a week later, across a tree that grew by a quarter. The
+per-issue scopes are stable targets. The corpus-wide figures are not.
 
 ## Submitting
 
-- One issue per PR. Keep mechanical sweeps mechanical — a caveat sweep PR
-  should contain caveat lines and nothing else.
+- One issue per PR. Keep mechanical sweeps mechanical — a frontmatter sweep PR
+  should contain frontmatter lines and nothing else.
 - Paste the output of the acceptance-criteria commands into the PR description.
 - If a spec's rubric looks substantively wrong to you, **say so in the PR
   description rather than fixing it inline** — rubric changes are reviewed
   against the statute, not merged as drive-by edits.
+- These tasks are **not filed as individual GitHub issues**; this file is the
+  roster. Open an issue on the repo to claim one before starting, so you do not
+  collide with an internal wave.

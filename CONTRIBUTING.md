@@ -8,17 +8,23 @@
 
 ## Read this first: what state the lane is actually in
 
-The honest picture as of **2026-07-31**, so you can judge whether it is
+The honest picture as of **2026-08-07**, so you can judge whether it is
 worth your time before you clone anything:
 
-- **A first tranche of starter tasks is now written**, in
-  [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — nine of them, each a
-  verified defect in the tree with its own acceptance criteria and the
-  commands to re-derive its counts, not an invented exercise. They are
-  **not yet filed as individual issues** on the tracker, which is still
-  empty. Earlier copy on the org profile said to "start at the
-  good-first-issues here"; that was a claim ahead of the artifact, and this
-  is the artifact catching up.
+- **A first tranche of starter tasks is written**, in
+  [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — **five open, of an
+  original nine**, each a defect re-derived against the tree with its own
+  acceptance criteria and the commands to re-derive its counts, not an
+  invented exercise. Four of the original nine were swept internally in the
+  week after the roster was first published; they keep their numbers and are
+  marked closed in place, so a returning reader can see what happened rather
+  than finding tasks silently missing. Expect that to keep happening — the
+  roster is a snapshot of a tree under active work, which is why the
+  remaining tooling task (a committed spec linter) matters more than any
+  single sweep. None of these are **filed as individual issues** on the
+  tracker, which is still empty; this file is the roster. Earlier copy on the
+  org profile said to "start at the good-first-issues here"; that was a claim
+  ahead of the artifact, and this is the artifact catching up.
 - **Discussions are not enabled** on any repo in the org. Until they are,
   an issue on this repo is the channel.
 - **This repo is a redacted, weekly-refreshed slice**, not the working
