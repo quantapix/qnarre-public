@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-07-31. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-08-14. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -24,6 +24,31 @@ Two things have changed since: a blind re-slice program is running and has
 covered a defined fraction of the corpus (below), and a second, narrower leak
 was found and closed the same way (below). Earlier weekly digests (W24–W28) are
 dated records and are left intact; this page supersedes their grade language.
+
+## What changed since the correction: the channel now has a guard
+
+The July correction rested on an uncomfortable fact — the blind-encoding
+lane's isolation was **contractual**. Cells were told not to enumerate the
+shared predicate vocabulary; nothing stopped them, and when a wave's cells all
+read a golden roster by faithfully following their own contract, the contract
+was the defect.
+
+That is now enforced at the moment of the act rather than asserted in a
+briefing. A write-guard refuses a blind cell's attempt to glob, list, or
+sweep the shared predicate namespace, and refuses a staged namespace dump.
+The recognizer that decides what counts as an enumeration lives in a **single
+shared seat**, consumed both by the runtime guard and by the after-the-fact
+transcript audit — so the guard and the auditor cannot drift into disagreeing
+about what they are measuring, which is the failure mode that would quietly
+re-open the channel. It was measured against the frozen transcript corpus
+before being armed: no false refusal on any legitimate cell act across the
+corpus, and both arms verified red under deliberate sabotage.
+
+Separately, a wave's certification profile is now **frozen into the archive
+record at archive time** for every new wave, rather than inferred afterwards
+from the wave's date. That is the durable fix this page previously listed as
+owed. It is forward-looking only: waves already archived keep their existing
+records, so the audit backlog below is unchanged by it.
 
 ## The re-slice program: what it covers, what it does not
 
@@ -49,7 +74,9 @@ into "certified" because the wave is recent. **The figure this page previously
 published for certified waves is withdrawn.**
 
 Writing the certification at archive time, so a wave cannot default to
-uncertified, is the durable fix and is not yet wired.
+uncertified, is the durable fix. It is now wired, for new waves only — see
+above. Every wave archived before it keeps the record it had, so the backlog
+below does not move on account of it.
 
 **The backlog, as an upper bound.** Of **376 catalogued sections, 117 owe a
 re-slice** against **259 eligible** — 28 of those hold a golden bridge. The
@@ -57,8 +84,14 @@ number is an upper bound and we would rather say so than quote it clean: the
 census attributes a section's standing wave by reading a wave-archive tree
 that is **local to one workstation**, and waves run elsewhere read here as
 owing a re-slice they have already served. Three such waves are known. The
-fix — make the census print its own scope, and cross-check against a
-tree-global artifact — is open.
+census now prints the scope it measured: which workstation it ran on, how many
+waves that host can see against the union it knows of, and an explicit list of
+the waves it is attributing to a peer. That converts a silent under-count into
+a disclosed one. It does not cure it — a host cannot observe a peer's completed
+work by construction, so the figure remains an upper bound and we would still
+rather say so than quote it clean. The cross-check against a tree-global
+artifact is still open, and the backlog figures above are held at their last
+cleanly-dated derivation until it lands.
 
 An audit **certifies**; it never **cures**. A wave can be certified blind and
 still owe a re-slice for an unrelated defect. Those are separate properties and
@@ -90,7 +123,7 @@ naming-independent, but not element-level agreement. Of the 36 sections holding 
 full-tier golden bridge, **8 rest on element-level agreement and 28 on statutory
 enumeration.** Eighteen bridge modules had their headers rewritten to say so.
 Nothing was re-proved; the proofs were always these proofs. The labels now match.
-(The split has since moved to 43 total — 8 element-level, 35 enumeration — as
+(The split has since moved to 45 total — 10 element-level, 35 enumeration — as
 new chapters bridged through the enumeration clause; the README explains why
 that gap cannot close without new hand-built references.)
 
@@ -125,11 +158,10 @@ found it.
 
 ## Encoded census (mechanical; unaffected by the correction)
 
-- **402 sections encoded across 11 U.S. Code titles.** Counted as distinct
+- **419 sections encoded across 11 U.S. Code titles.** Counted as distinct
   statutory sections at their best achieved tier; derived from the per-section
   records, never hand-maintained.
-- That is 11 of the Code's 58 titles, and about 0.64% of its ~62,800 operative
-  sections. The share is small and the denominator is the point: the program is
+- The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
   time, so a wave's blind cells stay reproducible after the working sandbox is
@@ -161,12 +193,14 @@ subsections; predicate facts enter as kernel axioms and the validity proof is a
 pure structure-introduction. A bundled worked demo (a fictional *Doe v. Acme*
 complaint) runs end-to-end through the pipeline, as do the
 funding-discrimination sample and all three enforcement-mechanism samples.
-Seven of the bundled samples are **stub-built** — the pipeline runs, but
-predicate evaluation was canned rather than dispatched to a model, so their
-verdicts exercise the plumbing and say nothing about the complaint. They are
-labelled, not counted as results. Un-stubbing them is real work: it is a
-production predicate run on the strongest model, and one of the seven has to
-wait on a golden repair so the fixture does not bake in a known defect.
+No bundled sample cans its predicates any more. Every one is a real run
+against the strongest available model, carrying evidence quotes and an
+uncertainty band. The federal-sector golden this page previously reported as
+defective has been repaired — the 90-day suit-filing window is now attached
+only to the final-agency-action route, leaving the 180-day-inaction route
+standing on its own predicate, which is what the statute says — and its
+fixture was regenerated against the corrected shape. One bundled sample now
+**refuses**: see "How to verify".
 
 ## Kernel and toolchain
 
@@ -199,11 +233,10 @@ wait on a golden repair so the fixture does not bake in a known defect.
 
 - Work the re-slice backlog down; the unauditable waves have no remedy short of
   it, and the eleven wrong-statute sections need their own pass.
-- Fix the wave census so it prints the scope it measured, and write each wave's
-  certification at archive time instead of inferring it afterwards.
-- Repair the federal-sector golden, then un-stub the seven scaffold samples.
-- Author a synthetic complaint that genuinely fails an element, so the refusal
-  path is demonstrable and not merely asserted.
+- Extend the act-time guard backward: the arming covers new waves, and the
+  archived corpus was measured but not retro-fitted.
+- Answer the census's remaining blind spot — a host still cannot see a peer's
+  completed re-slice, so the backlog is an upper bound by construction.
 - Hand-build a golden for the terrorism offences, so bridges into that clause
   can be measured element-wise instead of by enumeration alone.
 - Continue whole-title passes on the remaining non-golden sections.
@@ -214,12 +247,13 @@ wait on a golden repair so the fixture does not bake in a known defect.
 - Clone, `lake build`, and watch the kernel elaborate the bundled demo. There
   is no "sort of holds": either the validity theorem type-checks or the failing
   theorem names the element that does not.
-- One caveat we would rather state than have you discover: **every synthetic
-  example in the tree currently accepts.** There is no bundled synthetic
-  complaint that genuinely fails an element, so a cloner cannot presently watch
-  a refusal happen. Authoring one is owed, and it cannot be faked with a
-  stub-built run, because a stubbed run cans every predicate to `True` and
-  therefore always accepts.
+- There is now a bundled sample that **fails**. A toy federal-sector
+  employment-discrimination complaint pleads its merits adequately and does
+  not satisfy the administrative-exhaustion family; `lake build` returns
+  `REJECTED` and the error names the element that did not discharge, not a
+  score. This is the one thing a stubbed run could never demonstrate — a
+  stub cans every predicate to `True`, so it always accepts — which is why
+  it had to wait for the un-stubbing to finish.
 - Every statutory citation resolves against the pinned U.S. Code mirror; specs
   that cite an obsolete subsection number fail the build rather than silently
   elaborating.

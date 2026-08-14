@@ -1,7 +1,7 @@
 # Good first issues — U.S. Code axiomatization
 
 Starter contributor tasks for the open U.S. Code axiomatization. Every open task
-below is a defect **re-derived against the working tree on 2026-08-07**, not an
+below is a defect **re-derived against the working tree on 2026-08-14**, not an
 invented exercise.
 
 The project is currently **a single developer working with AI assistance — now
@@ -27,6 +27,11 @@ litigation record, no redaction surface.
 > tree under active work — and the reason issue 9, the *committed checker*, is
 > the highest-value task here: it is the only one that stops the classes from
 > coming back.
+>
+> Re-derived again on 2026-08-14. Nothing closed and nothing changed scope:
+> all five open tasks reproduced their per-directory counts **exactly**, for a
+> second consecutive week, across a spec tree that grew by another third. The
+> four closed ones were re-verified rather than assumed.
 
 ---
 
@@ -105,8 +110,10 @@ python3 scripts/test_uscode.py          # hermetic tests for the resolver + lint
 python3 scripts/validate_common_mints.py
 ```
 
-`uscode.py lint` currently reports **scanned 4417 file(s); 162 distinct cite(s);
-162 resolvable, 0 dead** — your PR must keep `0 dead`.
+`uscode.py lint` currently reports **scanned 5865 file(s); 200 distinct cite(s);
+199 resolvable, 0 dead, 1 note-slot**; your PR must keep `0 dead`. The note-slot
+category is new: the citation resolver now fails loud and names a slot it cannot
+uniquely resolve, rather than silently taking the first alphabetical match.
 
 Only if your change touches `Proving/**` (issue 9 may):
 
@@ -164,7 +171,8 @@ usc_cite: "29 USC § 160"
 ---
 ```
 
-314 specs across the tree are missing `context: fork`; these 36 are a
+314 specs across the tree are missing `context: fork` — unchanged across three
+snapshots now, while the tree grew by two-thirds; these 36 are a
 self-contained batch. Without the declaration the spec is ambiguous about how it
 is meant to run.
 
@@ -221,7 +229,7 @@ the extra output field `modality`, which you should leave exactly as-is.
 item 6) requires **at minimum one positive and one negative example** in every
 spec. Test cases are how a human reviewer checks that the rubric actually
 decides the thing it claims to decide — a rubric with no worked examples is
-untested prose. 333 specs in the tree have no `## Test cases` section at all;
+untested prose. 559 specs in the tree have no `## Test cases` section at all;
 these 35 are the Title VII batch.
 
 **What to do.** For each spec, read its `usc_cite` statute
@@ -357,6 +365,12 @@ the next encoding wave, because nothing mechanical rejects it. The two classes
 that *no* sweep touched (`context: fork`, `usc_cite`) held exactly flat at 314
 and 24 while the spec tree grew ~28%.
 
+A third snapshot has since confirmed it. `context: fork` and `usc_cite` are
+still at exactly 314 and 24, and the test-case class grew by 226 in a single
+week — all of it in directories the newest waves created. The classes are not
+just failing to shrink; one of them is being manufactured faster than any
+sweep would clear it.
+
 The tree already has the pattern to follow: `scripts/check_olean_closure.py`,
 `scripts/validate_common_mints.py`, and the `lint` subcommand of
 `scripts/uscode.py` are all stdlib-only, read-only, system-`python3` scripts
@@ -440,26 +454,29 @@ grep -rn "Proving/[A-Za-z0-9/]*\.lean" predicates/
 python3 scripts/uscode.py lint
 ```
 
-Snapshot 2026-08-07 (previous snapshot 2026-07-31 in brackets): **4,415** tracked
-markdown files under `predicates/` [3,444], of which **4,404** are the spec
-population; **333** specs with no `## Test cases` [327]; **314** missing
-`context: fork` [314]; **24** missing `usc_cite`, all in `predicates/usc/common/`
-[24]; **300** specs on non-positive-law titles missing the *prima facie* caveat,
-**4,104** carrying it [925 / 665]; **0** kernel-path cites in the spec
-population [253]; `uscode.py lint` reports **162 / 162** cites resolvable, 0 dead
-[157 / 157].
+Snapshot 2026-08-14 (2026-08-07 in brackets): **5,863** tracked markdown
+files under `predicates/` [4,415], of which **5,852** are the spec population
+[4,404]; **559** specs with no `## Test cases` [333]; **314** missing
+`context: fork` [314]; **24** missing `usc_cite`, all in
+`predicates/usc/common/` [24]; **0** kernel-path cites in the spec population
+[0]; `uscode.py lint` reports **199 / 200** cites resolvable, 0 dead, 1
+note-slot [162 / 162].
 
-Two things are worth reading off that table before you pick a task.
+Read three things off that table before you pick a task.
 
-The spec tree grew roughly **28% in one week** as encoding waves promoted, and
-three corpus-wide figures collapsed — but the two classes that *no* sweep
-touched, `context: fork` and `usc_cite`, held at **exactly** 314 and 24. A
-corpus-wide count moves when someone sweeps it and otherwise does not move at
-all; that is why each issue tells you to re-derive its own scope.
+The spec tree grew about **33% in one week** as encoding waves promoted, and
+every **per-directory** count in the surviving issues (3, 4, 5, 7, 9)
+reproduced exactly. The per-issue scopes are stable targets.
 
-And every **per-directory** count in the surviving issues (3, 4, 5, 9)
-reproduced exactly, a week later, across a tree that grew by a quarter. The
-per-issue scopes are stable targets. The corpus-wide figures are not.
+The two classes that no sweep touches — `context: fork` and `usc_cite` —
+held at **exactly** 314 and 24 for the third snapshot running. A corpus-wide
+count moves when someone sweeps it and otherwise does not move at all.
+
+And the `## Test cases` class **grew by 226**, concentrated almost entirely
+in the directories the newest waves created. That is the clearest evidence
+on this page for why issue 9 matters: the class is not merely un-swept, it
+is actively minted by every wave, because nothing mechanical rejects a spec
+that arrives without test cases.
 
 ## Submitting
 

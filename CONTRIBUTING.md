@@ -8,7 +8,7 @@
 
 ## Read this first: what state the lane is actually in
 
-The honest picture as of **2026-08-07**, so you can judge whether it is
+The honest picture as of **2026-08-14**, so you can judge whether it is
 worth your time before you clone anything:
 
 - **A first tranche of starter tasks is written**, in

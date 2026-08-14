@@ -127,17 +127,27 @@ it has no administrative-only branch, and validity resolves through any of six
 routes. Its bridging encodings against the public-statute corpus are forward
 work, not a re-derivation of a prior anchor.
 
-One thing worth being precise about, because "worked end-to-end sample" can be
-read two ways. Every framework's sample runs the full pipeline — driver,
-generated axiom block, `lake build` — but seven of the bundled samples are
-**stub-built**: the driver was run with predicate evaluation canned to `True`
-rather than dispatched to a model, so the sample exercises the plumbing and the
-kernel composition, not the predicate rubrics. An `ACCEPTED` verdict from a
-stub-built sample says nothing about the complaint. The racketeering sample,
-the funding-discrimination sample, and the three enforcement-mechanism samples
-are real predicate runs; the other seven are scaffolds awaiting one. They are
-marked as such rather than quietly counted, and un-stubbing them is tracked
-work.
+One thing worth being precise about, because it changed recently and the
+earlier wording is worth correcting rather than quietly dropping. Every
+framework's sample runs the full pipeline — driver, generated axiom block,
+`lake build` — and until early August most of them were **stub-built**: the
+driver had been run with predicate evaluation canned to `True` rather than
+dispatched to a model, so the sample exercised the plumbing and the kernel
+composition and said nothing about the complaint. That is no longer true of
+any of them. Every bundled sample now rests on predicate outputs a model
+actually produced, each carrying its evidence quotes and an uncertainty band.
+The un-stubbing was not bookkeeping: running the predicates for real surfaced
+a drifted manifest in one framework that a canned run structurally could not
+have seen, because a run that cannot fail cannot detect.
+
+The tree now also bundles a sample that **refuses**. Until this landed, every
+synthetic example accepted — so a reader could read the claim that the kernel
+draws a hard line but could not watch it happen. A toy federal-sector
+employment-discrimination complaint now pleads its merits adequately and fails
+the administrative-exhaustion family; the kernel returns `REJECTED` and the
+error names the exact element that did not discharge. It could not have been
+faked with a stubbed run — a stub cans every predicate to `True` and therefore
+always accepts.
 
 Kernels pin to a current stable Lean toolchain (`v4.32.0`); the build needs no
 Mathlib dependency, which keeps `lake build` fast.
@@ -146,7 +156,7 @@ Mathlib dependency, which keeps `lake build` fast.
 
 The nine hand-built frameworks above are the **golden reference** for a
 larger program: a kernel-checked Lean4 encoding of the operative content
-of the **entire** United States Code — all 54 titles — produced not by a
+of the **entire** United States Code — every title — produced not by a
 single model pass but redundantly, by independent agent teams working
 along several orthogonal strategies, then reconciled.
 
@@ -227,9 +237,12 @@ that the two encodings decompose the statute the same way.
 Where the golden side does carry element structure, the bridge tests exactly
 that, and the result is a fidelity read.
 
-Every full-tier section now records which of the two it earned. Of the 43
-sections holding a full-tier golden bridge, **8 rest on element-level agreement
-and 35 on statutory enumeration.** The distinction was not visible in the
+Every full-tier section now records which of the two it earned. Of the 45
+sections holding a full-tier golden bridge, **10 rest on element-level
+agreement and 35 on statutory enumeration.** The enumeration count has held
+flat while element-level agreement grew, which is what the next paragraph
+predicts: the gap closes only where a hand-built golden carries element
+structure to compare against. The distinction was not visible in the
 tier alone, so the tier stopped being reported alone.
 
 The gap does not close by trying harder. A recent wave over a previously
@@ -332,12 +345,13 @@ latter's definitions block lifting one previously-partial section to
 corroborated once its defined terms were grounded. Recurring notions — a
 "financial institution" definition, an interstate-commerce nexus — continue to
 collapse onto the shared cross-title algebra under their own Bridges. The
-running corpus rollup now stands at **402 encoded sections across 11
-titles** — 11 of the Code's 58 titles, and roughly two-thirds of one percent of
-its ~62,800 operative sections — counted as distinct statutory sections (a
+running corpus rollup now stands at **419 encoded sections across 11
+titles** — counted as distinct statutory sections (a
 section encoded under two lenses counts once), derived mechanically from the
 per-section records and never hand-maintained, with every promoted wave frozen
-into an immutable off-site archive at promotion time. Confidence grades are
+into an immutable off-site archive at promotion time. The share of the whole
+Code is small and deliberately so: the program is a method demonstrated at
+scale, not a finished encoding. Confidence grades are
 reported separately and under narrower scope than they once were — see
 [`STATUS.md`](./STATUS.md), which carries the 2026-07-17 correction and the
 re-slice program that answers it.
@@ -381,10 +395,13 @@ engineering practice opening one well-isolated lane. Start with
 [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the curated
 [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — **five open tasks of an
 original nine**, each with acceptance criteria and counts re-derived against
-the working tree on 2026-08-07. The other four were swept internally in the
+the working tree on 2026-08-14. The other four were swept internally in the
 week after the roster was first published and are marked closed in place; the
 roster says which, and why that makes the linter task the most valuable one on
-the list. They are not filed as individual issues and Discussions are not
+the list. Re-derived a second time a week later, across a spec tree that grew
+by another third, all five open tasks reproduced their per-directory counts
+**exactly**. The per-issue scopes are stable targets; the corpus-wide totals
+are not, and the roster says which is which. They are not filed as individual issues and Discussions are not
 enabled, so an issue on this repo is the channel. The
 strategy briefings, the shared cross-strategy predicate library, and the
 golden-reference cells are frozen, so a new cell has a fixed target to
