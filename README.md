@@ -83,12 +83,16 @@ Each framework lives under `Proving/<Framework>/` (kernel) +
 | **Age Act** | `Proving/AgeAct/` | `predicates/ageact/` | 42 U.S.C. §§ 6101–6107; age discrimination in federally assisted programs |
 | **Title II Enf** | `Proving/TitleIIEnf/` | `predicates/titleiienf/` | 42 U.S.C. § 2000a-5(b); the enforcement-mechanism golden — three-judge-court track + single-judge fallback for an Attorney-General pattern-or-practice action (a procedural shape, not a discrimination claim: chief-judge addressee, panel composition, an "in every way expedited" duty, and a direct Supreme-Court appeal as first-class elements) |
 | **ADA** | `Proving/ADA/` | `predicates/ada/` | 42 U.S.C. ch126 §§ 12111/12112 (Title I employment), §§ 12131/12132 (Title II public services), §§ 12181/12182 (Title III public accommodations), § 12203 (retaliation) — a disability framework with three title-specific coverage regimes (employer / public entity / public-accommodation operator) and "on the basis of" / "by reason of" causation; impact is judicially enforceable, so there is no administrative-only split; a six-route validity theorem |
+| **Terrorism** | `Proving/Terrorism/` | `predicates/terrorism/` | 18 U.S.C. ch. 113B §§ 2332a/2332b (weapons of mass destruction, acts transcending national boundaries), §§ 2339–2339D (material support) — the offences the racketeering predicate clause reaches by *list membership*, giving a one-field correspondence surface; a four-route validity theorem |
+| **Trafficking** | `Proving/Trafficking/` | `predicates/trafficking/` | 18 U.S.C. ch. 77 §§ 1590(a)(b), 1591(a)(d), 1592(a)(c) — the chapter the racketeering predicate clause reaches by *range of sections*, so predicate status turns on offence elements; a six-route validity theorem |
 
 Spec roster: RICO 25 (plus 9 leaf specs under `predicates/rico/hier/`, the
 hierarchical decomposition); Title VI 17; CivilRights 14; Title IX 21;
-Title VII 19; Rehab § 504 19; Age Act 17; Title II Enf 10; ADA 24 — **nine
-frameworks, eleven hand-built golden reference cells** (Title VII carries
-three). Three orphaned RICO axioms — predicates no theorem reached — were
+Title VII 21; Rehab § 504 19; Age Act 17; Title II Enf 10; ADA 24;
+Terrorism 18; Trafficking 27 — **eleven frameworks, thirteen hand-built golden
+reference cells** (Title VII carries three). Counted from the kernel tree: one
+framework per hand-built module directory, one golden cell per validity theorem.
+Three orphaned RICO axioms — predicates no theorem reached — were
 retired rather than left standing as unused surface.
 
 Title IX was the first golden added by the **golden-expansion path**, and the
@@ -149,12 +153,15 @@ error names the exact element that did not discharge. It could not have been
 faked with a stubbed run — a stub cans every predicate to `True` and therefore
 always accepts.
 
-Kernels pin to a current stable Lean toolchain (`v4.32.0`); the build needs no
-Mathlib dependency, which keeps `lake build` fast.
+Kernels pin to a current stable Lean toolchain (`v4.33.0`); the build needs no
+Mathlib dependency, which keeps `lake build` fast. The pin moved this cycle, and
+both the accepted and the rejected example proofs were replayed green on the bump
+before it was taken — a toolchain bump that only replays the passing cases has
+not been tested.
 
 ## Axiomatizing the full U.S. Code
 
-The nine hand-built frameworks above are the **golden reference** for a
+The eleven hand-built frameworks above are the **golden reference** for a
 larger program: a kernel-checked Lean4 encoding of the operative content
 of the **entire** United States Code — every title — produced not by a
 single model pass but redundantly, by independent agent teams working
@@ -237,23 +244,34 @@ that the two encodings decompose the statute the same way.
 Where the golden side does carry element structure, the bridge tests exactly
 that, and the result is a fidelity read.
 
-Every full-tier section now records which of the two it earned. Of the 45
-sections holding a full-tier golden bridge, **10 rest on element-level
-agreement and 35 on statutory enumeration.** The enumeration count has held
-flat while element-level agreement grew, which is what the next paragraph
-predicts: the gap closes only where a hand-built golden carries element
-structure to compare against. The distinction was not visible in the
-tier alone, so the tier stopped being reported alone.
+Every full-tier section now records which of the two it earned. Of the **50**
+sections holding a full-tier golden bridge, **14 rest on element-level
+agreement and 36 on statutory enumeration.** Neither count moves in one
+direction only — enumeration has both risen, as new chapters bridged through the
+clause, and fallen, when a section retiered out of full tier on a second
+independent look. The distinction was not visible in the tier alone, so the tier
+stopped being reported alone.
 
-The gap does not close by trying harder. A recent wave over a previously
-unencoded chapter of the criminal title discharged every one of its golden
-bridges sorry-free — and all of them through the enumeration clause, because
-the golden-side predicate for that clause is a flat opaque axiom and no
-hand-built reference encodes those offences element-wise. Element-level
-agreement was unavailable **by construction**, not unearned. The only cure is
-to hand-build a golden for that subject matter, and that has to be authored
-outside the blind fan-out: the fan-out is scored *against* a golden, so it can
-never be the thing that mints one.
+The gap does not close by trying harder. A wave over a previously unencoded
+chapter of the criminal title discharged every one of its golden bridges
+sorry-free — and all of them through the enumeration clause, because the
+golden-side predicate for that clause is a flat opaque axiom. Element-level
+agreement was unavailable **by construction**, not unearned.
+
+That has now been tested rather than asserted, and the test corrected us. We
+hand-built a golden for those offences expecting it to open element-wise
+measurement. It did not, and the reason is a fact about the *citing* statute
+rather than about the subject matter: the racketeering predicate clause reaches
+those offences by **list membership** — a provision is a predicate act because it
+appears on a list — so the correspondence surface is one field no matter how
+richly the offences themselves are encoded. A neighbouring clause reaches a
+different chapter by a **range of sections**, where predicate status turns on the
+offence elements; a hand-built golden there did open element-level agreement,
+stamped afterwards by a blind re-slice. The selection rule is therefore a
+property of the incorporating clause, and we had it wrong.
+
+Either way the authoring has to happen outside the blind fan-out: the fan-out is
+scored *against* a golden, so it can never be the thing that mints one.
 
 ### Where it stands
 
@@ -345,7 +363,7 @@ latter's definitions block lifting one previously-partial section to
 corroborated once its defined terms were grounded. Recurring notions — a
 "financial institution" definition, an interstate-commerce nexus — continue to
 collapse onto the shared cross-title algebra under their own Bridges. The
-running corpus rollup now stands at **419 encoded sections across 11
+running corpus rollup now stands at **424 encoded sections across 11
 titles** — counted as distinct statutory sections (a
 section encoded under two lenses counts once), derived mechanically from the
 per-section records and never hand-maintained, with every promoted wave frozen
@@ -368,6 +386,18 @@ disagreed, the grade was resolved by **conjunction — full tier only where both
 waves agree** — so the second look could lower a grade and not only raise one,
 and it did. And it took a previously-unencoded chapter of the criminal title
 and sliced it complete across six lenses, as a clean append with no overlap.
+
+The most recent cycle voided a wave that had discharged every one of its
+theorems `sorry`-free. The shared authoring document that governs this work is
+delivered to each blind cell in its system prompt, and one line of it named the
+very identifiers the wave existed to test independently. The blindness auditor
+had cleared all six cells, correctly by its own contract — it grades what a cell
+**read**, and an injected system context is not a read. A cell disclosed the
+contamination itself. The wave was re-run from a clean session and verified
+closed on two instruments, one of which had to prove it could still see the cured
+text before its negative result counted for anything. The lesson generalizes past
+this program: an isolation guard measures a channel, and a channel it does not
+model is not a channel it reports on.
 
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
@@ -395,14 +425,15 @@ engineering practice opening one well-isolated lane. Start with
 [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the curated
 [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — **five open tasks of an
 original nine**, each with acceptance criteria and counts re-derived against
-the working tree on 2026-08-14. The other four were swept internally in the
+the working tree on 2026-08-21. The other four were swept internally in the
 week after the roster was first published and are marked closed in place; the
 roster says which, and why that makes the linter task the most valuable one on
-the list. Re-derived a second time a week later, across a spec tree that grew
-by another third, all five open tasks reproduced their per-directory counts
-**exactly**. The per-issue scopes are stable targets; the corpus-wide totals
-are not, and the roster says which is which. They are not filed as individual issues and Discussions are not
-enabled, so an issue on this repo is the channel. The
+the list. This is the third consecutive week every open task has reproduced its
+per-directory counts **exactly**, across a spec population that has grown by
+about 38% since the last refresh. The per-issue scopes are stable targets; the
+corpus-wide totals are not, and the roster says which is which. The four closed
+tasks were re-verified this week, not assumed. They are not filed as individual
+issues and Discussions are not enabled, so an issue on this repo is the channel. The
 strategy briefings, the shared cross-strategy predicate library, and the
 golden-reference cells are frozen, so a new cell has a fixed target to
 score against.
@@ -418,27 +449,42 @@ the build, not silently elaborate.
 
 ## Predicate spec shape
 
-Every predicate is a markdown file with a fixed frontmatter shape:
+Every predicate is a markdown file: a small YAML frontmatter block, then six
+locked sections.
 
 ```yaml
 ---
-predicate: <name>
-framework: rico | titlevi | civilrights | titleix | titlevii | rehab504 | ageact | titleiienf | ada
-returns: Bool
-inputs:
-  complaint: <slug>
-  entities: [...]
-usc_cite: <e.g. "42 U.S.C. § 1983">
-evidence_required: <one-line description>
-uncertainty_cap: 0.20
+name: closed-ended-continuity
+description: <one line — what Bool this spec decides, under which authority>
+context: fork
+allowed-tools: Read, Bash
+axis: elements
+shared: false
+usc_cite: "18 USC § 1961(5)"
 ---
 ```
 
-Body sections: **Question**, **Authority**, **Evidence**,
-**Adversary case**, **Output**. The sub-agent returns a JSON object
-with `{ value: Bool, evidence: [{quote, locator}], uncertainty:
-[0,1) }`. The driver records it as a Lean `axiom` in the framework's
-generated `Facts.lean`.
+Exactly one key is machine-read: **`usc_cite`**, which the cite linter resolves
+against the vendored corpus. The driver hands the sub-agent the whole spec file
+verbatim, frontmatter included — so every other key is prose the agent reads,
+not configuration. A key changes behaviour only insofar as the decision rubric
+below it says how. Author accordingly.
+
+The six locked sections are **Lean signature** (the exact `axiom` declaration the
+spec discharges, named by its declaring namespace — never by a kernel file path),
+**Inputs**, **Authority**, **Decision rubric**, **Output schema**, and
+**Test cases** (at minimum one positive and one negative example). The sub-agent
+returns
+
+```json
+{ "value": true,
+  "evidence": [{"quote": "…", "location": "…", "rationale": "…"}],
+  "uncertainty": "low" }
+```
+
+— `uncertainty` is a band, not a number, because a spurious decimal invites
+arithmetic nobody can defend. The driver records the result as a Lean `axiom` in
+the framework's generated `Facts.lean`.
 
 ## Build and verify
 
