@@ -8,7 +8,7 @@
 
 ## Read this first: what state the lane is actually in
 
-The honest picture as of **2026-08-21**, so you can judge whether it is
+The honest picture as of **2026-08-28**, so you can judge whether it is
 worth your time before you clone anything:
 
 - **A first tranche of starter tasks is written**, in
@@ -21,9 +21,10 @@ worth your time before you clone anything:
   than finding tasks silently missing. Expect that to keep happening — the
   roster is a snapshot of a tree under active work, which is why the
   remaining tooling task (a committed spec linter) matters more than any
-  single sweep. Re-derived a third time on 2026-08-21: all five reproduced
-  their scopes exactly, and the four closed ones were re-checked rather than
-  assumed. None of these are **filed as individual issues** on the
+  single sweep. Re-derived a fourth time on 2026-08-28: four of the five
+  reproduced their scopes exactly; the fifth grew by one file, which arrived
+  carrying the defect the task exists to fix. The four closed ones were
+  re-checked rather than assumed. None of these are **filed as individual issues** on the
   tracker, which is still empty; this file is the roster. Earlier copy on the
   org profile said to "start at the good-first-issues here"; that was a claim
   ahead of the artifact, and this is the artifact catching up.

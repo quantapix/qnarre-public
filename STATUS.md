@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-08-21. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-08-28. Refreshed weekly (Fridays) during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -77,9 +77,25 @@ into "certified" because the wave is recent. **The figure this page previously
 published for certified waves is withdrawn.**
 
 Worth stating against our own interest: writing the certification at archive
-time has been armed for two weeks now, and the wave-time-certified class has not
-grown. The fix is forward-looking by construction, and forward-looking is slower
-than it sounds.
+time has been armed for a month. Thirty-three waves have been archived under it.
+**None of them is certified.** We reported that last week as a forward-looking
+fix being slower than it sounds. That was not the reason.
+
+The reason is structural and it is in our own code. A cell that follows its
+contract to the letter must copy a shared artefact by name, and that copy trips
+the very channel the certifier grades — so a **compliant** cell cannot score
+clean, and the wave verdict floors one step below certified no matter how the
+wave went. Every one of those thirty-three sits at that floor: a review verdict
+the wave earned by obeying its instructions, or an adverse verdict on top of it.
+"Certified at archive time" is unreachable under the contract as written. It is
+not a queue we are working through.
+
+That is a contract defect, not a wave defect, and the remedy is to change what
+the contract makes a cell do — not to relax what the certifier looks for. The
+one wave-time-certified wave on the books predates the arming and was audited by
+hand, within the hour, precisely because the wave it superseded had aged out of
+auditability first. One in a hundred and twenty-four is the real rate, and it is
+a hand rate.
 
 Writing the certification at archive time, so a wave cannot default to
 uncertified, is the durable fix. It is now wired, for new waves only — see
@@ -87,10 +103,14 @@ above. Every wave archived before it keeps the record it had, so the backlog
 below does not move on account of it.
 
 **The backlog, as an upper bound.** A share of the catalogued sections owe a
-re-slice; a smaller share of those hold a golden bridge. We are not quoting the
-count this week, and the reason is the honest one: the census dates its own
-derivation, and until that stamp is re-cut at every emit, a figure lifted off it
-is a figure of unknown age. A number of unknown age is worse than no number.
+re-slice; a smaller share of those hold a golden bridge. We are still not
+quoting the count, but the reason has changed and the old one no longer holds:
+the census now re-cuts its derivation stamp at every emit, so a figure lifted
+off it is no longer a figure of unknown age. What remains is a population
+question. Two of our own censuses report a section count under the same word,
+they do not agree, and until we can say plainly which set each one counts we
+will not put a second number on this page beside the one below. Publishing a
+figure we cannot label is worse than publishing none.
 
 The scope problem behind it is unchanged and is worth stating on its own. The
 census attributes a section's standing wave by reading a wave-archive tree that
@@ -159,10 +179,17 @@ flat opaque axioms with no element structure. A bridge to one of those certifies
 that a blind encoding is type-compatible with being *named* a predicate offence
 by the statute's enumeration clause — a real statutory fact, and
 naming-independent, but not element-level agreement. Every full-tier section now
-records which of the two it earned: of **50** sections holding a full-tier golden
-bridge, **14 rest on element-level agreement and 36 on statutory enumeration**
-(2026-08-18). Eighteen bridge modules had their headers rewritten to say so.
+records which of the two it earned: of **48** sections holding a full-tier golden
+bridge, **14 rest on element-level agreement and 34 on statutory enumeration**
+(2026-08-28). Eighteen bridge modules had their headers rewritten to say so.
 Nothing was re-proved; the proofs were always these proofs. The labels now match.
+
+Both figures moved down this week, and the page said last week that they would
+not move in one direction only. Full-tier holdings fell from 50 to 48 — the
+enumeration arm lost two on a second independent look, the element-level arm
+held flat at 14. Four sections left the top tier for the one below it. A count
+that only ever rises is a count nobody is checking; this is what checking looks
+like when it goes against you.
 
 Neither arm moves monotonically, and last week's copy on this page said
 otherwise. Element-level agreement has grown as new hand-built references landed;
