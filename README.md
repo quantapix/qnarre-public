@@ -4,7 +4,7 @@
 > for the **legal** domain. The redacted public slice of the
 > `proving/` subproject. Backs the **Qnarre** product.
 
-A weekly-refreshed window into the formal-legal kernel that runs
+A regularly refreshed window into the formal-legal kernel that runs
 alongside the private working repository. The whole point of the
 subproject is **strict jurisdictional separation** between three
 layers: a Lean4 kernel that does no I/O, predicate sub-agents that
@@ -520,7 +520,7 @@ pipeline. Refreshed alongside the predicate specs.
 
 ## Cadence
 
-Refreshed weekly from the private working tree. Spec rewrites, new
+Refreshed per release run from the private working tree. Spec rewrites, new
 predicates, framework extensions, and kernel-shape changes are
 committed as ordinary diffs — the commit log is the change record.
 

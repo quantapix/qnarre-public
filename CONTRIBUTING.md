@@ -30,7 +30,7 @@ worth your time before you clone anything:
   ahead of the artifact, and this is the artifact catching up.
 - **Discussions are not enabled** on any repo in the org. Until they are,
   an issue on this repo is the channel.
-- **This repo is a redacted, weekly-refreshed slice**, not the working
+- **This repo is a redacted slice, refreshed per release run**, not the working
   tree. You cannot open a pull request against the private repository, and
   a PR here cannot be fast-forwarded into it mechanically — see
   "How a contribution actually lands" below.
