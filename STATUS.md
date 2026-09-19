@@ -345,5 +345,5 @@ fixture was regenerated against the corrected shape. One bundled sample now
 - Every statutory citation resolves against the pinned U.S. Code mirror; specs
   that cite an obsolete subsection number fail the build rather than silently
   elaborating.
-- Once the endpoint is live, submit a redacted complaint and read the streamed
-  proof trace back; nothing un-redacted is accepted.
+- Once the hosted verifier accepts submissions, submit a redacted complaint
+  and read the streamed proof trace back; nothing un-redacted is accepted.

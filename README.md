@@ -13,8 +13,7 @@ that coordinates without legal reasoning of its own.
 
 - Parent organisation: <https://github.com/quantapix>
 - Engineering output: <https://quantapix.com>
-- Product site (early beta; the hosted verifier is the drive-window
-  deliverable, not yet serving): <https://qnarre.quantapix.com>
+- Product site (early beta): <https://qnarre.quantapix.com>
 
 ## The three-layer split
 
@@ -244,9 +243,10 @@ that the two encodings decompose the statute the same way.
 Where the golden side does carry element structure, the bridge tests exactly
 that, and the result is a fidelity read.
 
-Every full-tier section now records which of the two it earned. Of the **50**
+Every full-tier section now records which of the two it earned. Of the **48**
 sections holding a full-tier golden bridge, **14 rest on element-level
-agreement and 36 on statutory enumeration.** Neither count moves in one
+agreement and 34 on statutory enumeration** (re-derived 2026-09-18 from the
+per-section records; unchanged since 2026-08-28). Neither count moves in one
 direction only — enumeration has both risen, as new chapters bridged through the
 clause, and fallen, when a section retiered out of full tier on a second
 independent look. The distinction was not visible in the tier alone, so the tier
@@ -425,14 +425,14 @@ engineering practice opening one well-isolated lane. Start with
 [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the curated
 [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — **five open tasks of an
 original nine**, each with acceptance criteria and counts re-derived against
-the working tree on 2026-08-21. The other four were swept internally in the
-week after the roster was first published and are marked closed in place; the
-roster says which, and why that makes the linter task the most valuable one on
-the list. This is the third consecutive week every open task has reproduced its
-per-directory counts **exactly**, across a spec population that has grown by
-about 38% since the last refresh. The per-issue scopes are stable targets; the
-corpus-wide totals are not, and the roster says which is which. The four closed
-tasks were re-verified this week, not assumed. They are not filed as individual
+the working tree — most recently on 2026-08-28, when four of the five
+reproduced their scopes exactly and the fifth grew by one file that arrived
+carrying the very defect the task exists to fix. The other four were swept
+internally in the week after the roster was first published and are marked
+closed in place; the roster says which, and why that makes the linter task
+the most valuable one on the list. The per-issue scopes are stable targets;
+the corpus-wide totals are not, and the roster says which is which. The four
+closed tasks were re-checked on the same date, not assumed. They are not filed as individual
 issues and Discussions are not enabled, so an issue on this repo is the channel. The
 strategy briefings, the shared cross-strategy predicate library, and the
 golden-reference cells are frozen, so a new cell has a fixed target to
