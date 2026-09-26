@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-08-28. Refreshed per release run during the
+_Snapshot: 2026-09-26. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -230,8 +230,9 @@ found it.
 
 - **424 sections encoded across 11 of the Code's 53 titles (appendix volumes
   excluded).** Counted as distinct
-  statutory sections at their best achieved tier; derived from the per-section
-  records, never hand-maintained.
+    statutory sections at their best achieved tier; derived from the per-section
+  records, never hand-maintained. No encoding wave was promoted between
+  2026-08-28 and 2026-09-26.
 - The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
@@ -279,11 +280,16 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 ## Kernel and toolchain
 
-- Lean toolchain pinned to **v4.33.0**; no Mathlib dependency, which keeps
-  `lake build` fast. The pin moved this cycle, and the accepted *and* rejected
-  example proofs were replayed green on the bump before it was taken.
-- The results-propagation suite is **46 of 46 green**, and no longer writes to
-  the tree while running — six cases had been silently overwriting committed run
+- Lean toolchain pinned to **v4.34.0**; no Mathlib dependency, which keeps
+  `lake build` fast. The pin moved again this cycle, and both the accepted and
+  the rejected example proofs were replayed on the bump before it was taken,
+  with each rejected proof required to fail at the same element it failed at
+  before. A toolchain bump that only replays the passing cases has not been
+  tested.
+- The suite is **46 of 46 green** again after reading 44 of 46 this cycle
+  (see the README); the rejected-run reports were re-derived under the new
+  toolchain rather than the comparator loosened. The suite also no longer
+  writes to the tree while running — six cases had been silently overwriting committed run
   artefacts and status slots. A test that mutates the tree it is testing is not a
   test; those six now redirect to a sandbox. The newest case is a
   reproducibility gate that derives its own roster from two properties of a
