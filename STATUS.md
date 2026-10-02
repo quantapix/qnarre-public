@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-09-26. Refreshed per release run during the
+_Snapshot: 2026-10-02. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -94,30 +94,31 @@ That is a contract defect, not a wave defect, and the remedy is to change what
 the contract makes a cell do — not to relax what the certifier looks for. The
 one wave-time-certified wave on the books predates the arming and was audited by
 hand, within the hour, precisely because the wave it superseded had aged out of
-auditability first. One in a hundred and twenty-four is the real rate, and it is
-a hand rate.
+auditability first. One of the hundred and twenty-five waves the census knows of
+is the real rate, and it is a hand rate.
 
 Writing the certification at archive time, so a wave cannot default to
 uncertified, is the durable fix. It is now wired, for new waves only — see
 above. Every wave archived before it keeps the record it had, so the backlog
 below does not move on account of it.
 
-**The backlog, as an upper bound.** A share of the catalogued sections owe a
-re-slice; a smaller share of those hold a golden bridge. We are still not
-quoting the count, but the reason has changed and the old one no longer holds:
-the census now re-cuts its derivation stamp at every emit, so a figure lifted
-off it is no longer a figure of unknown age. What remains is a population
-question. Two of our own censuses report a section count under the same word,
-they do not agree, and until we can say plainly which set each one counts we
-will not put a second number on this page beside the one below. Publishing a
-figure we cannot label is worse than publishing none.
+**The backlog, as an upper bound.** At the census's last derivation
+(2026-08-28, which is also the date of the last promoted wave), 21 of the
+410 encoded sections owe a re-slice. Nine of those 21 sit at the top tier, and
+two hold a golden bridge. We held this figure back for several weeks because
+two of our own censuses printed a section count under the same word and did
+not agree. That is now settled: the figure above and the encoded census below
+count the same 410 distinct statutory sections, at the same grain. The number
+is still an upper bound, for the reason in the next paragraph. It is not a
+figure of unknown age: the census stamps its own derivation date, and the date
+above is that stamp.
 
 The scope problem behind it is unchanged and is worth stating on its own. The
 census attributes a section's standing wave by reading a wave-archive tree that
 is **local to one workstation**, and waves run elsewhere read here as owing a
 re-slice they have already served. The census now prints the scope it measured:
 which workstation it ran on, how many waves that host can see against the union
-it knows of, and an explicit list of the waves it is attributing to a peer. That
+it knows of (113 of 125 at the last derivation), and an explicit list of the waves it is attributing to a peer. That
 converts a silent under-count into a disclosed one. It does not cure it — a host
 cannot observe a peer's completed work by construction — so any figure would
 remain an upper bound. The cross-check against a tree-global artifact is still
@@ -226,13 +227,46 @@ lower tier rather than lifting it — but it does mean at least one calibration
 reference was unverified against the statute it encodes, and redundancy is what
 found it.
 
+## Two more channels into a blind cell, closed
+
+The system-prompt finding above had a sequel, and it was larger. Every blind
+cell is handed a set of mandated inputs: the strategy briefings and the
+authoring contract. Their worked examples were all written on the canonical
+racketeering calibration provision, which is the golden reference those cells
+are later scored against. We built an instrument that derives the golden
+identifiers from the hand-built kernels at run time, so it stores no answer
+key, and pointed it at the mandated inputs. It found the anchor in fourteen of
+fourteen, and golden composite names in several of them. The briefings were
+rewritten on one neutral federal provision that no golden covers, and the
+instrument now reads zero of fourteen. That provision's chapter is now
+refused as a wave target. Without that bar, a cell sliced there would read its
+own answer in its briefing, and the leak would only have moved. Two of the old
+worked examples had never compiled. Nobody had noticed, because nothing
+compiled them. Every new example is now elaborated against the shared library
+as a test.
+
+Waves sliced before and after this change are not comparable on briefing
+wording. We will say so wherever the two are set side by side.
+
+Separately, blind cells now launch **outside** the repository. A paired probe
+showed the difference: launched inside, a cell picked up the project's
+instruction files and memory index. Launched outside, it picked up none.
+Building this exposed a second problem. Our write-guard located the repository
+from the cell's working directory, so a cell launched outside it would have run
+**unguarded while the guard's own status check read armed**. The guard is now
+handed to the cell explicitly, and the launcher refuses to start a cell when it
+is not. No wave has been promoted on this lane yet, so none of the figures on
+this page reflect it.
+
 ## Encoded census (mechanical; unaffected by the correction)
 
-- **424 sections encoded across 11 of the Code's 53 titles (appendix volumes
-  excluded).** Counted as distinct
-    statutory sections at their best achieved tier; derived from the per-section
-  records, never hand-maintained. No encoding wave was promoted between
-  2026-08-28 and 2026-09-26.
+- **410 sections encoded across 11 of the Code's 53 titles (appendix volumes
+  excluded).** Counted as distinct statutory sections at their best achieved
+  tier. The same set is 424 provisions when separately-encoded subsections are
+  counted apart; earlier revisions of this page printed that figure under the
+  word "sections", which was the wrong grain. Both are derived from the
+  per-section records, never hand-maintained. No encoding wave was promoted between
+  2026-08-28 and 2026-10-02.
 - The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
@@ -334,13 +368,16 @@ fixture was regenerated against the corrected shape. One bundled sample now
   rather than membership — that is now the selection rule, and it is a property
   of the citing statute, not of the subject matter.
 - Continue whole-title passes on the remaining non-golden sections.
-- The hosted verifier's streaming proof-graph UI — the early-beta deliverable.
+- Open the hosted verifier to submissions. Today it replays a small, closed
+  set of synthetic examples and accepts no documents. We are not putting a
+  date on this.
 
 ## How to verify
 
-- Clone, `lake build`, and watch the kernel elaborate the bundled demo. There
-  is no "sort of holds": either the validity theorem type-checks or the failing
-  theorem names the element that does not.
+- In the working tree, `lake build` elaborates the bundled demo. There is no
+  "sort of holds": either the validity theorem type-checks or the failing
+  theorem names the element that does not. A clone of this repo cannot run
+  this: the sources are not here yet ([`CONTRIBUTING.md`](./CONTRIBUTING.md)).
 - There is now a bundled sample that **fails**. A toy federal-sector
   employment-discrimination complaint pleads its merits adequately and does
   not satisfy the administrative-exhaustion family; `lake build` returns
@@ -351,5 +388,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
 - Every statutory citation resolves against the pinned U.S. Code mirror; specs
   that cite an obsolete subsection number fail the build rather than silently
   elaborating.
-- Once the hosted verifier accepts submissions, submit a redacted complaint
-  and read the streamed proof trace back; nothing un-redacted is accepted.
+- The hosted verifier does not accept submissions yet. It replays a closed set
+  of synthetic examples. When submissions open, only redacted complaints will
+  be accepted, and the streamed proof trace will come back the same way the
+  replays do now.

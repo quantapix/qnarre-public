@@ -112,7 +112,7 @@ python3 scripts/test_uscode.py          # hermetic tests for the resolver + lint
 python3 scripts/validate_common_mints.py
 ```
 
-`uscode.py lint` currently reports **scanned 9347 file(s); 221 distinct cite(s);
+`uscode.py lint` reported, on 2026-09-26, **scanned 9347 file(s); 221 distinct cite(s);
 220 resolvable, 0 dead, 1 note-slot**; your PR must keep `0 dead`. The note-slot
 category is new: the citation resolver now fails loud and names a slot it cannot
 uniquely resolve, rather than silently taking the first alphabetical match.

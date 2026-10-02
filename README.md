@@ -13,7 +13,8 @@ that coordinates without legal reasoning of its own.
 
 - Parent organisation: <https://github.com/quantapix>
 - Engineering output: <https://quantapix.com>
-- Product site (early beta): <https://qnarre.quantapix.com>
+- Product site: <https://qnarre.quantapix.com> — replays synthetic examples
+  only; no submissions yet
 
 ## The three-layer split
 
@@ -25,7 +26,7 @@ that coordinates without legal reasoning of its own.
 
 The Lean kernel never reads natural language. The predicate
 sub-agents never write Lean. The driver is a thin coordinator. The
-verifiable proof IS the Lean elaboration trace produced by
+verifiable proof IS the kernel's elaboration of the theorem under
 `lake build`.
 
 Model choice is a capability constraint, not a cost knob: production predicate
@@ -254,7 +255,7 @@ that, and the result is a fidelity read.
 
 Every full-tier section now records which of the two it earned. Of the **48**
 sections holding a full-tier golden bridge, **14 rest on element-level
-agreement and 34 on statutory enumeration** (re-checked 2026-09-26 from the
+agreement and 34 on statutory enumeration** (re-checked 2026-10-02 from the
 per-section records; unchanged since 2026-08-28 — no encoding wave was
 promoted in between). Neither count moves in one
 direction only — enumeration has both risen, as new chapters bridged through the
@@ -288,9 +289,11 @@ scored *against* a golden, so it can never be the thing that mints one.
 The ground-truth corpus — the full Code, pinned to a specific published
 release point so an encoding is reproducibly bound to exact statutory text —
 is in place, alongside a durable off-site archive of that release point so a
-proof remains reproducible even after the source is rotated. The conventions,
-the strategy briefings, and a shared cross-strategy predicate library are
-frozen. A hand-built calibration cell on the canonical racketeering
+proof remains reproducible even after the source is rotated. The conventions
+and a shared cross-strategy predicate library are frozen. The strategy
+briefings were frozen too, and were rewritten once, on 2026-10-01, to move
+their worked examples off the golden calibration provision (see
+[`STATUS.md`](./STATUS.md)). A hand-built calibration cell on the canonical racketeering
 operating-or-managing provision is encoded under all six strategies and is
 kernel-green, with its cross-strategy Bridges discharged. A first wave of
 **blind** agent cells — RICO investment / acquisition / conspiracy, the three
@@ -373,9 +376,11 @@ latter's definitions block lifting one previously-partial section to
 corroborated once its defined terms were grounded. Recurring notions — a
 "financial institution" definition, an interstate-commerce nexus — continue to
 collapse onto the shared cross-title algebra under their own Bridges. The
-running corpus rollup now stands at **424 encoded sections across 11
+running corpus rollup now stands at **410 encoded sections across 11
 titles** — counted as distinct statutory sections (a
-section encoded under two lenses counts once), derived mechanically from the
+section encoded under two lenses counts once; the same set is 424 provisions
+when separately-encoded subsections are counted apart, the figure earlier
+revisions printed under the word "sections"), derived mechanically from the
 per-section records and never hand-maintained, with every promoted wave frozen
 into an immutable off-site archive at promotion time. The share of the whole
 Code is small and deliberately so: the program is a method demonstrated at
@@ -446,9 +451,10 @@ the most valuable one on the list. The per-issue scopes are stable targets;
 the corpus-wide totals are not, and the roster says which is which. The four
 closed tasks were re-checked on 2026-09-26 as well, not assumed. They are not filed as individual
 issues and Discussions are not enabled, so an issue on this repo is the channel. The
-strategy briefings, the shared cross-strategy predicate library, and the
-golden-reference cells are frozen, so a new cell has a fixed target to
-score against.
+shared cross-strategy predicate library and the golden-reference cells are
+frozen, so a new cell has a fixed target to score against. The strategy
+briefings changed once, on 2026-10-01, and are frozen again in their
+rewritten form.
 
 ## Statutory text is vendored, not pasted
 
@@ -500,6 +506,8 @@ the framework's generated `Facts.lean`.
 
 ## Build and verify
 
+In the working tree, verification is one command:
+
 ```
 lake build
 ```
@@ -510,13 +518,27 @@ names the predicate that does not provide enough evidence under the
 current axiom set. There is no "sort of holds." The Lean kernel
 draws a hard line.
 
+**A clone of this repo does not build.** It carries narrative
+documents and no kernel modules, predicate specs, driver or
+`lakefile`, so `lake build` has nothing to run against here
+([`CONTRIBUTING.md`](./CONTRIBUTING.md) says the same). The command
+above describes the working tree these documents are written from.
+
 ## Worked examples
 
-`examples/<id>/` holds per-run artifacts: `facts.json`,
-`facts.lean` (the generated axiom block), the driver's audit log,
-and the Lean elaboration trace. Each example is a complete
-end-to-end demonstration of one complaint passed through the
-pipeline. Refreshed alongside the predicate specs.
+`examples/<id>/`, where an example is published, holds the files that
+example's manifest names and nothing else: the synthetic complaint,
+the manifest, the extracted facts (`facts.json` and the generated
+`Facts.lean` axiom block), the proof and setup sources, and the
+result files. No driver audit log and no elaboration output ships
+with an example.
+
+Published examples are **readable, not buildable**. They import
+kernel modules that are not in this repo, and the proof step needs a
+harness that places the example's `Facts.lean` into the kernel tree
+before the kernel can check it. Reading one shows what the pipeline
+extracted and what the kernel was asked to check. It does not let a
+clone re-run the check.
 
 ## What this repo is not
 
@@ -525,10 +547,11 @@ pipeline. Refreshed alongside the predicate specs.
   whether to file, when to file, or whom to file against.
 - Not a chat surface. Predicate sub-agents are scoped, audited, and
   short-lived. They do not retain conversation state across calls.
-- Not a private-PII surface. The hosted service accepts only
-  redacted documents. No real names, dockets, addresses, financial
-  account numbers, or other PII ever flow to the server or to any
-  LLM.
+- Not a submission surface, yet. The hosted service replays a closed set of
+  synthetic examples and accepts no documents. When submissions open it will
+  accept only redacted documents. No real names, dockets, addresses,
+  financial account numbers or other personal data are to reach the server or
+  any model.
 
 ## Cadence
 
