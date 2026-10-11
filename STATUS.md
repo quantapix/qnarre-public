@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-10-02. Refreshed per release run during the
+_Snapshot: 2026-10-11. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -258,6 +258,67 @@ handed to the cell explicitly, and the launcher refuses to start a cell when it
 is not. No wave has been promoted on this lane yet, so none of the figures on
 this page reflect it.
 
+## Since the last snapshot (2026-10-02 → 2026-10-11)
+
+No encoding wave was promoted in this window, so none of the corpus figures
+on this page moved. The work went into the instruments that grade a wave.
+
+**A re-adjudication cannot buy a tier by naming its axioms.** A
+reconciler that re-adjudicates a section may declare new correspondence
+axioms, and the kernel checks the proof that uses them, never the axioms
+themselves. So a re-adjudication could lift a tier by declaring a stronger
+correspondence than the one it replaced, and nothing read the difference. A
+diff now compares the old and new axiom sets by *shape*, meaning what each
+axiom concludes and what it assumes, and never by name. Any added axiom that
+concludes a field of the golden composite becomes a class that needs a named
+review. Comparing by name would have been useless. On its first live run,
+over two independent re-adjudications of one trafficking section
+(18 U.S.C. § 1591), it counted 82 of 92 axioms as "added", only because the
+two adjudications had named them independently. By shape it found two
+additions that conclude a golden field. One of them was ruled unsound. A
+third independent pass on that section is owed before its grade is settled.
+
+**An adjudication now has to prove its own blindness.** Reconciler
+adjudications are now a write-once archive record of their own. The record
+names the wave it adjudicates, the host that holds that wave, and a hash of
+every file it read. The re-slice census treats an adjudication as discharging
+its debt only when that join checks out against the wave as it stands today.
+As of this window it must also carry a blindness audit of its own, and that
+audit must not be adverse. An adjudication is a read of the same blind
+evidence, so it is held to the same bar as the cells. When the stricter rule
+went in, the three adjudications filed on 2026-10-06 still discharged.
+
+**A blind seat has no inbound channel.** The earlier channels were all
+about what a cell can read. This one is about what can be *sent* to a cell.
+Blind seats now launch with inter-agent messaging and tool discovery
+disabled. A transcript reader also refuses any seat whose transcript shows a
+queued message from a peer, and it runs before the grader does. We ran it
+over every recorded seat transcript on the host that measured it, and it
+flagged exactly one seat.
+
+**The model moved; three things moved with it.** First, the bake-off
+grants were retired, not re-earned (see the README). Second, a model
+*refusal* is now kept as its own outcome. It has its own exit code, it is
+never re-queued, and it is never read as a `True` or `False`. A refusal is not
+evidence about the document. Third, reasoning effort is now a per-lane
+setting recorded on every run beside the resolved model. For the extraction
+lane, a pre-registered sweep on synthetic fixtures selected the lowest
+setting; the rig could not show a gain at higher settings. The value is
+seated for this axis only and is not inherited by any other.
+
+**Freshness by content, and an empty table is not a clean one.** The
+kernel-graph emit behind the status page now carries a digest of its inputs,
+and the page decides whether the emit is fresh from that digest alone. The
+revision it was built from is shown as a note and no longer decides
+anything. An emit without a digest still reads stale. In a separate fix, the
+blindness-certificate store had been switched on by the *presence* of an
+output flag rather than by where the output went. A redirected replay had
+filed a real certificate row while its own comment said it had not. The
+store now arms on the destination. A re-frozen certificate files a
+superseding row instead of editing the old one. Queried over an empty table,
+the certificate reader exits as "could not look" instead of returning
+success.
+
 ## Encoded census (mechanical; unaffected by the correction)
 
 - **410 sections encoded across 11 of the Code's 53 titles (appendix volumes
@@ -266,7 +327,7 @@ this page reflect it.
   counted apart; earlier revisions of this page printed that figure under the
   word "sections", which was the wrong grain. Both are derived from the
   per-section records, never hand-maintained. No encoding wave was promoted between
-  2026-08-28 and 2026-10-02.
+  2026-08-28 and 2026-10-11.
 - The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
@@ -281,8 +342,8 @@ this page reflect it.
 
 Eleven frameworks — thirteen golden reference cells (the employment title
 carries three) — elaborate under `lake build` and serve as the reference the
-automated program is scored against. Counted from the kernel tree: one framework
-per hand-built module directory, one golden cell per validity theorem.
+automated program is scored against. Counted over the published roster: one framework
+per hand-built golden family listed here, one golden cell per validity theorem.
 
 | Framework | Statutory basis | Specs |
 |---|---|---:|
@@ -347,6 +408,9 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 ## Next
 
+- Run the third independent pass on the trafficking section whose
+  re-adjudication added a golden-field axiom that was ruled unsound. Its grade
+  stays as it is until then.
 - Work the re-slice backlog down; the unauditable waves have no remedy short of
   it, and the eleven wrong-statute sections need their own pass.
 - Extend the act-time guard backward: the arming covers new waves, and the

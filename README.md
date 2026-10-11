@@ -40,6 +40,13 @@ or carries no evidence (a substantive negative finding is a legitimate `False`,
 not an error); the other treats a high-uncertainty band as a human-review flag,
 never an auto-reject.
 
+That bake-off is now a historical record, not a standing licence. Its per-leaf
+grants were stored against a model *alias* rather than the model actually
+billed, so when the top-tier alias moved, no grant could say which model it
+had measured. All three were retired rather than re-earned, and no leaf class
+runs below the top tier. A future re-run stamps the billed model beside the
+alias before it can grant anything.
+
 ## Why this works
 
 1. The semantic memory store sees only natural-language artifacts. It
@@ -90,8 +97,9 @@ Spec roster: RICO 25 (plus 9 leaf specs under `predicates/rico/hier/`, the
 hierarchical decomposition); Title VI 17; CivilRights 14; Title IX 21;
 Title VII 21; Rehab § 504 19; Age Act 17; Title II Enf 10; ADA 24;
 Terrorism 18; Trafficking 27 — **eleven frameworks, thirteen hand-built golden
-reference cells** (Title VII carries three). Counted from the kernel tree: one
-framework per hand-built module directory, one golden cell per validity theorem.
+reference cells** (Title VII carries three). Counted over the published roster:
+one framework per hand-built golden family listed here, one golden cell per
+validity theorem.
 Three orphaned RICO axioms — predicates no theorem reached — were
 retired rather than left standing as unused surface.
 
@@ -255,7 +263,7 @@ that, and the result is a fidelity read.
 
 Every full-tier section now records which of the two it earned. Of the **48**
 sections holding a full-tier golden bridge, **14 rest on element-level
-agreement and 34 on statutory enumeration** (re-checked 2026-10-02 from the
+agreement and 34 on statutory enumeration** (re-checked 2026-10-11 from the
 per-section records; unchanged since 2026-08-28 — no encoding wave was
 promoted in between). Neither count moves in one
 direction only — enumeration has both risen, as new chapters bridged through the
