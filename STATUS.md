@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-10-11. Refreshed per release run during the
+_Snapshot: 2026-10-16. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -103,9 +103,14 @@ above. Every wave archived before it keeps the record it had, so the backlog
 below does not move on account of it.
 
 **The backlog, as an upper bound.** At the census's last derivation
-(2026-08-28, which is also the date of the last promoted wave), 21 of the
-410 encoded sections owe a re-slice. Nine of those 21 sit at the top tier, and
-two hold a golden bridge. We held this figure back for several weeks because
+(2026-10-12), 21 of the 410 encoded sections owe a re-slice. Nine of those 21
+sit at the top tier, and two hold a golden bridge. That is the same figure
+the previous derivation printed on 2026-08-28, now reproduced on a second
+workstation that sees a different set of waves. The last promoted encoding
+wave is still dated 2026-08-28. Three re-adjudications were adopted into the
+per-section records on 2026-10-14 (below), after this derivation, and the
+census has not re-run since, so whether they move the backlog is not yet
+measured. We held this figure back for several weeks because
 two of our own censuses printed a section count under the same word and did
 not agree. That is now settled: the figure above and the encoded census below
 count the same 410 distinct statutory sections, at the same grain. The number
@@ -118,7 +123,7 @@ census attributes a section's standing wave by reading a wave-archive tree that
 is **local to one workstation**, and waves run elsewhere read here as owing a
 re-slice they have already served. The census now prints the scope it measured:
 which workstation it ran on, how many waves that host can see against the union
-it knows of (113 of 125 at the last derivation), and an explicit list of the waves it is attributing to a peer. That
+it knows of (112 of 125 at the last derivation, with 13 attributed to a peer), and an explicit list of the waves it is attributing to a peer. That
 converts a silent under-count into a disclosed one. It does not cure it — a host
 cannot observe a peer's completed work by construction — so any figure would
 remain an upper bound. The cross-check against a tree-global artifact is still
@@ -184,9 +189,10 @@ records which of the two it earned: of **48** sections holding a full-tier golde
 bridge, **14 rest on element-level agreement and 34 on statutory enumeration**
 (2026-08-28). Eighteen bridge modules had their headers rewritten to say so.
 Nothing was re-proved; the proofs were always these proofs. The labels now match.
+Re-derived 2026-10-14: of **47** sections holding a full-tier golden bridge,
+**12 rest on element-level agreement and 35 on statutory enumeration.**
 
-Both figures moved down this week, and the page said last week that they would
-not move in one direction only. Full-tier holdings fell from 50 to 48 — the
+Both figures moved down in the week of 2026-08-28. Full-tier holdings fell from 50 to 48 — the
 enumeration arm lost two on a second independent look, the element-level arm
 held flat at 14. Four sections left the top tier for the one below it. A count
 that only ever rises is a count nobody is checking; this is what checking looks
@@ -258,6 +264,56 @@ handed to the cell explicitly, and the launcher refuses to start a cell when it
 is not. No wave has been promoted on this lane yet, so none of the figures on
 this page reflect it.
 
+## Since the last snapshot (2026-10-11 → 2026-10-16)
+
+No encoding wave was promoted in this window, and the count of encoded
+sections did not move. The grade figures did.
+
+**Three re-adjudications were adopted, and the full-tier count went down.**
+Net effect: full-tier golden holdings went from 48 to 47, element-level
+agreement from 14 to 12, and enumeration from 34 to 35.
+
+**A citation check that existed but did not run.** This page and the README
+said that a spec citing an obsolete subsection number fails the build. The
+linter that checks citations existed and exited non-zero on a dead cite.
+Nothing called it. A review in July found dead citations in the spec tree,
+and they had passed every build since. The linter now runs in the test suite
+over the live spec tree, with a floor on how many files it must read before
+a clean result counts. Today it reads zero dead citations, and a planted cite
+to a section that does not exist turns it red. It is a suite failure, not a
+`lake build` failure, and the wording elsewhere on this page now says so.
+
+**A claim proved against any defendant.** One hand-built golden had a route
+whose claim took a defendant parameter that no element mentioned, so the
+kernel proved the claim against *any* defendant and stayed green. That was
+fixed when it was found. A lint now checks the whole shape class: every
+parameter of a composite must appear in one of its fields, and every
+parameter of a validity theorem must appear in the hypotheses of every
+route. It reads zero findings across the hand-built kernels, and it exits as
+"could not look" if it reads no composites at all.
+
+**A generated file can no longer be committed by omission.** Each
+framework's generated axiom block must stay out of version control, and the
+ignore list that kept it out was maintained by hand. A scan now derives the
+list of generated paths from the run manifests themselves and checks each
+one is both ignored and untracked.
+
+**Headcounts carry their participants.** When a ruling changes how a tier is
+counted, each section's record now says, per lens, whether that lens took
+part and why. A headcount can then be re-read rather than trusted. The rule
+applies only to records written after the ruling. Older rows are counted as
+having no record, not as having passed.
+
+**Certificates say what they measured.** A wave's blindness certificate now
+records which channels it graded, derived from the certificate's own
+instrument stamp. A later change to the channel set can then void exactly
+the certificates graded under the older set, and none of the others.
+
+**A cell's own verification script is kept.** Each blind cell builds a
+clean-room check of its own output. The archiver used to keep the check's
+result and discard the script that produced it. The cell contract now names
+one script, and the archiver keeps it and records any cell that left none.
+
 ## Since the last snapshot (2026-10-02 → 2026-10-11)
 
 No encoding wave was promoted in this window, so none of the corpus figures
@@ -286,7 +342,9 @@ its debt only when that join checks out against the wave as it stands today.
 As of this window it must also carry a blindness audit of its own, and that
 audit must not be adverse. An adjudication is a read of the same blind
 evidence, so it is held to the same bar as the cells. When the stricter rule
-went in, the three adjudications filed on 2026-10-06 still discharged.
+went in, the adjudications
+filed on 2026-10-06 still discharged; the census now counts five of them, each
+discharging a re-adjudication it had listed as owed.
 
 **A blind seat has no inbound channel.** The earlier channels were all
 about what a cell can read. This one is about what can be *sent* to a cell.
@@ -408,9 +466,8 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 ## Next
 
-- Run the third independent pass on the trafficking section whose
-  re-adjudication added a golden-field axiom that was ruled unsound. Its grade
-  stays as it is until then.
+- Re-run the backlog census over the per-section records as adopted on
+  2026-10-14. The printed backlog predates those adoptions.
 - Work the re-slice backlog down; the unauditable waves have no remedy short of
   it, and the eleven wrong-statute sections need their own pass.
 - Extend the act-time guard backward: the arming covers new waves, and the
@@ -449,9 +506,10 @@ fixture was regenerated against the corrected shape. One bundled sample now
   score. This is the one thing a stubbed run could never demonstrate — a
   stub cans every predicate to `True`, so it always accepts — which is why
   it had to wait for the un-stubbing to finish.
-- Every statutory citation resolves against the pinned U.S. Code mirror; specs
-  that cite an obsolete subsection number fail the build rather than silently
-  elaborating.
+- Every statutory citation resolves against the pinned U.S. Code mirror. A
+  spec that cites an obsolete or nonexistent section fails the test suite
+  rather than silently elaborating. That check is a suite test, not part of
+  `lake build`, and until this window nothing ran it (see above).
 - The hosted verifier does not accept submissions yet. It replays a closed set
   of synthetic examples. When submissions open, only redacted complaints will
   be accepted, and the streamed proof trace will come back the same way the

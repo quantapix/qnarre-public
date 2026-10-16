@@ -261,11 +261,11 @@ that the two encodings decompose the statute the same way.
 Where the golden side does carry element structure, the bridge tests exactly
 that, and the result is a fidelity read.
 
-Every full-tier section now records which of the two it earned. Of the **48**
-sections holding a full-tier golden bridge, **14 rest on element-level
-agreement and 34 on statutory enumeration** (re-checked 2026-10-11 from the
-per-section records; unchanged since 2026-08-28 — no encoding wave was
-promoted in between). Neither count moves in one
+Every full-tier section now records which of the two it earned. Of the **47**
+sections holding a full-tier golden bridge, **12 rest on element-level
+agreement and 35 on statutory enumeration** (re-derived 2026-10-14 from the
+per-section records, after three re-adjudications were adopted; no encoding
+wave was promoted). Neither count moves in one
 direction only — enumeration has both risen, as new chapters bridged through the
 clause, and fallen, when a section retiered out of full tier on a second
 independent look. The distinction was not visible in the tier alone, so the tier
@@ -471,7 +471,9 @@ of canonical U.S. Code text — never pasted inline into specs.
 Predicate sub-agents resolve a `usc_cite` via a path/text lookup
 against an index file. This way a statutory revision is a single
 re-vendor step; specs that cite obsolete subsection numbers fail
-the build, not silently elaborate.
+the test suite rather than silently elaborating. That check runs in the
+suite, not in `lake build`. See [`STATUS.md`](./STATUS.md) for when it
+started running.
 
 ## Predicate spec shape
 
