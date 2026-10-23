@@ -27,7 +27,9 @@ that coordinates without legal reasoning of its own.
 The Lean kernel never reads natural language. The predicate
 sub-agents never write Lean. The driver is a thin coordinator. The
 verifiable proof IS the kernel's elaboration of the theorem under
-`lake build`.
+`lake build`. The kernel's side of that split is a test, not a convention:
+a purity check reads every kernel file and refuses import-time hooks,
+evaluation commands, `IO`, `unsafe` and foreign-function attributes in code.
 
 Model choice is a capability constraint, not a cost knob: production predicate
 runs hard-fail on a weaker model unless an explicit smoke-test flag is passed.
@@ -161,20 +163,20 @@ error names the exact element that did not discharge. It could not have been
 faked with a stubbed run — a stub cans every predicate to `True` and therefore
 always accepts.
 
-Kernels pin to a current stable Lean toolchain (`v4.34.0`); the build needs
+Kernels pin to a current stable Lean toolchain (`v4.35.0`); the build needs
 no Mathlib dependency, which keeps `lake build` fast. The pin moved again
 this cycle, and both the accepted and the rejected example proofs were
 replayed on the bump before it was taken, with each rejected proof required
-to fail at the same element it failed at before. A toolchain bump that only
-replays the passing cases has not been tested.
+to fail at the same element it failed at before. None changed its verdict.
+A toolchain bump that only replays the passing cases has not been tested.
 
-Something did drift, and the right instrument caught it. The current build
-tool no longer prints one exit-code line that the committed rejected-run
-reports had recorded verbatim, so two results-propagation cases went red
-and the suite read 44 of 46. The fix was to re-derive those reports under
-the current toolchain and check that the one removed line was the only
-change, not to teach the comparator to tolerate the difference. The suite
-is back at 46 of 46.
+On the previous bump something did drift, and the right instrument caught
+it. The build tool had stopped printing one exit-code line that the
+committed rejected-run reports recorded verbatim, so two results-propagation
+cases went red and the suite read 44 of 46. The fix was to re-derive those
+reports under that toolchain and check that the one removed line was the
+only change, not to teach the comparator to tolerate the difference. The
+suite went back to 46 of 46.
 
 ## Axiomatizing the full U.S. Code
 
@@ -448,16 +450,18 @@ engineering practice opening one well-isolated lane. Start with
 [`CONTRIBUTING.md`](./CONTRIBUTING.md) and the curated
 [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) — **five open tasks of an
 original nine**, each with acceptance criteria and counts re-derived against
-the working tree — most recently on 2026-09-26, when all five reproduced the
-scopes measured on 2026-08-28 exactly. On that earlier date four of the five
+the working tree — most recently on 2026-10-23, when all five again reproduced
+the scopes measured on 2026-08-28 exactly. On that earlier date four of the five
 had reproduced their original scopes and the fifth had grown by one file that
 arrived carrying the very defect the task exists to fix; that file is still
 the only change. The other four were swept
 internally in the week after the roster was first published and are marked
 closed in place; the roster says which, and why that makes the linter task
 the most valuable one on the list. The per-issue scopes are stable targets;
-the corpus-wide totals are not, and the roster says which is which. The four
-closed tasks were re-checked on 2026-09-26 as well, not assumed. They are not filed as individual
+the corpus-wide totals are not (on 2026-10-23 they jumped when several
+thousand of the program's own specs were restored from the wave archives),
+and the roster says which is which. The four
+closed tasks were re-checked on 2026-10-23 as well, not assumed. They are not filed as individual
 issues and Discussions are not enabled, so an issue on this repo is the channel. The
 shared cross-strategy predicate library and the golden-reference cells are
 frozen, so a new cell has a fixed target to score against. The strategy

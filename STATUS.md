@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-10-16. Refreshed per release run during the
+_Snapshot: 2026-10-23. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -103,14 +103,13 @@ above. Every wave archived before it keeps the record it had, so the backlog
 below does not move on account of it.
 
 **The backlog, as an upper bound.** At the census's last derivation
-(2026-10-12), 21 of the 410 encoded sections owe a re-slice. Nine of those 21
-sit at the top tier, and two hold a golden bridge. That is the same figure
-the previous derivation printed on 2026-08-28, now reproduced on a second
-workstation that sees a different set of waves. The last promoted encoding
-wave is still dated 2026-08-28. Three re-adjudications were adopted into the
-per-section records on 2026-10-14 (below), after this derivation, and the
-census has not re-run since, so whether they move the backlog is not yet
-measured. We held this figure back for several weeks because
+(2026-10-21), 43 of the 410 encoded sections owe a re-slice. Twenty-nine of
+those 43 sit at the top tier, and two hold a golden bridge. The last promoted
+encoding wave is still dated 2026-08-28. This is the first derivation since
+three re-adjudications were adopted into the per-section records on
+2026-10-14 (below), and they did not move the backlog. A re-graded wave did:
+22 of the 43 are its sections (see "Since the last snapshot", below). We held
+this figure back for several weeks because
 two of our own censuses printed a section count under the same word and did
 not agree. That is now settled: the figure above and the encoded census below
 count the same 410 distinct statutory sections, at the same grain. The number
@@ -264,6 +263,72 @@ handed to the cell explicitly, and the launcher refuses to start a cell when it
 is not. No wave has been promoted on this lane yet, so none of the figures on
 this page reflect it.
 
+## Since the last snapshot (2026-10-16 → 2026-10-23)
+
+No encoding wave was promoted in this window. The count of encoded sections
+did not move, and neither did the full-tier split: 47 sections hold a
+full-tier golden bridge, 12 on element-level agreement and 35 on statutory
+enumeration. The backlog moved.
+
+**A wave was re-graded and its certificate re-frozen as a breach.** A
+re-grade replays an archived wave's transcripts through the current
+blindness grader. It now writes a record of its own, and the backlog census
+reads that record when it sets aside a verdict of record it no longer
+trusts. One re-grade covered a wave over 22 sections of one chapter of the
+public-health title, and it found that a blind cell had listed the directory
+of compiled shared-vocabulary files. That listing enumerates the shared
+namespace, the channel the July correction was about. The wave's certificate
+was re-frozen from review to breach, and the prior certificate is kept
+verbatim beside the new one. Its 22 sections are now in the backlog above.
+
+**The program's own specs are back in the tree.** Until an early-August fix
+to the promotion step, a wave's kernel modules reached the tree without the
+predicate specs its cells had written, and those specs survived only in the
+wave archives. 5,509 of them were copied back. Each one came from the archived
+cell that declares the same predicates, was hash-checked before the write, and
+landed as an addition only. The one byte change allowed was replacing a kernel
+file path with its namespace, which the authoring rule requires. The first
+pass broke ties between identical generic predicates by taking the newest
+wave, which put 38 specs in from the wrong cell. Those were re-copied from the
+right cell before anything read them. A census over the program's 593 cell
+families and 14,865 predicate leaves now reports which leaves still have no
+spec: 189 do. A separate lint requires every hand-built predicate leaf to
+resolve to a spec. On its first run it found four racketeering-hierarchy
+leaves whose specs existed under a different directory, and they gained
+pointers. The citation linter reads 14,858 files across the federal spec tree
+and finds zero dead citations.
+
+**The kernel's no-I/O rule is now a test.** Several of our instruments
+elaborate a file that imports kernel modules and then read a verdict from
+Lean's printed output. An imported module can run code at import time and
+print anything. We measured one making a check over nothing report a result
+and pass. There are two fixes. First, the readers no longer trust unmarked
+output: records carry a per-run nonce, a duplicate or missing record is a
+refusal, and in the coverage emit a forged "does not depend on any axioms"
+line can no longer overwrite a theorem's real axiom list. Second, the channel
+is closed at its source: a purity test reads every kernel file and refuses
+import-time hooks, evaluation commands, `IO`, `unsafe` and foreign-function
+attributes in code. A separate lint reads every Lean file in the kernel and
+example trees for `sorry`, `admit` and `sorryAx`, and finds none.
+
+**A blind cell no longer runs a build.** The cell contract used to tell a
+cell to build the shared library once if it needed to. A build rewrites the
+shared build directory under every sibling cell, which is a channel between
+cells that no path-based guard sees. The build now belongs to the
+orchestrator and runs before the write-guard is armed. The guard refuses to
+arm until the compiled files the cells copy exist, and a cell that finds one
+missing reports that it could not look instead of building. Separately, cells
+launched outside the repository now carry the toolchain pin explicitly. A
+launcher resolves Lean from its working directory, and outside the
+repository that is the default toolchain, not the pinned one.
+
+**A gate's conformance is measured by breaking it.** Each gate the wave
+archiver runs is now driven four ways from a scratch copy: a known-bad input,
+a clean control, a named escape, and a missing instrument. A known-bad counts
+only when the gate's own refusal text appears. The first reading found two
+gates fail-soft. When pointed at a coverage rollup that did not exist, they
+skipped and archived with success. They now refuse.
+
 ## Since the last snapshot (2026-10-11 → 2026-10-16)
 
 No encoding wave was promoted in this window, and the count of encoded
@@ -385,7 +450,7 @@ success.
   counted apart; earlier revisions of this page printed that figure under the
   word "sections", which was the wrong grain. Both are derived from the
   per-section records, never hand-maintained. No encoding wave was promoted between
-  2026-08-28 and 2026-10-11.
+  2026-08-28 and 2026-10-23.
 - The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
@@ -433,15 +498,18 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 ## Kernel and toolchain
 
-- Lean toolchain pinned to **v4.34.0**; no Mathlib dependency, which keeps
+- Lean toolchain pinned to **v4.35.0**; no Mathlib dependency, which keeps
   `lake build` fast. The pin moved again this cycle, and both the accepted and
   the rejected example proofs were replayed on the bump before it was taken,
   with each rejected proof required to fail at the same element it failed at
-  before. A toolchain bump that only replays the passing cases has not been
-  tested.
-- The suite is **46 of 46 green** again after reading 44 of 46 this cycle
-  (see the README); the rejected-run reports were re-derived under the new
-  toolchain rather than the comparator loosened. The suite also no longer
+  before. None changed its verdict. A toolchain bump that only replays the
+  passing cases has not been tested. One source change rode the bump: the new
+  toolchain lints a `constructor` step that more than one constructor
+  matches, and the core proof tactic takes exactly that step. It now names
+  the first-match form explicitly, which makes the same choice.
+- The suite went back to **46 of 46 green** after reading 44 of 46 on the
+  previous toolchain bump (see the README); the rejected-run reports were
+  re-derived under that toolchain rather than the comparator loosened. The suite also no longer
   writes to the tree while running — six cases had been silently overwriting committed run
   artefacts and status slots. A test that mutates the tree it is testing is not a
   test; those six now redirect to a sandbox. The newest case is a
@@ -466,8 +534,6 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 ## Next
 
-- Re-run the backlog census over the per-section records as adopted on
-  2026-10-14. The printed backlog predates those adoptions.
 - Work the re-slice backlog down; the unauditable waves have no remedy short of
   it, and the eleven wrong-statute sections need their own pass.
 - Extend the act-time guard backward: the arming covers new waves, and the
@@ -509,7 +575,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
 - Every statutory citation resolves against the pinned U.S. Code mirror. A
   spec that cites an obsolete or nonexistent section fails the test suite
   rather than silently elaborating. That check is a suite test, not part of
-  `lake build`, and until this window nothing ran it (see above).
+  `lake build`, and until 2026-10-16 nothing ran it (see above).
 - The hosted verifier does not accept submissions yet. It replays a closed set
   of synthetic examples. When submissions open, only redacted complaints will
   be accepted, and the streamed proof trace will come back the same way the

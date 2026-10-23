@@ -21,8 +21,9 @@ worth your time before you clone anything:
   than finding tasks silently missing. Expect that to keep happening — the
   roster is a snapshot of a tree under active work, which is why the
   remaining tooling task (a committed spec linter) matters more than any
-  single sweep. Re-derived a fifth time on 2026-09-26: all five reproduced the
-  scopes measured on 2026-08-28 exactly. On that earlier date four had
+  single sweep. Re-derived a sixth time on 2026-10-23: all five reproduced the
+  scopes measured on 2026-08-28 exactly, as they had on 2026-09-26. On that
+  earlier date four had
   reproduced their original scopes and the fifth had grown by one file, which
   arrived carrying the defect the task exists to fix. The four closed ones were
   re-checked rather than assumed. None of these are **filed as individual issues** on the
