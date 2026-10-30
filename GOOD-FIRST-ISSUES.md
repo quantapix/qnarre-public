@@ -15,7 +15,7 @@ litigation record, no redaction surface.
 > **The commands below do not run against this clone yet.** This repo carries
 > the narrative documents only — the Lean kernel, the predicate specs, and the
 > helper scripts every acceptance criterion names are in the private working
-> tree, being prepared for a source drop (`CONTRIBUTING.md` § "what state the
+> tree, and a source drop is not scheduled (`CONTRIBUTING.md` § "what state the
 > lane is actually in"). Until it lands, read these as a specification of the
 > work and an inventory of the tree's defects. The counts are the maintainer's,
 > re-derived on the date stated; you will be able to re-derive them yourself

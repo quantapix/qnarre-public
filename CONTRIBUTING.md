@@ -43,7 +43,7 @@ worth your time before you clone anything:
   narrative documents only. The Lean kernel, the predicate specs, and the
   helper scripts that every acceptance criterion in
   [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) refers to are in the
-  private working tree and are being prepared for a source drop. Until that
+  private working tree and a source drop is not scheduled. Until that
   lands, the issues are readable as a specification of the work and as an
   honest inventory of the tree's defects, but you cannot run their commands
   against a clone. Open an issue if you want to be told when the sources

@@ -164,8 +164,7 @@ faked with a stubbed run — a stub cans every predicate to `True` and therefore
 always accepts.
 
 Kernels pin to a current stable Lean toolchain (`v4.35.0`); the build needs
-no Mathlib dependency, which keeps `lake build` fast. The pin moved again
-this cycle, and both the accepted and the rejected example proofs were
+no Mathlib dependency, which keeps `lake build` fast. The pin moved to v4.35.0 on 2026-10-20, and both the accepted and the rejected example proofs were
 replayed on the bump before it was taken, with each rejected proof required
 to fail at the same element it failed at before. None changed its verdict.
 A toolchain bump that only replays the passing cases has not been tested.
@@ -523,14 +522,14 @@ the framework's generated `Facts.lean`.
 In the working tree, verification is one command:
 
 ```
-lake build
+lake build Proving ProvingUSC
 ```
 
 Either the kernel elaborates against the generated facts — the
 theorem holds — or it does not, in which case the failing theorem
 names the predicate that does not provide enough evidence under the
 current axiom set. There is no "sort of holds." The Lean kernel
-draws a hard line.
+draws a hard line. A bare `lake build` also builds the examples, and a refusing example fails it by design.
 
 **A clone of this repo does not build.** It carries narrative
 documents and no kernel modules, predicate specs, driver or

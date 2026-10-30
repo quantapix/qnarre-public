@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-10-23. Refreshed per release run during the
+_Snapshot: 2026-10-30. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -17,7 +17,7 @@ not established as blind.
 
 That correction **stands**. The corpus-wide grade tally is still withdrawn.
 What is unaffected, and was never in doubt: **kernel soundness** — every
-`lake build` is green and every promoted proof is `sorry`-free — and the count
+authoritative build (`lake build Proving ProvingUSC`) is green and every promoted proof is `sorry`-free — and the count
 of sections *encoded*, which is a mechanical census, not an agreement figure.
 
 Two things have changed since: a blind re-slice program is running and has
@@ -77,8 +77,8 @@ into "certified" because the wave is recent. **The figure this page previously
 published for certified waves is withdrawn.**
 
 Worth stating against our own interest: writing the certification at archive
-time has been armed for a month. Thirty-three waves have been archived under it.
-**None of them is certified.** We reported that last week as a forward-looking
+time has been armed since 2026-07-28. Thirty-three waves have been archived under it.
+**None of them is certified.** We first reported that as a forward-looking
 fix being slower than it sounds. That was not the reason.
 
 The reason is structural and it is in our own code. A cell that follows its
@@ -108,7 +108,7 @@ those 43 sit at the top tier, and two hold a golden bridge. The last promoted
 encoding wave is still dated 2026-08-28. This is the first derivation since
 three re-adjudications were adopted into the per-section records on
 2026-10-14 (below), and they did not move the backlog. A re-graded wave did:
-22 of the 43 are its sections (see "Since the last snapshot", below). We held
+22 of the 43 are its sections (see the 2026-10-16 → 2026-10-23 section, below). We held
 this figure back for several weeks because
 two of our own censuses printed a section count under the same word and did
 not agree. That is now settled: the figure above and the encoded census below
@@ -262,6 +262,51 @@ from the cell's working directory, so a cell launched outside it would have run
 handed to the cell explicitly, and the launcher refuses to start a cell when it
 is not. No wave has been promoted on this lane yet, so none of the figures on
 this page reflect it.
+
+## Since the last snapshot (2026-10-23 → 2026-10-30)
+
+No encoding wave was promoted in this window. The count of encoded sections
+did not move, and neither did the full-tier split: 47 sections hold a
+full-tier golden bridge, 12 on element-level agreement and 35 on statutory
+enumeration. The backlog census was not re-derived, so its figures above
+still carry the 2026-10-21 stamp.
+
+**Last week's nonce sentence ran ahead of the code.** This page said the
+readers of Lean's printed output no longer trust unmarked output and that
+records carry a per-run nonce. That was true of some readers. It was not yet
+true of the coverage emit, the bridge scorer or the axiom attester. The
+coverage emit required exactly one record per theorem, and an imported module
+could satisfy that by printing one forged record and exiting early. All three
+now bracket their own commands between a nonce-stamped BEGIN and a
+nonce-stamped END, and parse only what lies between them. A line printed
+before BEGIN is never read. An early exit leaves no END and is refused. A
+duplicate, a wrong count or a second window is refused. The coverage emit was
+run live on the built tree, and that run also refreshed an emit last stamped
+in June. The other two are covered by tests. We have no recorded live run of
+them on this axis yet.
+
+**A re-grade lapses when the grader changes.** Each re-grade record names the
+hash of the grader that produced it. The grader's file changed in this
+window, so the six re-grades on record lapsed. All six were re-run under the
+new grader and none contradicted its verdict of record. The 22-section breach
+above is one of them, and it stands. One certificate cannot be replayed this
+way, because it is a composite of several records. It stays untrusted by
+declaration, and the declaration sits on its row.
+
+**A toolchain bump left one red, and this page read past it.** The bump to
+v4.35.0 on 2026-10-20 reworded a block of proof-search diagnostics. One
+committed rejected-run report recorded that block verbatim, so a
+reproducibility case went red and the suite read 45 of 46. The 46-of-46
+sentence on the last snapshot described the previous bump and read as
+current. The report was re-derived under the new toolchain on 2026-10-27.
+Only the raw error text changed: same lines, same verdict. The comparator was
+not loosened, and the suite reads 46 of 46.
+
+**The extraction effort setting moved.** The 2026-10-02 → 2026-10-11 section
+below says a sweep on synthetic fixtures selected the lowest reasoning-effort
+setting for the extraction lane. That selection no longer holds the seat, for
+this axis only. The sweep's limit stands: its rig could not show a gain at
+higher settings, which is not the same as showing there is none.
 
 ## Since the last snapshot (2026-10-16 → 2026-10-23)
 
@@ -428,6 +473,7 @@ setting recorded on every run beside the resolved model. For the extraction
 lane, a pre-registered sweep on synthetic fixtures selected the lowest
 setting; the rig could not show a gain at higher settings. The value is
 seated for this axis only and is not inherited by any other.
+That selection was superseded on 2026-10-27; see the latest section.
 
 **Freshness by content, and an empty table is not a clean one.** The
 kernel-graph emit behind the status page now carries a digest of its inputs,
@@ -450,7 +496,7 @@ success.
   counted apart; earlier revisions of this page printed that figure under the
   word "sections", which was the wrong grain. Both are derived from the
   per-section records, never hand-maintained. No encoding wave was promoted between
-  2026-08-28 and 2026-10-23.
+  2026-08-28 and 2026-10-30.
 - The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
@@ -499,7 +545,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
 ## Kernel and toolchain
 
 - Lean toolchain pinned to **v4.35.0**; no Mathlib dependency, which keeps
-  `lake build` fast. The pin moved again this cycle, and both the accepted and
+  `lake build` fast. The pin moved to v4.35.0 on 2026-10-20, and both the accepted and
   the rejected example proofs were replayed on the bump before it was taken,
   with each rejected proof required to fail at the same element it failed at
   before. None changed its verdict. A toolchain bump that only replays the
@@ -507,8 +553,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
   toolchain lints a `constructor` step that more than one constructor
   matches, and the core proof tactic takes exactly that step. It now names
   the first-match form explicitly, which makes the same choice.
-- The suite went back to **46 of 46 green** after reading 44 of 46 on the
-  previous toolchain bump (see the README); the rejected-run reports were
+- The suite reads **46 of 46 green**. It read 44 of 46 after one toolchain bump and 45 of 46 after the next (see the README); the rejected-run reports were
   re-derived under that toolchain rather than the comparator loosened. The suite also no longer
   writes to the tree while running — six cases had been silently overwriting committed run
   artefacts and status slots. A test that mutates the tree it is testing is not a
@@ -561,7 +606,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 ## How to verify
 
-- In the working tree, `lake build` elaborates the bundled demo. There is no
+- In the working tree, `lake build Proving ProvingUSC` elaborates the kernels, and `lake env lean examples/<id>/proof.lean` elaborates one example once its `Facts.lean` is in place. There is no
   "sort of holds": either the validity theorem type-checks or the failing
   theorem names the element that does not. A clone of this repo cannot run
   this: the sources are not here yet ([`CONTRIBUTING.md`](./CONTRIBUTING.md)).
