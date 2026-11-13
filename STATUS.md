@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-10-30. Refreshed per release run during the
+_Snapshot: 2026-11-13. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -262,6 +262,23 @@ from the cell's working directory, so a cell launched outside it would have run
 handed to the cell explicitly, and the launcher refuses to start a cell when it
 is not. No wave has been promoted on this lane yet, so none of the figures on
 this page reflect it.
+
+## Since the last snapshot (2026-10-30 → 2026-11-13)
+
+No encoding wave was promoted in this window, and no kernel module, predicate
+spec or framework changed. The count of encoded sections did not move, and
+neither did the full-tier split: 47 sections hold a full-tier golden bridge,
+12 on element-level agreement and 35 on statutory enumeration. The backlog
+census was not re-derived, so its figures above still carry the 2026-10-21
+stamp.
+
+**Cold builds got faster on the desktop hosts.** The build governor ran Lean
+with four worker threads everywhere. On the desktop build hosts the default is
+now eight. The cold `lake build Proving ProvingUSC` was timed on two of them,
+the new setting against the old in alternating runs, and wall-clock time fell
+by 17 to 24 percent with no change in memory-compressor occupancy. The
+four-core build nodes keep four threads, because the same setting there would
+oversubscribe them. The build itself, and what it accepts, did not change.
 
 ## Since the last snapshot (2026-10-23 → 2026-10-30)
 
