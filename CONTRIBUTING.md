@@ -100,16 +100,12 @@ GitHub assumption (open a PR, maintainer merges it) does not hold:
    coordination point — it is how you find out whether an internal wave is
    already encoding that section, which is the single most likely way for
    your effort to be wasted.
-2. You do the work against this repo's Lean sources and open a PR here,
-   or attach the encoding to the issue.
+2. You do the work and attach the encoding to the issue.
 3. The encoding is reviewed against the frozen **golden-reference cells**
    — the hand-built frameworks that the automated program is itself scored
    against. They are frozen precisely so a new cell has a fixed target.
 4. On acceptance it is carried into the private working tree and flows
    back out through the next weekly refresh. Attribution rides the commit.
-
-Because step 4 is a carry rather than a merge, your commit hash here will
-not survive into the mirror. The attribution does; the hash does not.
 
 ## Licensing
 

@@ -197,7 +197,7 @@ held flat at 14. Four sections left the top tier for the one below it. A count
 that only ever rises is a count nobody is checking; this is what checking looks
 like when it goes against you.
 
-Neither arm moves monotonically, and last week's copy on this page said
+Neither arm moves monotonically, and an earlier revision of this page said
 otherwise. Element-level agreement has grown as new hand-built references landed;
 the enumeration count went **up** as new chapters bridged through the clause and
 then **down** again when a section retiered out of full tier on a second look. A
@@ -512,8 +512,7 @@ success.
   tier. The same set is 424 provisions when separately-encoded subsections are
   counted apart; earlier revisions of this page printed that figure under the
   word "sections", which was the wrong grain. Both are derived from the
-  per-section records, never hand-maintained. No encoding wave was promoted between
-  2026-08-28 and 2026-10-30.
+  per-section records, never hand-maintained.
 - The share of the whole Code is small and the point is that we say so: this is
   a method demonstrated at scale, not a finished encoding.
 - Every promoted wave is frozen into an immutable off-site snapshot at promotion
@@ -570,7 +569,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
   toolchain lints a `constructor` step that more than one constructor
   matches, and the core proof tactic takes exactly that step. It now names
   the first-match form explicitly, which makes the same choice.
-- The suite reads **46 of 46 green**. It read 44 of 46 after one toolchain bump and 45 of 46 after the next (see the README); the rejected-run reports were
+- The suite reads **46 of 46 green**. It read 44 of 46 after one toolchain bump and 45 of 46 after the next; the rejected-run reports were
   re-derived under that toolchain rather than the comparator loosened. The suite also no longer
   writes to the tree while running — six cases had been silently overwriting committed run
   artefacts and status slots. A test that mutates the tree it is testing is not a
@@ -592,7 +591,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
   date ran on it, from inside an interactive session via a subagent fan-out with
   a hard zero-manual-approval rule.
 - **Programmatic batch lane** — same mechanics, unattended; stays specified but
-  **paused** pending a provider-plan change.
+  **paused**.
 
 ## Next
 
@@ -602,7 +601,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
   archived corpus was measured but not retro-fitted.
 - Answer the census's remaining blind spot — a host still cannot see a peer's
   completed re-slice, so the backlog is an upper bound by construction.
-- Last week this list said: hand-build a golden for the terrorism offences, so
+- An earlier revision of this list said: hand-build a golden for the terrorism offences, so
   bridges into that clause can be measured element-wise instead of by enumeration
   alone. The golden was built. **It did not make element-wise measurement
   reachable, and the stated reason it would was wrong.** The racketeering statute

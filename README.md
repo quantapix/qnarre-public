@@ -354,7 +354,7 @@ model-locked lane, holding them as evidence-only archives without disturbing the
 hand-built anchors they reproduce; all three still bridge to their goldens. Each
 promoted wave is now frozen into an immutable, off-site-archived snapshot at
 promotion time, so a wave's blind cells stay reproducible after the working
-sandbox is pruned. The most recent golden expansion added a **fourth** hand-built
+sandbox is pruned. An earlier golden expansion added a **fourth** hand-built
 reference — the funded-education nondiscrimination title — discovered exactly
 when a blind cell *failed* to fully bridge to an existing golden and localized
 the gap to a single protected-ground hypothesis.
@@ -426,7 +426,7 @@ model is not a channel it reports on.
 The remaining work is scale: the same pattern, title by title, in waves, now
 across ten strategies rather than six. The fan-out runs on two lanes — a
 manual-interactive lane, the current lane, and a programmatic batch lane that
-stays specified but paused pending a provider-plan change — driven by a single
+stays specified but paused — driven by a single
 repeatable procedure with one hard rule: the agent fan-out must draw zero
 manual approvals, so a wave runs unattended end to end. Every cell writes to a sandbox, never to
 the authoritative tree, until a reconciliation gate and a human review promote
@@ -581,6 +581,4 @@ in the org. Answered in public; there is no contact email.
 
 ## License
 
-Apache-2.0 (`LICENSE.txt`). Code-class repo — Lean axioms,
-predicate stubs, and the driver are reused under the standard
-Apache patent grant.
+Apache-2.0 (`LICENSE.txt`). Code-class repo.
