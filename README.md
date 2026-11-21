@@ -497,8 +497,9 @@ usc_cite: "18 USC § 1961(5)"
 
 Exactly one key is machine-read: **`usc_cite`**, which the cite linter resolves
 against the vendored corpus. The driver hands the sub-agent the whole spec file
-verbatim, frontmatter included — so every other key is prose the agent reads,
-not configuration. A key changes behaviour only insofar as the decision rubric
+verbatim, frontmatter included, followed by one rule of the driver's own about
+evidence (below) — so every other key is prose the agent reads, not
+configuration. A key changes behaviour only insofar as the decision rubric
 below it says how. Author accordingly.
 
 The six locked sections are **Lean signature** (the exact `axiom` declaration the
@@ -514,7 +515,14 @@ returns
 ```
 
 — `uncertainty` is a band, not a number, because a spurious decimal invites
-arithmetic nobody can defend. The driver records the result as a Lean `axiom` in
+arithmetic nobody can defend.
+
+The `location` names only the passage its `quote` comes from: one paragraph
+or page, never a cross-reference to another. The driver states that rule
+after the spec and checks each reply against it. A folded location is
+retried, and one that persists is kept and flagged, not silently accepted.
+
+The driver records the result as a Lean `axiom` in
 the framework's generated `Facts.lean`.
 
 ## Build and verify

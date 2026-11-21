@@ -1,6 +1,6 @@
 # qnarre-public — status
 
-_Snapshot: 2026-11-13. Refreshed per release run during the
+_Snapshot: 2026-11-21. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 This is the release-narrative status of the legal-domain slice: what has
@@ -262,6 +262,64 @@ from the cell's working directory, so a cell launched outside it would have run
 handed to the cell explicitly, and the launcher refuses to start a cell when it
 is not. No wave has been promoted on this lane yet, so none of the figures on
 this page reflect it.
+
+## Since the last snapshot (2026-11-13 → 2026-11-21)
+
+No encoding wave was promoted in this window, and the count of encoded
+sections did not move. The backlog census was not re-derived, so its figures
+above still carry the 2026-10-21 stamp.
+
+**Evidence locations now name one place.** Each evidence item an extraction
+cell returns carries a quote and a location. Cells had been writing locations
+such as "¶ 4 (also ¶ 9)", so a reader that keyed ¶ 9 to that quote was keying
+it to text that is not on ¶ 9. The driver now appends one rule of its own to
+the spec it hands each cell: a location names only the passage its quote comes
+from. It then checks the reply. A folded location is retried, and one that
+persists is kept and flagged rather than discarded, because the run is paid
+work and the flag is the record. The witness runs on synthetic locations: six
+fold shapes caught, seven single-place shapes passed. The bundled samples were
+extracted before the rule and have not been re-run under it.
+
+**A cell could not read the statute it was asked about.** Extraction cells run
+with a narrow read grant, and their specs name the statute text and the
+authoring guides by path. Those paths sat outside the grant. Every such cell is
+now granted read access to the pinned Code mirror and the guides, and a cell
+on the isolated lane is still granted nothing. The witness reads the arguments
+the driver actually spawns a cell with, not the configuration meant to produce
+them.
+
+**A lint that could not fail.** Given one spec file instead of a directory, the
+citation lint treated the file as a directory, scanned nothing, and passed. It
+now scans a file as itself. An explicit scan that finds no spec to read exits
+with an error instead of a clean zero. The whole-tree scan the suite runs was
+not affected, so the citation check under "How to verify" held throughout.
+
+**A roster that had fallen behind its kernel.** A new three-way tally compares
+each golden's roster list against its spec files and against the predicates its
+kernel declares. It read red once: the federal-sector employment golden's list
+had not picked up the two route leaves added when that golden was repaired (see
+"What the re-slice found"). Specs and kernel agreed with each other; only the
+list was behind. It now ties.
+
+**The freshness flag was measuring the checkout.** The kernel-graph emit
+behind the status page decides freshness from a digest of its inputs (see the
+2026-10-02 → 2026-10-11 section). Both the digest and its re-check hashed every
+kernel file on disk, so an untracked or generated file on one machine could
+flip the flag to stale with no kernel change at all. Both now hash tracked
+files only: a stray file stays fresh, and a change to a tracked file still
+reads stale. The emit was regenerated on 2026-11-19 with no figure moving. In
+the same pass, a history-file path that named no file had read as zero rows and
+exited clean. It is now refused.
+
+Two strings were removed from the status slot: predicate links to a path no
+host serves, and a "latest run" age frozen at build time. The hosted status
+page is built from the slot when the site deploys. Read on 2026-11-21, it
+still showed the stale reading, the dead links and the age card, and will
+until the site is next built from the current slot.
+
+**The hosted verifier, read live.** On 2026-11-21 its run listing returned
+three runs, the closed synthetic set this page describes, and the site's
+synthetic demo page served. Nothing about the verifier changed in this window.
 
 ## Since the last snapshot (2026-10-30 → 2026-11-13)
 
@@ -569,7 +627,7 @@ fixture was regenerated against the corrected shape. One bundled sample now
   toolchain lints a `constructor` step that more than one constructor
   matches, and the core proof tactic takes exactly that step. It now names
   the first-match form explicitly, which makes the same choice.
-- The suite reads **46 of 46 green**. It read 44 of 46 after one toolchain bump and 45 of 46 after the next; the rejected-run reports were
+- The suite read **46 of 46 green** at its last full run, on 2026-11-18. It read 44 of 46 after one toolchain bump and 45 of 46 after the next; the rejected-run reports were
   re-derived under that toolchain rather than the comparator loosened. The suite also no longer
   writes to the tree while running — six cases had been silently overwriting committed run
   artefacts and status slots. A test that mutates the tree it is testing is not a
