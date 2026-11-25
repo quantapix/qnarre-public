@@ -39,15 +39,7 @@ worth your time before you clone anything:
 - **The project is one developer working with AI assistance**, opening one
   well-isolated lane. It is not a community project, and response latency
   will look like a single person's, because it is.
-- **The sources are not here yet.** This repo currently carries the
-  narrative documents only. The Lean kernel, the predicate specs, and the
-  helper scripts that every acceptance criterion in
-  [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) refers to are in the
-  private working tree and a source drop is not scheduled. Until that
-  lands, the issues are readable as a specification of the work and as an
-  honest inventory of the tree's defects, but you cannot run their commands
-  against a clone. Open an issue if you want to be told when the sources
-  land.
+- **The Lean kernel is here; the predicate specs and helper scripts are not.** This repo carries the federal Lean kernel (`Proving/`) beside the narrative documents. The predicate specs and the helper scripts that every acceptance criterion in [`GOOD-FIRST-ISSUES.md`](./GOOD-FIRST-ISSUES.md) refers to are not in this repo, so the issues are readable as a specification of the work and as an honest inventory of the tree's defects, but you cannot run their commands against a clone.
 
 If that is disqualifying for you, better to know now than after a weekend
 of encoding work.

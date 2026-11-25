@@ -682,13 +682,10 @@ fixture was regenerated against the corrected shape. One bundled sample now
 
 - In the working tree, `lake build Proving ProvingUSC` elaborates the kernels, and `lake env lean examples/<id>/proof.lean` elaborates one example once its `Facts.lean` is in place. There is no
   "sort of holds": either the validity theorem type-checks or the failing
-  theorem names the element that does not. A clone of this repo cannot run
-  this: the sources are not here yet ([`CONTRIBUTING.md`](./CONTRIBUTING.md)).
+  theorem names the element that does not. A clone of this repo can run the first command; the predicate specs and driver are not in this repo ([`CONTRIBUTING.md`](./CONTRIBUTING.md)).
 - There is now a bundled sample that **fails**. A toy federal-sector
   employment-discrimination complaint pleads its merits adequately and does
-  not satisfy the administrative-exhaustion family; `lake build` returns
-  `REJECTED` and the error names the element that did not discharge, not a
-  score. This is the one thing a stubbed run could never demonstrate — a
+  not satisfy the administrative-exhaustion family; in the working tree, building its proof returns `REJECTED` and the error names the element that did not discharge, not a score. This is the one thing a stubbed run could never demonstrate — a
   stub cans every predicate to `True`, so it always accepts — which is why
   it had to wait for the un-stubbing to finish.
 - Every statutory citation resolves against the pinned U.S. Code mirror. A

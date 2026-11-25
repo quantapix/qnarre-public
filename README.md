@@ -537,13 +537,9 @@ Either the kernel elaborates against the generated facts — the
 theorem holds — or it does not, in which case the failing theorem
 names the predicate that does not provide enough evidence under the
 current axiom set. There is no "sort of holds." The Lean kernel
-draws a hard line. A bare `lake build` also builds the examples, and a refusing example fails it by design.
+draws a hard line. In this repo a bare `lake build` builds the kernel targets `Proving` and `ProvingUSC` only.
 
-**A clone of this repo does not build.** It carries narrative
-documents and no kernel modules, predicate specs, driver or
-`lakefile`, so `lake build` has nothing to run against here
-([`CONTRIBUTING.md`](./CONTRIBUTING.md) says the same). The command
-above describes the working tree these documents are written from.
+**A clone of this repo builds the kernel.** It carries the federal kernel modules and a `lakefile`, and `lake build` elaborates them. It carries no predicate specs and no driver ([`CONTRIBUTING.md`](./CONTRIBUTING.md) says the same).
 
 ## Worked examples
 
@@ -554,10 +550,7 @@ the manifest, the extracted facts (`facts.json` and the generated
 result files. No driver audit log and no elaboration output ships
 with an example.
 
-Published examples are **readable, not buildable**. They import
-kernel modules that are not in this repo, and the proof step needs a
-harness that places the example's `Facts.lean` into the kernel tree
-before the kernel can check it. Reading one shows what the pipeline
+Published examples are **readable, not buildable** as cloned: the proof step needs a harness that places the example's `Facts.lean` into the kernel tree before the kernel can check it. Reading one shows what the pipeline
 extracted and what the kernel was asked to check. It does not let a
 clone re-run the check.
 
