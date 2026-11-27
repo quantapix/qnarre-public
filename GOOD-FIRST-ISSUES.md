@@ -12,15 +12,6 @@ front door.
 Everything here works over **public federal statutes only**. No PII, no
 litigation record, no redaction surface.
 
-> **The commands below do not run against this clone yet.** This repo carries
-> the narrative documents only — the Lean kernel, the predicate specs, and the
-> helper scripts every acceptance criterion names are in the private working
-> tree, and a source drop is not scheduled (`CONTRIBUTING.md` § "what state the
-> lane is actually in"). Until it lands, read these as a specification of the
-> work and an inventory of the tree's defects. The counts are the maintainer's,
-> re-derived on the date stated; you will be able to re-derive them yourself
-> when the sources land.
-
 > **Four of the original nine closed between refreshes.** This roster was first
 > published on 2026-07-31 with nine open tasks. Issues 1, 2, 6 and 8 were swept
 > internally in the week that followed and are marked closed in place, keeping
@@ -452,7 +443,7 @@ PyYAML — the frontmatter here is simple enough for a hand parser, as
 ## Re-deriving the counts
 
 Every number above is reproducible from the tree — once the sources land in this
-repo (see the banner at the top). These are the commands the maintainer runs:
+repo. These are the commands the maintainer runs:
 
 ```bash
 # the spec population (excludes axis briefings, READMEs, and the golden rosters)

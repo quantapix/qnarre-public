@@ -271,14 +271,13 @@ above still carry the 2026-10-21 stamp.
 
 **Evidence locations now name one place.** Each evidence item an extraction
 cell returns carries a quote and a location. Cells had been writing locations
-such as "¶ 4 (also ¶ 9)", so a reader that keyed ¶ 9 to that quote was keying
-it to text that is not on ¶ 9. The driver now appends one rule of its own to
+such as "¶ 4 (also ¶ 9)". The driver now appends one rule of its own to
 the spec it hands each cell: a location names only the passage its quote comes
 from. It then checks the reply. A folded location is retried, and one that
-persists is kept and flagged rather than discarded, because the run is paid
-work and the flag is the record. The witness runs on synthetic locations: six
-fold shapes caught, seven single-place shapes passed. The bundled samples were
-extracted before the rule and have not been re-run under it.
+persists is kept and flagged rather than discarded. The witness runs on
+synthetic locations: six fold shapes caught, seven single-place shapes passed.
+The bundled samples were extracted before the rule and have not been re-run
+under it.
 
 **A cell could not read the statute it was asked about.** Extraction cells run
 with a narrow read grant, and their specs name the statute text and the
